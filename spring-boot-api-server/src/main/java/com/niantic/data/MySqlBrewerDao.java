@@ -69,7 +69,14 @@ public class MySqlBrewerDao implements BrewerDao {
 
     @Override
     public Brewer addBrewer(Brewer brewer) {
-        return null;
+        String sql = """
+                INSERT INTO Brewer
+                (brewer_id,
+                breweries_owned,
+                user_id)
+                VALUES (
+                ?,?,?);
+                """
     }
 
     @Override
