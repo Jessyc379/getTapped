@@ -22,13 +22,11 @@ public class MySqlBrewerDao implements BrewerDao {
 
 
     @Override
-    public List<Brewer> getAll(int brewerId) {
+    public List<Brewer> getAll() {
         List<Brewer> brewers = new ArrayList<>();
 
         String sql = """
-                SELECT brewer_id,
-                    breweries_owned,
-                    user_id
+                SELECT *
                 FROM brewer;
                 """;
 
@@ -98,15 +96,26 @@ public class MySqlBrewerDao implements BrewerDao {
     @Override
     public void updateBrewer(int brewerId, Brewer brewer) {
         String sql = """
+                UPDATE Brewer
+                SET
+                breweries_owned = ?
+                , user_id = ?
+                WHERE brewer_id = ?;
                 
-                
-                
-                """
+                """;
+
+        jdbcTemplate.update(sql
+        , brewer.getBreweriesOwned()
+        , brewer.getUserId(), brewerId);
 
     }
 
     @Override
     public void deleteBrewer(int brewerId) {
+        String sql = """
+                DELETE FROM brewer WHERE brewer_id = ?;
+                """;
+        jdbcTemplate.update(sql, brewerId);
 
     }
 }
