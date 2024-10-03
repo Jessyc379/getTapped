@@ -40,7 +40,7 @@ CREATE TABLE Customer (
 );
 
 CREATE TABLE Brewery (
-    brewery_id VARCHAR(36) NOT NULL,
+    brewery_id VARCHAR(36) NOT NULL DEFAULT (UUID()),
     brewery_name VARCHAR(255),
     brewery_type VARCHAR(255),
     address VARCHAR(255),
