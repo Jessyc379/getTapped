@@ -38,7 +38,7 @@ CREATE TABLE Customer (
 );
 
 CREATE TABLE Brewery (
-    brewery_id UUID PRIMARY KEY,
+    brewery_id VARCHAR(36) PRIMARY KEY,
     name VARCHAR(255),
     brewery_type VARCHAR(255),
     address VARCHAR(255),
@@ -57,7 +57,7 @@ CREATE TABLE Brewery (
 CREATE TABLE CustomerFavorites (
     favorite_id INT PRIMARY KEY,
     customer_id INT,
-    brewery_id UUID,
+    brewery_id VARCHAR(36),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id)
 );
@@ -65,7 +65,7 @@ CREATE TABLE CustomerFavorites (
 CREATE TABLE CustomerReviews (
     review_id INT PRIMARY KEY,
     customer_id INT,
-    brewery_id UUID,
+    brewery_id VARCHAR(36),
     rating INT,
     review INT,
     date DATE,
