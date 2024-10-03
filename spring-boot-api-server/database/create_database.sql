@@ -117,7 +117,7 @@ INSERT INTO Customer (customer_id, favorite_breweries, total_reviews, user_id) V
 (4, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 3, 7),  -- Thorin (Customer)
 (5, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 4, 8);   -- Legolas (Customer)
 
-INSERT INTO Brewery (brewery_id, name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, owner_id)
+INSERT INTO Brewery (brewery_id, name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
 VALUES
 ('b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 'Twilight Brewing Company', 'brewpub', '2002 Shadow Lane', 'Seattle', 'Washington', '98101', 'United States', -122.330052, 47.606209, '206-555-0182', 'http://www.twilightbrewing.com', 2),
 ('3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 'Sunrise Craft Brewery', 'micro', '45 Sunrise Ave', 'Phoenix', 'Arizona', '85001', 'United States', -112.074036, 33.448376, '602-555-1234', 'http://www.sunrisecraftbrewery.com', 3);
