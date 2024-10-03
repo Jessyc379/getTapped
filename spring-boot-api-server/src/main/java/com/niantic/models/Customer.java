@@ -12,9 +12,10 @@ import lombok.Setter;
 
 public class Customer {
 
-    private int customerID;
+    private int customerId;
     private String favoriteBreweries;
-    private String totalReviews;
+    private int totalReviews;
+    private int userId;
 
 
 }
