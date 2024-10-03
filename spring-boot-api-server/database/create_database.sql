@@ -18,7 +18,7 @@ CREATE TABLE Users (
                        user_id INT NOT NULL AUTO_INCREMENT,
                        username VARCHAR(50) NOT NULL,
                        hashed_password VARCHAR(255) NOT NULL,
-                       role VARCHAR(50) NOT NULL,
+                       user_role VARCHAR(50) NOT NULL,
                        PRIMARY KEY (user_id)
 );
 
@@ -26,8 +26,9 @@ CREATE TABLE Brewer (
     brewer_id INT NOT NULL AUTO_INCREMENT,
     breweries_owned INT,
     user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-    PRIMARY KEY (brewer_id);
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    PRIMARY KEY (brewer_id)
+    );
 
 CREATE TABLE Customer (
     customer_id INT NOT NULL AUTO_INCREMENT,
@@ -39,8 +40,8 @@ CREATE TABLE Customer (
 );
 
 CREATE TABLE Brewery (
-    brewery_id VARCHAR(36) NOT NULL AUTO_INCREMENT ,
-    name VARCHAR(255),
+    brewery_id VARCHAR(36) NOT NULL,
+    brewery_name VARCHAR(255),
     brewery_type VARCHAR(255),
     address VARCHAR(255),
     city VARCHAR(100),
@@ -71,7 +72,7 @@ CREATE TABLE CustomerReviews (
     brewery_id VARCHAR(36),
     rating INT,
     customer_review TEXT,
-    date DATE,
+    review_date DATE,
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id),
     PRIMARY KEY (review_id)
@@ -89,7 +90,7 @@ samwise		password
 gollum		password
 
  are: password */
-INSERT INTO Users (username, hashed_password, role)
+INSERT INTO Users (username, hashed_password, user_role)
 VALUES  ('user','$2a$10$NkufUPF3V8dEPSZeo1fzHe9ScBu.LOay9S3N32M84yuUM2OJYEJ/.','ROLE_USER'),
 ('admin','$2a$10$lfQi9jSfhZZhfS6/Kyzv3u3418IgnWXWDQDk7IbcwlCFPgxg9Iud2','ROLE_ADMIN'),
 ('gandalf','$2a$10$lfQi9jSfhZZhfS6/Kyzv3u3418IgnWXWDQDk7IbcwlCFPgxg9Iud2','ROLE_ADMIN'),
@@ -121,7 +122,7 @@ INSERT INTO Customer (customer_id, favorite_breweries, total_reviews, user_id) V
 (4, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 3, 7),  -- Thorin (Customer)
 (5, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 4, 8);   -- Legolas (Customer)
 
-INSERT INTO Brewery (brewery_id, name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
+INSERT INTO Brewery (brewery_id, brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
 VALUES
 ('b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 'Twilight Brewing Company', 'brewpub', '2002 Shadow Lane', 'Seattle', 'Washington', '98101', 'United States', -122.330052, 47.606209, '206-555-0182', 'http://www.twilightbrewing.com', 2),
 ('3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 'Sunrise Craft Brewery', 'micro', '45 Sunrise Ave', 'Phoenix', 'Arizona', '85001', 'United States', -112.074036, 33.448376, '602-555-1234', 'http://www.sunrisecraftbrewery.com', 3);
@@ -135,7 +136,7 @@ VALUES
 (4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8');
 
 
-INSERT INTO CustomerReviews (review_id, customer_id, brewery_id, rating, customer_review, date)
+INSERT INTO CustomerReviews (review_id, customer_id, brewery_id, rating, customer_review, review_date)
 VALUES
 (1, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great atmosphere and amazing stouts!', '2024-09-30'),
 (2, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Best IPAs in town! Highly recommend.', '2024-09-28'),
