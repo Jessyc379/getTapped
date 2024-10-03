@@ -67,7 +67,7 @@ CREATE TABLE CustomerReviews (
     customer_id INT,
     brewery_id VARCHAR(36),
     rating INT,
-    review INT,
+    customer_review TEXT,
     date DATE,
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id)
@@ -131,7 +131,7 @@ VALUES
 (4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8');
 
 
-INSERT INTO CustomerReviews (review_id, customer_id, brewery_id, rating, review, date)
+INSERT INTO CustomerReviews (review_id, customer_id, brewery_id, rating, customer_review, date)
 VALUES
 (1, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great atmosphere and amazing stouts!', '2024-09-30'),
 (2, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Best IPAs in town! Highly recommend.', '2024-09-28'),
