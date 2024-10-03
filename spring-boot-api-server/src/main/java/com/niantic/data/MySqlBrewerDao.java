@@ -2,9 +2,13 @@ package com.niantic.data;
 
 import com.niantic.models.Brewer;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,17 +74,34 @@ public class MySqlBrewerDao implements BrewerDao {
     @Override
     public Brewer addBrewer(Brewer brewer) {
         String sql = """
-                INSERT INTO Brewer
-                (brewer_id,
-                breweries_owned,
-                user_id)
-                VALUES (
-                ?,?,?);
-                """
+                INSERT INTO Brewer (breweries_owned
+                             , user_id)
+                VALUES (?,?);
+                """;
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(2, brewer.getBreweriesOwned());
+            statement.setInt(3, brewer.getUserId());
+            return statement;
+        }, keyHolder);
+
+        int newId = keyHolder.getKey().intValue();
+
+        return getBrewerById(newId);
+
+
     }
 
     @Override
     public void updateBrewer(int brewerId, Brewer brewer) {
+        String sql = """
+                
+                
+                
+                """
 
     }
 
