@@ -10,7 +10,9 @@ import lombok.Getter;
 @NoArgsConstructor
 public class Brewer {
 
-    private int brewer_id;
-    private int breweries_owned;
+    private int brewerId;
+    private int breweriesOwned;
+    private int userId;
+
 
 }

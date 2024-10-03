@@ -23,22 +23,23 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Brewer (
-    brewer_id INT PRIMARY KEY,
+    brewer_id INT NOT NULL AUTO_INCREMENT,
     breweries_owned INT,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+    PRIMARY KEY (brewer_id);
 
 CREATE TABLE Customer (
-    customer_id INT PRIMARY KEY,
+    customer_id INT NOT NULL AUTO_INCREMENT,
     favorite_breweries TEXT,
     total_reviews INT,
     user_id INT,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    PRIMARY KEY (customer_id)
 );
 
 CREATE TABLE Brewery (
-    brewery_id VARCHAR(36) PRIMARY KEY,
+    brewery_id VARCHAR(36) NOT NULL AUTO_INCREMENT ,
     name VARCHAR(255),
     brewery_type VARCHAR(255),
     address VARCHAR(255),
@@ -51,26 +52,29 @@ CREATE TABLE Brewery (
     phone VARCHAR(15),
     website_url VARCHAR(255),
     brewer_id INT,
-    FOREIGN KEY (brewer_id) REFERENCES Brewer(brewer_id)
+    FOREIGN KEY (brewer_id) REFERENCES Brewer(brewer_id),
+    PRIMARY KEY (brewery_id)
 );
 
 CREATE TABLE CustomerFavorites (
-    favorite_id INT PRIMARY KEY,
+    favorite_id INT NOT NULL AUTO_INCREMENT,
     customer_id INT,
     brewery_id VARCHAR(36),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-    FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id)
+    FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id),
+    PRIMARY KEY (favorite_id)
 );
 
 CREATE TABLE CustomerReviews (
-    review_id INT PRIMARY KEY,
+    review_id INT NOT NULL AUTO_INCREMENT,
     customer_id INT,
     brewery_id VARCHAR(36),
     rating INT,
     customer_review TEXT,
     date DATE,
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-    FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id)
+    FOREIGN KEY (brewery_id) REFERENCES Brewery(brewery_id),
+    PRIMARY KEY (review_id)
 );
 
 /*  INSERT Users  */
