@@ -1,1 +1,1 @@
-# niantic-2024-final-capstone-brewery-finder
+# Final Capstone
