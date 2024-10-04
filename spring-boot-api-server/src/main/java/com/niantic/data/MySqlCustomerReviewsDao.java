@@ -9,20 +9,18 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.security.Key;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Repository
-public class MySqlCustomerReviewDao implements CustomerReviewsDao {
+public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public MySqlCustomerReviewDao(DataSource dataSource) {
+    public MySqlCustomerReviewsDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
