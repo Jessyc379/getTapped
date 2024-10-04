@@ -105,27 +105,55 @@ VALUES  ('user','$2a$10$NkufUPF3V8dEPSZeo1fzHe9ScBu.LOay9S3N32M84yuUM2OJYEJ/.','
 ('brewmaster', '$2a$10$2F8YhYwZgofOR0zA/lzISeQbDR1o6F3P7wiM8B.T6q4pckM61Kj0C', 'ROLE_BREWER'),
 ('barleycorn', '$2a$10$Nf7hlFEV9G4L5BWCSukD9OUtJxNe9VB1JpN8y0b3Bgs39h9RDd2m.', 'ROLE_BREWER'),
 ('hobbiton', '$2a$10$fuTwZsTfHSr0RrzKyHQddO8V4dIsQjx8zH2MSpTkSOE.EGttqjGsi', 'ROLE_USER'),
-('rivendell', '$2a$10$GtQWyKEQp7DZ/xU0pAfKx.4U9Aa9Af68hRhH/6BSF3PrQQhx9Nqhm', 'ROLE_USER');
-
+('rivendell', '$2a$10$GtQWyKEQp7DZ/xU0pAfKx.4U9Aa9Af68hRhH/6BSF3PrQQhx9Nqhm', 'ROLE_USER'),
+('aragorn', '$2a$10$lfQi9jSfhZZhfS6/Kyzv3u3418IgnWXWDQDk7IbcwlCFPgxg9Iud2', 'ROLE_BREWER'),
+('boromir', '$2a$10$2F8YhYwZgofOR0zA/lzISeQbDR1o6F3P7wiM8B.T6q4pckM61Kj0C', 'ROLE_USER'),
+('faramir', '$2a$10$8knm9ZtO1PgfXlGyFeR4LOA/gZnq6Jo2fs4i/EOQSc2MYxfQGo1m2', 'ROLE_USER'),
+('eowyn', '$2a$10$fuTwZsTfHSr0RrzKyHQddO8V4dIsQjx8c74N5sk6ZXs6QDLkq0IlhG', 'ROLE_USER'),
+('elrond', '$2a$10$GtQWyKEQp7DZ/xU0pAfKx.4U9Aa9Af68hRhH/6BSF3PrQQhx9Nqhm', 'ROLE_BREWER'),
+('pippin', '$2a$10$LfQi9ZlJwLZ1kd3jZ6J9qF39IiwplWVOblhW2kYIuOFSQ1QdJNaaS', 'ROLE_USER'),
+('merry', '$2a$10$lfQi9jsbJzfd4LmXlnu1uR8FaUvGRDBwjcR18YyDFStTDaLoG.Zz.', 'ROLE_USER'),
+('denethor', '$2a$10$Igfd7LJKf91fg45L0fhZne/BZ9OXtcYudwlQgZFGcsIhnfB8k9PaK', 'ROLE_ADMIN'),
+('glorfindel', '$2a$10$JhS9QJfXGgkXw1sj5LFcVOafsd4VgKFs9VlSdpNRQiMwnwHjRkBcM', 'ROLE_BREWER'),
+('balin', '$2a$10$jhZcHK5Af3FGJff6sk7K2B13FasDHKZhwrDg1ddYvHTRiBXhWsqJ/', 'ROLE_BREWER'),
+('thranduil', '$2a$10$8hQsTgL3VfcfRLcFHF8Gqejf2F1KbTg1PoflsdlWSlIGaWWwrLlGc', 'ROLE_USER');
 
 INSERT INTO Brewer (brewer_id, breweries_owned, user_id) VALUES
 (1, 2, 4),   -- Frodo (Brewer)
 (2, 1, 5),   -- Samwise (Brewer)
 (3, 1, 11),  -- Dumbledore (Brewer)
 (4, 3, 12),  -- Barleycorn (Brewer)
-(5, 1, 3);   -- Gandalf (Admin with Brewer role)
+(5, 1, 3),   -- Gandalf (Admin with Brewer role)
+(6, 2, 13),  -- Aragorn (Brewer)
+(7, 1, 15),  -- Elrond (Brewer)
+(8, 2, 14),  -- Glorfindel (Brewer)
+(9, 1, 15),  -- Balin (Brewer)
+(10, 1, 5),  -- Samwise (Additional brewery)
+(11, 1, 7);  -- Elrond (Additional brewery)
 
 INSERT INTO Customer (customer_id, favorite_breweries, total_reviews, user_id) VALUES
 (1, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 5, 1),  -- User (Customer)
 (2, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 2, 2),  -- Admin (Customer)
 (3, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 8, 6),     -- Gollum (Customer)
 (4, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 3, 7),  -- Thorin (Customer)
-(5, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 4, 8);   -- Legolas (Customer)
+(5, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 4, 8),   -- Legolas (Customer)
+(6, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda", "3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 7, 14),  -- Boromir
+(7, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 5, 16),  -- Faramir
+(8, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 3, 17),   -- Eowyn
+(9, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 4, 17),  -- Merry
+(10, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 2, 18),  -- Pippin
+(11, '["e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd"]', 5, 19),  -- Denethor
+(12, '["c784521d-2f3c-4ae3-9b8a-7f9d1c21364a"]', 3, 20); -- Thranduil
 
 INSERT INTO Brewery (brewery_id, brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
 VALUES
 ('b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 'Twilight Brewing Company', 'brewpub', '2002 Shadow Lane', 'Seattle', 'Washington', '98101', 'United States', -122.330052, 47.606209, '206-555-0182', 'http://www.twilightbrewing.com', 2),
-('3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 'Sunrise Craft Brewery', 'micro', '45 Sunrise Ave', 'Phoenix', 'Arizona', '85001', 'United States', -112.074036, 33.448376, '602-555-1234', 'http://www.sunrisecraftbrewery.com', 3);
+('3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 'Sunrise Craft Brewery', 'micro', '45 Sunrise Ave', 'Phoenix', 'Arizona', '85001', 'United States', -112.074036, 33.448376, '602-555-1234', 'http://www.sunrisecraftbrewery.com', 3),
+('e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 'Rivendell Brewing', 'micro', '42 Elven Path', 'Rivendell', 'Middle-Earth', '94001', 'United States', -120.987654, 45.123456, '555-987-6543', 'http://www.rivendellbrewing.com', 7),
+('c784521d-2f3c-4ae3-9b8a-7f9d1c21364a', 'Gondor Ales', 'brewpub', '50 Steward Road', 'Minas Tirith', 'Middle-Earth', '94002', 'United States', -121.123456, 45.987654, '555-765-4321', 'http://www.gondorales.com', 6),
+('d9b8df8b-4824-8b3c-c12e3a1a1fda', 'Fangorn Brewing', 'micro', '1 Fangorn Rd', 'Fangorn Forest', 'Middle-Earth', '94003', 'United States', -122.125654, 45.765432, '555-998-8765', 'http://www.fangornbrewing.com', 8),  -- Glorfindel
+('a9b8df8b-4812-9a3c-c13b2a1a1fdb', 'Lonely Mountain Ale', 'brewpub', '2 Lonely Mountain', 'Erebor', 'Middle-Earth', '94004', 'United States', -122.328765, 46.342123, '555-555-6789', 'http://www.lonelymountainale.com', 9), -- Balin
+('z9b9df8b-4924-8c3b-d12e3a1a1fdc', 'Shire Brewing Co.', 'brewpub', '22 Bagshot Row', 'Shire', 'Middle-Earth', '94005', 'United States', -120.546132, 44.987654, '555-123-4567', 'http://www.shirebrewing.com', 6); -- Samwise
 
 
 INSERT INTO CustomerFavorites (favorite_id, customer_id, brewery_id)
@@ -133,7 +161,14 @@ VALUES
 (1, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda'),
 (2, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda'),
 (3, 3, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8'),
-(4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8');
+(4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8'),
+(5, 6, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd'),  -- Boromir's favorite brewery
+(6, 7, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda'),  -- Faramir's favorite brewery
+(7, 8, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8'),  -- Eowyn's favorite brewery
+(8, 9, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda'),  -- Merry
+(9, 10, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8'),  -- Pippin
+(10, 11, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd'), -- Denethor
+(11, 12, 'c784521d-2f3c-4ae3-9b8a-7f9d1c21364a'); -- Thranduil
 
 
 INSERT INTO CustomerReviews (review_id, customer_id, brewery_id, rating, customer_review, review_date)
@@ -141,6 +176,13 @@ VALUES
 (1, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great atmosphere and amazing stouts!', '2024-09-30'),
 (2, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Best IPAs in town! Highly recommend.', '2024-09-28'),
 (3, 3, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Fantastic selection of seasonal beers!', '2024-09-29'),
-(4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Loved the ambiance and live music!', '2024-09-27');
+(4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Loved the ambiance and live music!', '2024-09-27'),
+(5, 6, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 5, 'Elvish magic in every pint!', '2024-09-28'),
+(6, 7, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great for relaxing after a long journey.', '2024-09-29'),
+(7, 8, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Stout as strong as a shieldmaiden.', '2024-09-30'),
+(8, 9, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'The best beer to start an adventure!', '2024-09-29'),
+(9, 10, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Great for a quick pint before second breakfast.', '2024-09-28'),
+(10, 11, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 5, 'Strong and true, just like Gondor!', '2024-09-30'),
+(11, 12, 'c784521d-2f3c-4ae3-9b8a-7f9d1c21364a', 4, 'Beautiful ale with an Elven touch.', '2024-09-29');
 
 
