@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import com.niantic.exceptions.HttpError;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,10 +21,12 @@ public class CustomerController
     @Autowired
     public CustomerController(CustomerDao customerDao, LoggingService logger) {
         this.customerDao = customerDao;
+
         this.logger = logger;
     }
 
     @GetMapping({"", "/"})
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<?> getAllCustomers()
     {
         try
@@ -43,7 +46,8 @@ public class CustomerController
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<?> getCustomerById(@PathVariable int id)
     {
         try
@@ -71,9 +75,13 @@ public class CustomerController
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer addCustomer(@RequestBody Customer customer) { return customerDao.addCustomer(customer); }
+    public Customer addCustomer(@RequestBody Customer customer)
+    {
+        return customerDao.addCustomer(customer);
+    }
 
     @PutMapping("{id}")
+    @PreAuthorize("isAuthenticated() and (authentication.name) == hasRole('ROLE_ADMIN'))")
     public ResponseEntity<?> updateCustomer(@PathVariable int id, @RequestBody Customer customer)
     {
         try
@@ -84,6 +92,11 @@ public class CustomerController
                 var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Customer with id " + id + " is invalid");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                                      .body(error);
+            }
+
+            if(!currentCustomer.equals(customer))
+            {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You can only edit your own profile!");
             }
 
             customerDao.updateCustomer(id, customer);
@@ -100,6 +113,16 @@ public class CustomerController
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("isAuthenticated() and (authentication.name) == hasRole('ROLE_ADMIN'))")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCustomer(@PathVariable int id) { customerDao.deleteCustomer(id); }
+    public void deleteCustomer(@PathVariable int id, Customer customer)
+    {
+        var currentCustomer = customerDao.getCustomer(id);
+
+        if(currentCustomer.equals(customer))
+        {
+            customerDao.deleteCustomer(id);
+        }
+
+    }
 }
