@@ -3,7 +3,7 @@ package com.niantic.controllers;
 import com.niantic.data.CustomerDao;
 import com.niantic.data.CustomerReviewsDao;
 
-//import com.niantic.data.CustomerDao;
+
 import com.niantic.models.CustomerReviews;
 import com.niantic.exceptions.HttpError;
 import com.niantic.services.LoggingService;
@@ -12,25 +12,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reviews")
 @CrossOrigin
 public class CustomerReviewController {
     private final CustomerReviewsDao customerReviewsDao;
-//    private final CustomerDao customerDao;
+    private final CustomerDao customerDao;
     private final LoggingService logger;
 
     @Autowired
-    public CustomerReviewController(CustomerReviewsDao customerReviewsDao, LoggingService logger) {
+    public CustomerReviewController(CustomerReviewsDao customerReviewsDao, CustomerDao customerDao, LoggingService logger) {
         this.customerReviewsDao = customerReviewsDao;
+        this.customerDao = customerDao;
         this.logger = logger;
     }
 
-    @GetMapping({"", "/"})
-    public ResponseEntity<?> getAllReviews()
+    @GetMapping("")
+    public ResponseEntity<?> getAllReviews(@RequestParam(required = false) Integer custId,
+                                           @RequestParam(required = false) String brewId)
     {
         try{
-            var reviews = customerReviewsDao.getCustomerReviews();
+            List<CustomerReviews> reviews;
+            if(custId == null && brewId==null) reviews = customerReviewsDao.getCustomerReviews();
+            else if (brewId == null) reviews  = customerReviewsDao.getReviewByCustomerId(custId);
+            else reviews = customerReviewsDao.getReviewByBreweryId(brewId);
 
             return ResponseEntity.ok(reviews);
 
@@ -67,27 +74,6 @@ public class CustomerReviewController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
     }
-//
-//    @GetMapping("/customer")
-//    public ResponseEntity<?> getReviewByCustomerId(@RequestParam int custId)
-//    {
-//        try{
-//            var review = customerReviewsDao.getReviewByCustomerId(custId);
-//            var customers = customerDao.getCustomer(custId);
-//            if(customers == null)
-//            {
-//                return ResponseEntity.notFound().build();
-//            }
-//            return ResponseEntity.ok(review);
-//        }
-//        catch(Exception e)
-//        {
-//            logger.logMessage(e.getMessage());
-//            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Oops, something went wrong!");
-//
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
-//        }
-//    }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
