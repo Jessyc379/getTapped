@@ -3,10 +3,14 @@ package com.niantic.data;
 import com.niantic.models.Brewery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,28 +94,35 @@ public class MySqlBreweryDao implements BreweryDao {
     @Override
     public Brewery addBrewery(Brewery brewery) {
         String sql = """
-            INSERT INTO Brewery (brewery_id, brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO Brewery (brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
-        jdbcTemplate.update(sql,
-                brewery.getBreweryId(),
-                brewery.getBreweryName(),
-                brewery.getBreweryType(),
-                brewery.getAddress(),
-                brewery.getCity(),
-                brewery.getStateProvince(),
-                brewery.getPostalCode(),
-                brewery.getCountry(),
-                brewery.getLongitude(),
-                brewery.getLatitude(),
-                brewery.getPhone(),
-                brewery.getWebsiteUrl(),
-                brewery.getBrewerId()
-        );
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        return getBreweryById(Integer.parseInt(brewery.getBreweryId()));
+        jdbcTemplate.update(connection -> {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, brewery.getBreweryName());
+            statement.setString(2, brewery.getBreweryType());
+            statement.setString(3, brewery.getAddress());
+            statement.setString(4, brewery.getCity());
+            statement.setString(5, brewery.getStateProvince());
+            statement.setString(6, brewery.getPostalCode());
+            statement.setString(7, brewery.getCountry());
+            statement.setDouble(8, brewery.getLongitude());
+            statement.setDouble(9, brewery.getLatitude());
+            statement.setString(10, brewery.getPhone());
+            statement.setString(11, brewery.getWebsiteUrl());
+            statement.setInt(12, brewery.getBrewerId());
+
+            return statement;
+        }, keyHolder);
+
+        int newId = keyHolder.getKey().intValue();
+
+        return getBreweryById(newId);
     }
+
 
     @Override
     public void updateBrewery(int id, Brewery brewery) {
