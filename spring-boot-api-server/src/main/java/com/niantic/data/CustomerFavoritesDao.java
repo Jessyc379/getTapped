@@ -9,6 +9,12 @@ public interface CustomerFavoritesDao {
 
     CustomerFavorites getCustomerFavorite(int favoriteId);
 
+    CustomerFavorites getCustomerFavoriteById(int id);
+
+    List<CustomerFavorites> getFavoritesByCustomerId(int customerId);
+
+    List<CustomerFavorites> getFavoritesByBreweryId(String breweryId);
+
     CustomerFavorites addCustomerFavorite(CustomerFavorites customerFavorite);
 
     void updateCustomerFavorite(int favoriteId, CustomerFavorites customerFavorite);
