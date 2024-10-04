@@ -73,7 +73,7 @@ public class CustomerController
     @ResponseStatus(HttpStatus.CREATED)
     public Customer addCustomer(@RequestBody Customer customer) { return customerDao.addCustomer(customer); }
 
-    @PutMapping("{id")
+    @PutMapping("{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable int id, @RequestBody Customer customer)
     {
         try
