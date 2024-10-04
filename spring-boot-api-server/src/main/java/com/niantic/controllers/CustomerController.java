@@ -74,6 +74,7 @@ public class CustomerController
     }
 
     @PostMapping("")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public Customer addCustomer(@RequestBody Customer customer)
     {
@@ -81,7 +82,7 @@ public class CustomerController
     }
 
     @PutMapping("{id}")
-    @PreAuthorize("isAuthenticated() and (authentication.name) == hasRole('ROLE_ADMIN'))")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> updateCustomer(@PathVariable int id, @RequestBody Customer customer)
     {
         try
@@ -113,7 +114,7 @@ public class CustomerController
     }
 
     @DeleteMapping("{id}")
-    @PreAuthorize("isAuthenticated() and (authentication.name) == hasRole('ROLE_ADMIN'))")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable int id, Customer customer)
     {
