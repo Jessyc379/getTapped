@@ -17,6 +17,7 @@ import java.util.List;
 
 @Repository
 public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
+
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -27,19 +28,26 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
 
     @Override
     public List<CustomerReviews> getCustomerReviews() {
+
         List<CustomerReviews> reviews = new ArrayList<>();
 
         String sql = """
-                SELECT *
+                SELECT review_id
+                  , customer_id
+                  , brewery_id
+                  , rating
+                  , customer_review
+                  , review_date
                 FROM CustomerReviews;
                 """;
+
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql);
 
         while (row.next())
         {
             int reviewId = row.getInt("review_id");
             int customerId = row.getInt("customer_id");
-            int breweryId = row.getInt("brewery_id");
+            String breweryId = row.getString("brewery_id");
             int rating = row.getInt("rating");
             String customerReview = row.getString("customer_review");
             LocalDate reviewDate = null;
@@ -50,7 +58,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
                 reviewDate = convertDate.toLocalDate();
             }
 
-            CustomerReviews review = new CustomerReviews(reviewId,customerId,breweryId,rating,customerReview,reviewDate);
+            CustomerReviews review = new CustomerReviews(reviewId, customerId, breweryId, rating, customerReview, reviewDate);
             reviews.add(review);
         }
         return reviews;
@@ -76,7 +84,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
         {
             int reviewId = row.getInt("review_id");
             int customerId = row.getInt("customer_id");
-            int breweryId = row.getInt("brewery_id");
+            String breweryId = row.getString("brewery_id");
             int rating = row.getInt("rating");
             String customerReview = row.getString("customer_review");
             LocalDate reviewDate = null;
@@ -114,7 +122,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
         while(row.next());
         {
             int reviewId = row.getInt("review_id");
-            int breweryId = row.getInt("brewery_id");
+            String breweryId = row.getString("brewery_id");
             int rating = row.getInt("rating");
             String customerReview = row.getString("customer_review");
             LocalDate reviewDate = null;
@@ -134,7 +142,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
     }
 
     @Override
-    public List<CustomerReviews> getReviewByBreweryId(int breweryId) {
+    public List<CustomerReviews> getReviewByBreweryId(String breweryId) {
         List<CustomerReviews> reviews = new ArrayList<>();
 
         String sql = """
@@ -187,7 +195,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
         jdbcTemplate.update(connection -> {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, customerReviews.getCustomerId());
-            statement.setInt(2, customerReviews.getBreweryId());
+            statement.setString(2, customerReviews.getBreweryId());
             statement.setInt(3, customerReviews.getRating());
             statement.setString(4, customerReviews.getCustomerReview());
             statement.setObject(5, customerReviews.getReviewDate());

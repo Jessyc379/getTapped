@@ -12,7 +12,7 @@ public interface CustomerReviewsDao {
 
     List<CustomerReviews> getReviewByCustomerId(int customerId);
 
-    List<CustomerReviews> getReviewByBreweryId(int breweryId);
+    List<CustomerReviews> getReviewByBreweryId(String breweryId);
 
     CustomerReviews addCustomerReview(CustomerReviews customerReviews);
 

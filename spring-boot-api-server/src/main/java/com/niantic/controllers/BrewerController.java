@@ -43,7 +43,7 @@ public class BrewerController
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getBrewerById(@PathVariable int id)
         {
             try {
