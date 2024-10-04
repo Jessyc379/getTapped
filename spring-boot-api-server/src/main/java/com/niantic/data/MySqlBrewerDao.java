@@ -1,10 +1,12 @@
 package com.niantic.data;
 
 import com.niantic.models.Brewer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -12,10 +14,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Repository
 public class MySqlBrewerDao implements BrewerDao {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public MySqlBrewerDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
