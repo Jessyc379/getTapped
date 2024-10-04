@@ -14,7 +14,7 @@ public class CustomerReviews {
 
     private int reviewId;
     private int customerId;
-    private int breweryId;
+    private String breweryId;
     private int rating;
     private String customerReview;
     private LocalDate reviewDate;
