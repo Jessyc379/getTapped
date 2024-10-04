@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import com.niantic.exceptions.HttpError;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -65,10 +66,12 @@ public class BreweryController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_BREWER', 'ROLE_ADMIN')")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Brewery addBrewery(@RequestBody Brewery brewery) { return breweryDao.addBrewery(brewery); }
 
+    @PreAuthorize("hasAnyRole('ROLE_BREWER', 'ROLE_ADMIN')")
     @PutMapping("{id}")
     public ResponseEntity<?> updateBrewery(@PathVariable int id, @RequestBody Brewery brewery)
     {
@@ -95,6 +98,7 @@ public class BreweryController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBrewery(@PathVariable int id) { breweryDao.deleteBrewery(id); }
