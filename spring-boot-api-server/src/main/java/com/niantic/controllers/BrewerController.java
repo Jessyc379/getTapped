@@ -36,16 +36,14 @@ public class BrewerController
             return ResponseEntity.ok(brewers);
 
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             logger.logMessage(e.getMessage());
-
-            var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Oops, something went wrong!");
+        }   var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Oops, something went wrong!");
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
 
-    @GetMapping("{id}")
+    @GetMapping("{/id}")
     public ResponseEntity<?> getBrewerById(@PathVariable int id)
         {
             try {
@@ -59,8 +57,8 @@ public class BrewerController
 
             } catch (Exception e) {
                 logger.logMessage(e.getMessage());
-
-                var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Oops, something went wrong!");
+            }
+               var error = new HttpError(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Oops, something went wrong!");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
             }
 
@@ -98,4 +96,4 @@ public class BrewerController
         }
 
 
-}   }
+}
