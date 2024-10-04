@@ -103,7 +103,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
 
 
     @Override
-    public List<CustomerReviews> getReviewByCustomerId(int customerId) {
+    public List<CustomerReviews> getReviewByCustomerId(int id) {
 
         List<CustomerReviews> reviews = new ArrayList<>();
 
@@ -117,11 +117,12 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
                FROM CustomerReviews
                WHERE customer_id = ?;
                """;
-        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, customerId);
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
 
-        while(row.next());
+        while(row.next())
         {
             int reviewId = row.getInt("review_id");
+            int customerId = row.getInt("customer_id");
             String breweryId = row.getString("brewery_id");
             int rating = row.getInt("rating");
             String customerReview = row.getString("customer_review");
@@ -157,7 +158,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
                """;
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, breweryId);
 
-        while(row.next());
+        while(row.next())
         {
             int customerId = row.getInt("customer_id");
             int reviewId = row.getInt("review_id");
