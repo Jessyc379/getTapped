@@ -84,8 +84,8 @@ public class MySqlBrewerDao implements BrewerDao {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(2, brewer.getBreweriesOwned());
-            statement.setInt(3, brewer.getUserId());
+            statement.setInt(1, brewer.getBreweriesOwned());
+            statement.setInt(2, brewer.getUserId());
             return statement;
         }, keyHolder);
 
