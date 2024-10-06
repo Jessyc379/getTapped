@@ -27,27 +27,45 @@ export default function Header() {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/">Home</NavLink>
                         </li>
-                    </ul>
-                    <ul className="navbar-nav ms-auto" >
-
-                        { 
-                        !isAuthenticated && 
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/login">Login</NavLink>
+                            <NavLink className="nav-link" to="/breweries">Breweries</NavLink>
                         </li>
-                        }
+                        {/* {isAuthenticated && user?.role === 'ROLE_USER' && ( */}
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/profile">Profile</NavLink>
+                            </li>
+                        {/* )} */}
+                        {/* {isAuthenticated && user?.role === 'ROLE_ADMIN' && ( */}
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/admin">Admin Dashboard</NavLink>
+                            </li>
+                        {/* )} */}
+                        {/* {isAuthenticated && user?.role === 'ROLE_BREWER' && ( */}
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/brewer-dashboard">Brewer Dashboard</NavLink>
+                            </li>
+                        {/* )} */}
+                    </ul>
+                    <ul className="navbar-nav ms-auto">
+                        {!isAuthenticated && (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/login">Login</NavLink>
+                            </li>
+                        )}
 
-                        { 
-                        isAuthenticated && <>
-                        <li className="nav-item"><p className="nav-link">Welcome {user?.username}</p> </li>
-                        <li className="nav-item">
-                            <button className="nav-link" onClick={handleLogout} >Logout</button>
-                        </li></>
-                        }
-
+                        {isAuthenticated && (
+                            <>
+                                <li className="nav-item">
+                                    <p className="nav-link">Welcome, {user?.username}</p>
+                                </li>
+                                <li className="nav-item">
+                                    <button className="nav-link btn" onClick={handleLogout}>Logout</button>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
