@@ -5,6 +5,8 @@ import Home from './components/home/Home'
 import Header from './components/shared/header/Header'
 import Login from './components/authentication/login/Login'
 import Register from './components/authentication/register/Register'
+import BreweryPage from './components/breweries/brewery-page/BreweryPage'
+
 
 function App() {
 
@@ -15,8 +17,10 @@ function App() {
       <main className="container mt-4">
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/breweries' element={<BreweryPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+
       </Routes>
       </main>
 
