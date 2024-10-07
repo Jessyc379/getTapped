@@ -10,6 +10,8 @@ import BreweryList from './components/breweries/brewery-list/BreweryList'
 import BreweryDetails from './components/breweries/brewery-details/BreweryDetails'
 import BrewerDashboard from './components/brewer/brewer-dashboard/BrewerDashboard'
 import BrewerPage from './components/brewer/brewer-page/BrewerPage'
+import AddBrewery from './components/brewer/add-brewery/AddBrewery'
+import BrewerProfile from './components/brewer/brewer-profile/BrewerProfile'
 
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/brewers' element={<BrewerPage/>}>
           <Route path='' element={<BrewerDashboard/>}/>
+          <Route path='add' element= {<AddBrewery/>}/>
+          <Route path='profile' element={<BrewerProfile/>}/>
 
 
         </Route>
