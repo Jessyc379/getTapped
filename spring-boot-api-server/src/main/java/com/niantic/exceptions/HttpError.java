@@ -14,4 +14,5 @@ public class HttpError
     private int code;
     private String error;
     private String message;
+
 }
