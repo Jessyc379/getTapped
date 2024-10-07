@@ -14,9 +14,9 @@ export default function BreweryContextProvider({ children }: Props) {
         fetchBreweries();
     }, []);
 
-    async function fetchBreweries() {
+    async function fetchBreweries(brewId?: number) {
         try {
-            const breweries = await BreweryService.getAllBreweries();
+            const breweries = await BreweryService.getAllBreweries(brewId);
             setBreweries(breweries);
         } catch (error) {
             console.error('Error getting breweries:', error);
@@ -64,6 +64,7 @@ export default function BreweryContextProvider({ children }: Props) {
         updateBrewery,
         deleteBrewery,
         refreshBreweries, 
+        fetchBreweries,
     };
 
     return <BreweryContext.Provider value={contextValue}>{children}</BreweryContext.Provider>;

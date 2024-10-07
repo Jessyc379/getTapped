@@ -10,6 +10,7 @@ export interface BreweryContextType {
     updateBrewery: (brewery: Brewery) => Promise<void>;
     deleteBrewery: (breweryId: string) => Promise<void>;
     refreshBreweries: () => Promise<void>;
+    fetchBreweries: (brewId?: number) => Promise<void>;
 }
 
 export const BreweryContext = React.createContext<BreweryContextType | undefined>(undefined);

@@ -5,12 +5,16 @@ class BreweryService {
 
     baseUrl = `${import.meta.env.VITE_API_BASE_URL}/breweries`
 
-    async getAllBreweries(): Promise<Brewery[]> {
+    async getAllBreweries(brewId?: number): Promise<Brewery[]> {
 
-        const response = await axios.get<Brewery[]>(this.baseUrl)
-        return response.data
+            const response = await axios.get<Brewery[]>(this.baseUrl, {
+                params: brewId ? { brewId } : {} 
+            });
+            
+            return response.data;
 
-    }
+        }
+    
 
     async getBreweryById(breweryId: string): Promise<Brewery> {
         const response = await axios.get<Brewery>(`${this.baseUrl}/breweries/${breweryId}`);
