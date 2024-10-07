@@ -10,6 +10,8 @@ public interface BreweryDao {
 
     Brewery getBreweryById(int id);
 
+    List<Brewery> getBreweryByBrewerId(int id);
+
     Brewery addBrewery(Brewery Brewery);
 
     void updateBrewery(int id, Brewery brewery);

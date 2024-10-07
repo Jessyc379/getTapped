@@ -92,11 +92,45 @@ public class MySqlBreweryDao implements BreweryDao {
     }
 
     @Override
+    public List<Brewery> getBreweryByBrewerId(int id) {
+        List<Brewery> breweries = new ArrayList<>();
+
+        String sql = """
+                SELECT *
+                FROM Brewery
+                WHERE brewer_id = ?
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
+
+        while(row.next())
+        {
+            String breweryId = row.getString("brewery_id");
+            String breweryName = row.getString("brewery_name");
+            String breweryType = row.getString("brewery_type");
+            String address = row.getString("address");
+            String city = row.getString("city");
+            String stateProvince = row.getString("state_province");
+            String postalCode = row.getString("postal_code");
+            String country = row.getString("country");
+            Double longitude = row.getDouble("longitude");
+            Double latitude = row.getDouble("latitude");
+            String phone = row.getString("phone");
+            String webSiteUrl = row.getString("website_url");
+            int brewerId = row.getInt("brewer_id");
+
+            Brewery brewery = new Brewery(breweryId, breweryName, breweryType, address, city, stateProvince, postalCode, country, longitude, latitude, phone, webSiteUrl, brewerId);
+            breweries.add(brewery);
+        }
+        return breweries;
+    }
+
+    @Override
     public Brewery addBrewery(Brewery brewery) {
         String sql = """
-            INSERT INTO Brewery (brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """;
+                INSERT INTO Brewery (brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -127,10 +161,10 @@ public class MySqlBreweryDao implements BreweryDao {
     @Override
     public void updateBrewery(int id, Brewery brewery) {
         String sql = """
-            UPDATE Brewery
-            SET brewery_name = ?, brewery_type = ?, address = ?, city = ?, state_province = ?, postal_code = ?, country = ?, longitude = ?, latitude = ?, phone = ?, website_url = ?, brewer_id = ?
-            WHERE brewery_id = ?
-            """;
+                UPDATE Brewery
+                SET brewery_name = ?, brewery_type = ?, address = ?, city = ?, state_province = ?, postal_code = ?, country = ?, longitude = ?, latitude = ?, phone = ?, website_url = ?, brewer_id = ?
+                WHERE brewery_id = ?
+                """;
 
         jdbcTemplate.update(sql,
                 brewery.getBreweryName(),
@@ -152,9 +186,9 @@ public class MySqlBreweryDao implements BreweryDao {
     @Override
     public void deleteBrewery(int id) {
         String sql = """
-            DELETE FROM Brewery
-            WHERE brewery_id = ?
-            """;
+                DELETE FROM Brewery
+                WHERE brewery_id = ?
+                """;
 
         jdbcTemplate.update(sql, id);
     }

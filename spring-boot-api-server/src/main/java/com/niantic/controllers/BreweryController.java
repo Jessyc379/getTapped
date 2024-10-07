@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/breweries")
@@ -26,10 +28,13 @@ public class BreweryController {
     }
 
     @GetMapping({"", "/"})
-    public ResponseEntity<?> getAllBreweries() {
+    public ResponseEntity<?> getAllBreweries(@RequestParam(required = false)Integer brewId) {
 
         try {
-            var breweries = breweryDao.getBreweries();
+            List<Brewery> breweries;
+            if(brewId == null) breweries = breweryDao.getBreweries();
+            else breweries = breweryDao.getBreweryByBrewerId(brewId);
+
             return ResponseEntity.ok(breweries);
         }
         catch (Exception e) {
