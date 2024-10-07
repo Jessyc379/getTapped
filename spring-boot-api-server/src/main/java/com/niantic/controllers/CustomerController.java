@@ -76,7 +76,7 @@ public class CustomerController
         }
     }
 
-    @GetMapping("/{id}/reviews")
+    @GetMapping("/{customerId}/reviews")
     public ResponseEntity<CustomerReviewsResponse> getCustomerReviews(@PathVariable int customerId) {
         // Use the service to fetch reviews and username
         CustomerReviewsResponse response = customerReviewService.getCustomerReviews(customerId);
