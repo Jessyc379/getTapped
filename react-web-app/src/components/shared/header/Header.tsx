@@ -30,21 +30,21 @@ export default function Header() {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/breweries">Breweries</NavLink>
                         </li>
-                        {/* {isAuthenticated && user?.role === 'ROLE_USER' && ( */}
+                        {isAuthenticated && user?.authorities?.some(auth => auth.name ==='ROLE_USER'|| auth.name === 'ROLE_BREWER') && (
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/profile">Profile</NavLink>
                             </li>
-                        {/* )} */}
-                        {/* {isAuthenticated && user?.role === 'ROLE_ADMIN' && ( */}
+                        )}
+                        {isAuthenticated && user?.authorities?.some(auth => auth.name ==='ROLE_ADMIN') && (
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/admin">Admin Dashboard</NavLink>
                             </li>
-                        {/* )} */}
-                        {/* {isAuthenticated && user?.role === 'ROLE_BREWER' && ( */}
+                        )}
+                        {isAuthenticated && user?.authorities?.some(auth => auth.name ==='ROLE_BREWER') && (
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/brewer-dashboard">Brewer Dashboard</NavLink>
                             </li>
-                        {/* )} */}
+                        )}
                     </ul>
                     <ul className="navbar-nav ms-auto">
                         {!isAuthenticated && (

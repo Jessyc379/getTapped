@@ -4,6 +4,6 @@ export class User {
     username!: string;
     password!: string;
     activated!: boolean;
-    authorities!: string[];
+    authorities!: { name: string }[];
 
 }
