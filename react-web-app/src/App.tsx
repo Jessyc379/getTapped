@@ -8,6 +8,8 @@ import Register from './components/authentication/register/Register'
 import BreweryPage from './components/breweries/brewery-page/BreweryPage'
 import BreweryList from './components/breweries/brewery-list/BreweryList'
 import BreweryDetails from './components/breweries/brewery-details/BreweryDetails'
+import BrewerDashboard from './components/brewer/brewer-dashboard/BrewerDashboard'
+import BrewerPage from './components/brewer/brewer-page/BrewerPage'
 
 
 function App() {
@@ -24,6 +26,11 @@ function App() {
           <Route path=':breweryId' element={<BreweryDetails />} />          
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/brewers' element={<BrewerPage/>}>
+          <Route path='' element={<BrewerDashboard/>}/>
+
+
+        </Route>
 
       </Routes>
       </main>

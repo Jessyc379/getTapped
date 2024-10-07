@@ -1,7 +1,6 @@
 import React,{ useEffect, useState } from "react";
 import { Brewer } from "../../models/brewer/Brewer";
 import brewerService from "../../services/brewer-service/BrewerService";
-import axios from "axios";
 import { BrewerContext, BrewerContextType } from "./BrewerContext";
 
 
@@ -30,6 +29,8 @@ export default function BrewerContextProvider({ children }: Props) {
     async function addBrewer(brewer:Brewer) {
         try{
             const newBrewer = await brewerService.addBrewer(brewer)
+
+            setBrewers(prevBrewers => [...prevBrewers,newBrewer])
         }
         catch (error){
             console.error('Error adding brewer: ', error)
