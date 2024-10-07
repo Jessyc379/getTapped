@@ -25,7 +25,7 @@ class BreweryService {
         await axios.put<void>(url, brewery)
     }
 
-    async deleteBrewery(id: number) {
+    async deleteBrewery(id: string) {
 
         const url = `${this.baseUrl}/${this.baseUrl}/${id}`
         await axios.delete<void>(url)
