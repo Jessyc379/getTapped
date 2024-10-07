@@ -25,7 +25,7 @@ function App() {
       </main>
 
       <footer>
-        &copy; Sakila Movies 2024
+        &copy; getTapped 2024
       </footer>
 
     </Router>
