@@ -6,6 +6,8 @@ import Header from './components/shared/header/Header'
 import Login from './components/authentication/login/Login'
 import Register from './components/authentication/register/Register'
 import BreweryPage from './components/breweries/brewery-page/BreweryPage'
+import BreweryList from './components/breweries/brewery-list/BreweryList'
+import BreweryDetails from './components/breweries/brewery-details/BreweryDetails'
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/breweries' element={<BreweryPage />} />
+          <Route path='' element={<BreweryList />} />
+          <Route path=':breweryId' element={<BreweryDetails />} />          
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
 
