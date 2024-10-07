@@ -2,6 +2,8 @@ package com.niantic.controllers;
 
 import com.niantic.data.CustomerDao;
 import com.niantic.models.Customer;
+import com.niantic.models.CustomerReviewsResponse;
+import com.niantic.services.CustomerReviewService;
 import com.niantic.services.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +19,13 @@ public class CustomerController
 {
     private final CustomerDao customerDao;
     private final LoggingService logger;
+    private final CustomerReviewService customerReviewService;
 
     @Autowired
-    public CustomerController(CustomerDao customerDao, LoggingService logger) {
+    public CustomerController(CustomerDao customerDao, LoggingService logger, CustomerReviewService customerReviewService) {
         this.customerDao = customerDao;
-
         this.logger = logger;
+        this.customerReviewService = customerReviewService;
     }
 
     @GetMapping({"", "/"})
@@ -71,6 +74,13 @@ public class CustomerController
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body(error);
         }
+    }
+
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<CustomerReviewsResponse> getCustomerReviews(@PathVariable int customerId) {
+        // Use the service to fetch reviews and username
+        CustomerReviewsResponse response = customerReviewService.getCustomerReviews(customerId);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("")
