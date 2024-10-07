@@ -42,7 +42,7 @@ export default function Header() {
                         )}
                         {isAuthenticated && user?.authorities?.some(auth => auth.name ==='ROLE_BREWER') && (
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/brewer-dashboard">Brewer Dashboard</NavLink>
+                                <NavLink className="nav-link" to="/brewers">Brewer Dashboard</NavLink>
                             </li>
                         )}
                     </ul>
