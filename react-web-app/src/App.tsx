@@ -21,9 +21,12 @@ function App() {
       <main className="container mt-4">
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/breweries' element={<BreweryPage />} />
-          <Route path='' element={<BreweryList />} />
-          <Route path=':breweryId' element={<BreweryDetails />} />          
+
+        <Route path='/breweries' element={<BreweryPage />}>
+            <Route index element={<BreweryList />} />
+            <Route path=':breweryId' element={<BreweryDetails />} /> 
+          </Route>
+
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/brewers' element={<BrewerPage/>}>
