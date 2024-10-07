@@ -2,6 +2,8 @@ import React,{ useEffect, useState } from "react";
 import { Brewer } from "../../models/brewer/Brewer";
 import brewerService from "../../services/brewer-service/BrewerService";
 import { BrewerContext, BrewerContextType } from "./BrewerContext";
+import { Brewery } from "../../models/brewery/Brewery";
+import breweryService from "../../services/brewery-service/BreweryService";
 
 
 interface Props{
@@ -10,6 +12,7 @@ interface Props{
 
 export default function BrewerContextProvider({ children }: Props) {
     const [brewers, setBrewers] = useState<Brewer[]>([]);
+    const [breweries, setBreweries] = useState<Brewery[]>([]);
     
 
     useEffect(() => {
@@ -36,6 +39,26 @@ export default function BrewerContextProvider({ children }: Props) {
             console.error('Error adding brewer: ', error)
         }
         
+    }
+
+    // async function getBrewery() {
+    //     try{
+    //         const breweries = await breweryService.get
+    //     }
+        
+    // }
+
+    async function addBrewery(brewery: Brewery){
+        try{
+            const newBrewery = await breweryService.addBrewery(brewery)
+
+            setBreweries(previousBreweries => [...previousBreweries, newBrewery])
+        }
+        catch(error)
+        {
+            console.error('Error adding brewery:', error)
+        }
+
     }
 
     async function updateBrewer(brewer:Brewer) {
@@ -73,6 +96,7 @@ export default function BrewerContextProvider({ children }: Props) {
     const contextValue: BrewerContextType = {
         brewers, 
         addBrewer, 
+        addBrewery,
         updateBrewer, 
         deleteBrewer, 
         refreshBrewers
