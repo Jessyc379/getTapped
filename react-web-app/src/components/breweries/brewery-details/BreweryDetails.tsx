@@ -1,25 +1,29 @@
-import { useContext } from "react"
-import { useParams } from "react-router-dom"
-import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext"
-
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { BreweryContext } from '../../../contexts/brewery-context/BreweryContext';
 
 export default function BreweryDetails() {
+    const { breweryId } = useParams(); 
+    const context = useContext(BreweryContext);
 
-    const {breweryId} = useParams()
-    const context = useContext(BreweryContext)
-
-    if(!context) {
-        throw new Error('BreweryList must be used within an BreweryContextProvider')
+    if (!context) {
+        return <div>Error: Brewery context is not available</div>;
     }
 
-    const {breweries} = context
-    const brewery = breweries.filter(b => +b.brewerId == +(breweryId??0))[0];
+    const { breweries } = context;
+    const brewery = breweries.find(b => b.breweryId === breweryId);
+
+    if (!brewery) {
+        return <div>Brewery not found</div>;
+    }
 
     return (
-        <>
-        <h4>{brewery.breweryId}</h4>
-        <p>{brewery.breweryName}</p>
-        </>
-    )
-
+        <div>
+            <h2>{brewery.breweryName}</h2>
+            <p>Type: {brewery.breweryType}</p>
+            <p>Address: {brewery.address}, {brewery.city}, {brewery.stateProvince}</p>
+            <p>Phone: {brewery.phone}</p>
+            <p>Website: <a href={brewery.websiteUrl}>{brewery.websiteUrl}</a></p>
+        </div>
+    );
 }

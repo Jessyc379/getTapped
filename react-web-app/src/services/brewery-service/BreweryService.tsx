@@ -12,6 +12,11 @@ class BreweryService {
 
     }
 
+    async getBreweryById(breweryId: string): Promise<Brewery> {
+        const response = await axios.get<Brewery>(`${this.baseUrl}/breweries/${breweryId}`);
+        return response.data;
+    }
+    
     async addBrewery(brewery: Brewery): Promise<Brewery> {
 
         const response = await axios.post<Brewery>(this.baseUrl, brewery)
