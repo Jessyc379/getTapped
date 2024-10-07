@@ -1,12 +1,18 @@
-import React from 'react';
+import { Outlet } from "react-router-dom";
+import BreweryContextProvider from "../../../contexts/brewery-context/BreweryContextProvider";
 
-const BreweryPage = () => {
+export default function BreweriesPage() {
+
     return (
-        <div>
-            <h1>Brewery Page</h1>
 
-        </div>
-    );
-};
+        <BreweryContextProvider>
+        
+            <h1>Breweries</h1>
 
-export default BreweryPage; 
+            <Outlet />
+
+        </BreweryContextProvider>
+
+    )
+
+}
