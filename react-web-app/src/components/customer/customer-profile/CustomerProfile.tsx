@@ -1,6 +1,7 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { CustomersContext } from "../../../contexts/CustomersContext"
+import axios from 'axios'
 
 export default function CustomerProfile()
 {
