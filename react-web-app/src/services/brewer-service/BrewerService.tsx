@@ -6,9 +6,9 @@ class BrewerService
 {
     baseUrl = `${import.meta.env.VITE_API_BASE_URL}/brewers`
 
-    async getBrewers(): Promise<Brewer>
+    async getBrewers(): Promise<Brewer[]>
     {
-        const response = await axios.get<Brewer>(this.baseUrl)
+        const response = await axios.get<Brewer[]>(this.baseUrl)
         return response.data
     }
 

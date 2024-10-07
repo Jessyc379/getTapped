@@ -10,25 +10,23 @@ interface Props{
 }
 
 export default function BrewerContextProvider({ children }: Props) {
-    const [brewer, setBrewers] = useState<Brewer[]>([]);
+    const [brewers, setBrewers] = useState<Brewer[]>([]);
     
 
     useEffect(() => {
         fetchBrewers()
     }, []);
 
-    //fetch allBrewers from API
     async function fetchBrewers(){
         try{
-            const brewer = await brewerService.getBrewers()
-            setBrewers(brewer)
+            const brewers = await brewerService.getBrewers()
+            setBrewers(brewers)
         }
         catch(error){
             console.error('Error getting brewers: ', error)
         }
     }
 
-    //add new brewer
     async function addBrewer(brewer:Brewer) {
         try{
             const newBrewer = await brewerService.addBrewer(brewer)
@@ -39,7 +37,6 @@ export default function BrewerContextProvider({ children }: Props) {
         
     }
 
-    //update existing brewer
     async function updateBrewer(brewer:Brewer) {
         try{
             await brewerService.updateBrewer(brewer)
@@ -67,7 +64,7 @@ export default function BrewerContextProvider({ children }: Props) {
         }
     };
 
-    async function refreshBrewers{
+    async function refreshBrewers(){
         await fetchBrewers()
         
     };
