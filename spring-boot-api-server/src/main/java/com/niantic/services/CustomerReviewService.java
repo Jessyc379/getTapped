@@ -47,6 +47,8 @@ public class CustomerReviewService {
         // Construct response DTO with username and reviews
         CustomerReviewsResponse response = new CustomerReviewsResponse();
         response.setUsername(user.getUsername());
+        response.setUserRole(user.getRole());
+        response.setFavoriteBreweries(customer.getFavoriteBreweries());
         response.setReviews(reviews);
 
         return response;
