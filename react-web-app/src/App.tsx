@@ -6,6 +6,10 @@ import Header from './components/shared/header/Header'
 import Login from './components/authentication/login/Login'
 import Register from './components/authentication/register/Register'
 import BreweryPage from './components/breweries/brewery-page/BreweryPage'
+import AdminPage from './components/admin/admin-page/AdminPage'
+import AdminDashboard from './components/admin/AdminDashboard'
+
+
 
 
 function App() {
@@ -24,6 +28,7 @@ function App() {
       </Routes>
       </main>
 
+
       <footer>
         &copy; getTapped 2024
       </footer>
@@ -33,3 +38,5 @@ function App() {
 }
 
 export default App
+
+
