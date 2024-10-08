@@ -11,9 +11,9 @@ export default function AdminDashboard()
     <>
  
     <div className="container">
-        <Link to={"/admin/profile"} className="card form-control">View My Admin Profile </Link>
+        <Link to={"/admin/profile"} className="card form-control text-center p-4">View My Admin Profile </Link>
 
-        <div className="card form-control mt-3">
+        <div className="card form-control text-center p-4">
             <h4> Manage Breweries: </h4>
             
             <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
