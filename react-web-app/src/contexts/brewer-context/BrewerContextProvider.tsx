@@ -112,6 +112,8 @@ export default function BrewerContextProvider({ children }: Props) {
 
     const contextValue: BrewerContextType = {
         brewers, 
+        getBrewer, 
+        breweries,
         getBrewery,
         addBrewer, 
         addBrewery,
