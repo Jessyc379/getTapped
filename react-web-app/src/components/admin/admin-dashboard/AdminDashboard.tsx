@@ -16,13 +16,16 @@ export default function AdminDashboard()
         <div className="card form-control text-center p-4">
             <h4> Manage Breweries: </h4>
             
-            <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
+            <Link to={"/brewery/edit"} className="btn btn-outline-success mt-2">Edit</Link>
+            <Link to={"/admin/delete-brewery"} className="btn btn-outline-success mt-2">Delete</Link>
+
 
 
             <div className="card form-control mt-3">
                 <h4>Manage Brewers: </h4>
                 
-                <Link to={"/admin/add-brewer"} className="btn btn-outline-success mt-2">Add Brewer</Link>
+                <Link to={"/admin/edit-brewer"} className="btn btn-outline-success mt-2">Edit </Link>
+                <Link to={"/admin/delete-brewer"} className="btn btn-outline-success mt-2">Delete </Link>
             </div>
         </div>
 
