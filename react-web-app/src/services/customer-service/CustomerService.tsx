@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Customer } from "../models/customer/Customer";
+import { Customer } from "../../models/customer/Customer";
 
 class CustomerService
 {
