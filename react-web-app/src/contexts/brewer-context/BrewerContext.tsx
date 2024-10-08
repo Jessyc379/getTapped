@@ -11,7 +11,8 @@ export interface BrewerContextType{
     updateBrewer: (brewer:Brewer) => Promise<void>;
     deleteBrewer: (brewerId: number) => Promise<void>;
     refreshBrewers: () => Promise<void>;
-    getBrewer:(brewerId:number) => Promise<void>
+    fetchBrewers:() =>Promise<void>;
+    getBrewer:(brewerId:number) => Promise<void>;
     
 }
 
