@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BreweryContext, BreweryContextType } from '../../contexts/brewery-context/BreweryContext';
 import { Brewery } from '../../models/brewery/Brewery';
 import BreweryService from '../../services/brewery-service/BreweryService';
+import { CustomerReview } from '../../models/customer-review/CustomerReview';
 
 interface Props {
     children: React.ReactNode;
@@ -9,6 +10,7 @@ interface Props {
 
 export default function BreweryContextProvider({ children }: Props) {
     const [breweries, setBreweries] = useState<Brewery[]>([]); 
+    const [reviews, setReviews] = useState<CustomerReview[]>([]);
 
     useEffect(() => {
         fetchBreweries();
@@ -22,6 +24,18 @@ export default function BreweryContextProvider({ children }: Props) {
             console.error('Error getting breweries:', error);
         }
     }
+
+    async function getReviewByBreweryId(breweryId: string): Promise<CustomerReview[]> {
+        try {
+            const fetchedReviews = await BreweryService.getReviewByBreweryId(breweryId);
+            setReviews(fetchedReviews);
+            return fetchedReviews; 
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            return [];
+        }
+    }
+
 
     async function addBrewery(brewery: Brewery) {
         try {
@@ -60,6 +74,8 @@ export default function BreweryContextProvider({ children }: Props) {
 
     const contextValue: BreweryContextType = {
         breweries,
+        reviews,
+        getReviewByBreweryId,
         addBrewery,
         updateBrewery,
         deleteBrewery,
