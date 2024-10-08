@@ -15,6 +15,8 @@ import BrewerProfile from './components/brewer/brewer-profile/BrewerProfile'
 import CustomerPage from './components/customer/customer-page/CustomerPage'
 import CustomerProfile from './components/customer/customer-profile/CustomerProfile'
 import CustomersContextProvider from './contexts/customer-context/CustomersContextProvider'
+import AdminPage from './components/admin/admin-page/AdminPage'
+import AdminDashboard from './components/admin/admin-dashboard/AdminDashboard'
 
 
 
@@ -42,8 +44,10 @@ function App() {
           <Route path='' element={<BrewerDashboard />} />
           <Route path='add' element= {<AddBrewery />} />
           <Route path='profile' element={<BrewerProfile />} />
-
-
+        </Route>
+        
+        <Route path='/admin' element={<AdminPage/>} >
+          <Route path='' element={<AdminDashboard />} />
         </Route>
 
         <Route path='/customers' element={<CustomerPage />} />
