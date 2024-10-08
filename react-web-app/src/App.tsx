@@ -16,6 +16,8 @@ import CustomerPage from './components/customer/customer-page/CustomerPage'
 import CustomerProfile from './components/customer/customer-profile/CustomerProfile'
 
 
+
+
 function App() {
 
   return (
@@ -58,3 +60,5 @@ function App() {
 }
 
 export default App
+
+
