@@ -1,6 +1,7 @@
 package com.niantic.controllers;
 
 import com.niantic.data.CustomerDao;
+import com.niantic.data.UserDao;
 import com.niantic.models.Customer;
 import com.niantic.models.CustomerReviewsResponse;
 import com.niantic.services.CustomerReviewService;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/customers")
 @CrossOrigin
@@ -20,12 +23,14 @@ public class CustomerController
     private final CustomerDao customerDao;
     private final LoggingService logger;
     private final CustomerReviewService customerReviewService;
+    private final UserDao userDao;
 
     @Autowired
-    public CustomerController(CustomerDao customerDao, LoggingService logger, CustomerReviewService customerReviewService) {
+    public CustomerController(CustomerDao customerDao, LoggingService logger, CustomerReviewService customerReviewService, UserDao userDao) {
         this.customerDao = customerDao;
         this.logger = logger;
         this.customerReviewService = customerReviewService;
+        this.userDao = userDao;
     }
 
     @GetMapping({"", "/"})
@@ -76,11 +81,13 @@ public class CustomerController
         }
     }
 
-    @GetMapping("/{customerId}/reviews")
-    //@PreAuthorize("isAuthenticated()")
-    public ResponseEntity<CustomerReviewsResponse> getCustomerReviews(@PathVariable int customerId) {
+    @GetMapping("/reviews")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<CustomerReviewsResponse> getCurrentCustomerReviews(Principal principal) {
         // Use the service to fetch reviews and username
-        CustomerReviewsResponse response = customerReviewService.getCustomerReviews(customerId);
+        int userId = userDao.getIdByUsername(principal.getName());
+        var customer = customerDao.getCustomerByUserId(userId);
+        CustomerReviewsResponse response = customerReviewService.getCustomerReviews(customer.getCustomerId());
         return ResponseEntity.ok(response);
     }
 

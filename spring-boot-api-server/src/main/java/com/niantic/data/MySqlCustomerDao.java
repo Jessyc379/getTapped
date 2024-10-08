@@ -82,6 +82,33 @@ public class MySqlCustomerDao implements CustomerDao
     }
 
     @Override
+    public Customer getCustomerByUserId(int userId) {
+
+        Customer customer = null;
+
+        String sql = """
+                SELECT customer_id,
+                    favorite_breweries,
+                    total_reviews,
+                    user_id
+                FROM Customer AS c
+                WHERE user_id = ?
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);
+
+        if(row.next())
+        {
+            String favoriteBreweries = row.getString("favorite_breweries");
+            int totalReviews = row.getInt("total_reviews");
+            int customerId = row.getInt("customer_id");
+
+            customer = new Customer(customerId, favoriteBreweries, totalReviews, userId);
+        }
+        return customer;
+    }
+
+    @Override
     public Customer addCustomer(Customer customer) {
         String sql = """
                 INSERT INTO customers(favorite_breweries, total_reviews, user_id)

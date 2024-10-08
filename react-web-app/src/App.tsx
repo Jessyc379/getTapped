@@ -14,6 +14,7 @@ import AddBrewery from './components/brewer/add-brewery/AddBrewery'
 import BrewerProfile from './components/brewer/brewer-profile/BrewerProfile'
 import CustomerPage from './components/customer/customer-page/CustomerPage'
 import CustomerProfile from './components/customer/customer-profile/CustomerProfile'
+import CustomersContextProvider from './contexts/customer-context/CustomersContextProvider'
 
 
 
@@ -26,6 +27,7 @@ function App() {
        <Header />
 
       <main className="main-content">
+      <CustomersContextProvider>
       <Routes>
         <Route path='/' element={<Home />} />
 
@@ -48,6 +50,7 @@ function App() {
         <Route path='/profile' element={<CustomerProfile />} />
 
       </Routes>
+      </CustomersContextProvider>
       </main>
 
       <footer className="custom-footer">

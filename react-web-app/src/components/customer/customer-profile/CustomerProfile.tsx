@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { CustomersContext } from '../../../contexts/customer-context/CustomersContext'
 import axios from 'axios'
+import customerService from "../../../services/customer-service/CustomerService";
 
 interface Review {
     reviewId: number;
@@ -35,8 +36,9 @@ export default function CustomerProfile()
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get(`/customers/${customerId}/reviews`);
-                setProfileData(response.data);
+                //const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/reviews`);
+                const reviews = await customerService.getCustomerReviews()
+                setProfileData(reviews);
                 setLoading(false);
             }
             catch (error) {
