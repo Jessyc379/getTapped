@@ -10,6 +10,8 @@ public interface CustomerDao {
 
     Customer getCustomer(int id);
 
+    Customer getCustomerByUserId(int userId);
+
     Customer addCustomer(Customer Customer);
 
     void updateCustomer(int id, Customer Customer);

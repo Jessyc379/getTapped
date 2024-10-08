@@ -1,13 +1,14 @@
 import axios from "axios";
 import { Customer } from "../../models/customer/Customer";
+import BaseService from "../base-service";
 
-class CustomerService
+class CustomerService extends BaseService
 {
     baseUrl = `${import.meta.env.VITE_API_BASE_URL}/customers`
 
     async getCustomers(): Promise<Customer[]>
     {
-        const response = await axios.get<Customer[]>(this.baseUrl)
+        const response = await axios.get<Customer[]>(this.baseUrl, this.createHeaders())
         return response.data
     }
 
@@ -27,6 +28,12 @@ class CustomerService
     {
         const url = `${this.baseUrl}/${id}`
         await axios.delete<void>(url)
+    }
+
+    async getCustomerReviews(): Promise<any>
+    {
+        const response =await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/reviews`, this.createHeaders())
+        return response.data
     }
 }
 
