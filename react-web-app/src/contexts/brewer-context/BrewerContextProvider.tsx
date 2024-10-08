@@ -41,12 +41,17 @@ export default function BrewerContextProvider({ children }: Props) {
         
     }
 
-    // async function getBrewery() {
-    //     try{
-    //         const breweries = await breweryService.get
-    //     }
+    async function getBrewery(brewId:number) {
+        try{
+            const breweries = await breweryService.getAllBreweries(brewId)
+            setBreweries(breweries)
+        }
+        catch(error)
+        {
+            console.error('Error getting breweries: ',error)
+        }
         
-    // }
+    }
 
     async function addBrewery(brewery: Brewery){
         try{
@@ -95,6 +100,7 @@ export default function BrewerContextProvider({ children }: Props) {
 
     const contextValue: BrewerContextType = {
         brewers, 
+        getBrewery,
         addBrewer, 
         addBrewery,
         updateBrewer, 
