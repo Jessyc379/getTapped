@@ -89,6 +89,7 @@ frodo		password
 samwise		password
 gollum		password
 
+
  are: password */
 INSERT INTO Users (username, hashed_password, user_role)
 VALUES  ('user','$2a$10$NkufUPF3V8dEPSZeo1fzHe9ScBu.LOay9S3N32M84yuUM2OJYEJ/.','ROLE_USER'),
@@ -119,8 +120,8 @@ VALUES  ('user','$2a$10$NkufUPF3V8dEPSZeo1fzHe9ScBu.LOay9S3N32M84yuUM2OJYEJ/.','
 ('thranduil', '$2a$10$8hQsTgL3VfcfRLcFHF8Gqejf2F1KbTg1PoflsdlWSlIGaWWwrLlGc', 'ROLE_USER');
 
 INSERT INTO Brewer (brewer_id, breweries_owned, user_id) VALUES
-(1, 2, 4),   -- Frodo (Brewer)
-(2, 1, 5),   -- Samwise (Brewer)
+(1, 1, 4),   -- Frodo (Brewer)
+(2, 2, 5),   -- Samwise (Brewer)
 (3, 1, 11),  -- Dumbledore (Brewer)
 (4, 3, 12),  -- Barleycorn (Brewer)
 (5, 1, 3),   -- Gandalf (Admin with Brewer role)
@@ -151,8 +152,8 @@ VALUES
 ('3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 'Sunrise Craft Brewery', 'micro', '45 Sunrise Ave', 'Phoenix', 'Arizona', '85001', 'United States', -112.074036, 33.448376, '602-555-1234', 'http://www.sunrisecraftbrewery.com', 3),
 ('e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 'Rivendell Brewing', 'micro', '42 Elven Path', 'Rivendell', 'Middle-Earth', '94001', 'United States', -120.987654, 45.123456, '555-987-6543', 'http://www.rivendellbrewing.com', 7),
 ('c784521d-2f3c-4ae3-9b8a-7f9d1c21364a', 'Gondor Ales', 'brewpub', '50 Steward Road', 'Minas Tirith', 'Middle-Earth', '94002', 'United States', -121.123456, 45.987654, '555-765-4321', 'http://www.gondorales.com', 6),
-('d9b8df8b-4824-8b3c-c12e3a1a1fda', 'Fangorn Brewing', 'micro', '1 Fangorn Rd', 'Fangorn Forest', 'Middle-Earth', '94003', 'United States', -122.125654, 45.765432, '555-998-8765', 'http://www.fangornbrewing.com', 8),  -- Glorfindel
-('a9b8df8b-4812-9a3c-c13b2a1a1fdb', 'Lonely Mountain Ale', 'brewpub', '2 Lonely Mountain', 'Erebor', 'Middle-Earth', '94004', 'United States', -122.328765, 46.342123, '555-555-6789', 'http://www.lonelymountainale.com', 9), -- Balin
+('d9b8df8b-4824-8b3c-c12e3a1a1fda', 'Fangorn Brewing', 'micro', '1 Fangorn Rd', 'Fangorn Forest', 'Middle-Earth', '94003', 'United States', -122.125654, 45.765432, '555-998-8765', 'http://www.fangornbrewing.com', 1),  -- Glorfindel
+('a9b8df8b-4812-9a3c-c13b2a1a1fdb', 'Lonely Mountain Ale', 'brewpub', '2 Lonely Mountain', 'Erebor', 'Middle-Earth', '94004', 'United States', -122.328765, 46.342123, '555-555-6789', 'http://www.lonelymountainale.com', 2), -- Balin
 ('z9b9df8b-4924-8c3b-d12e3a1a1fdc', 'Shire Brewing Co.', 'brewpub', '22 Bagshot Row', 'Shire', 'Middle-Earth', '94005', 'United States', -120.546132, 44.987654, '555-123-4567', 'http://www.shirebrewing.com', 6); -- Samwise
 
 
