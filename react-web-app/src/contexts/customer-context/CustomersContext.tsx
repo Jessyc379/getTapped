@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { Customer } from '../models/customer';
+import CustomerService from '../services/customer-service/CustomerService'
 
-export interface CustomersContextType{
+export interface CustomersContextType {
     customers: Customer[];
     addCustomer: (customer: Customer) => Promise<void>;
     updateCustomer: (customer: Customer) => Promise<void>;
