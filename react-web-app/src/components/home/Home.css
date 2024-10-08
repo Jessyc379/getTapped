@@ -1,0 +1,28 @@
+.hero-container {
+    width: 100% !important;
+    overflow: hidden; 
+}
+
+.hero-image {
+    width: 100vw !important; /* Full width of the viewport */
+    height: 60vh; /* Adjust height as needed */
+    object-fit: cover !important; /* Ensure the image scales nicely */
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.home-content {
+    text-align: center;
+    margin-top: 20px; 
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ffcc00;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
