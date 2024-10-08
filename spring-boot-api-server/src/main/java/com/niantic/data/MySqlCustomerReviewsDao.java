@@ -80,7 +80,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
                """;
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
 
-        if(row.next());
+        if(row.next())
         {
             int reviewId = row.getInt("review_id");
             int customerId = row.getInt("customer_id");
@@ -122,7 +122,6 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
         while(row.next())
         {
             int reviewId = row.getInt("review_id");
-            int customerId = row.getInt("customer_id");
             String breweryId = row.getString("brewery_id");
             int rating = row.getInt("rating");
             String customerReview = row.getString("customer_review");
@@ -134,7 +133,7 @@ public class MySqlCustomerReviewsDao implements CustomerReviewsDao {
                 reviewDate = convertDate.toLocalDate();
             }
 
-            CustomerReviews review = new CustomerReviews(reviewId,customerId,breweryId,rating,customerReview,reviewDate);
+            CustomerReviews review = new CustomerReviews(reviewId,id,breweryId,rating,customerReview,reviewDate);
             reviews.add(review);
         }
         return reviews;

@@ -54,14 +54,14 @@ public class CustomerReviewController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getReview(@PathVariable int id)
+    public ResponseEntity<?> getReviewByCustomerId(@PathVariable int id)
     {
         try{
-            var review = customerReviewsDao.getCustomerReviewById(id);
+            var review = customerReviewsDao.getReviewByCustomerId(id);
             if(review == null)
             {
-                logger.logMessage("Sorry, review id " + id + " could not be found.");
-                var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Review " + id + " is invalid.");
+                logger.logMessage("Sorry, customer id " + id + " could not be found.");
+                var error = new HttpError(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.toString(), "Customer with id " + id + " is invalid.");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
             }
             return ResponseEntity.ok(review);

@@ -51,9 +51,9 @@ export default function CustomerProfile()
                     <ul>
                         {profileData.reviews.map((review) => (
                             <li key={review.reviewId}>
-                                <p><strong> {review.rating} </strong></p>
-                                <p><strong> {review.customerReview} </strong></p>
-                                <p><strong> {review.reviewDate} </strong></p>
+                                <p><strong> Rating: </strong> {review.rating} </p>
+                                <p><strong> Reviews: </strong> {review.customerReview} </p>
+                                <p><strong> Review Date: </strong> {review.reviewDate} </p>
                             </li>
                         ))}
                     </ul>

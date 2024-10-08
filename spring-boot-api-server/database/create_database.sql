@@ -132,18 +132,18 @@ INSERT INTO Brewer (brewer_id, breweries_owned, user_id) VALUES
 (11, 1, 7);  -- Elrond (Additional brewery)
 
 INSERT INTO Customer (customer_id, favorite_breweries, total_reviews, user_id) VALUES
-(1, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 5, 1),  -- User (Customer)
-(2, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 2, 2),  -- Admin (Customer)
-(3, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 8, 6),     -- Gollum (Customer)
-(4, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 3, 7),  -- Thorin (Customer)
-(5, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 4, 8),   -- Legolas (Customer)
-(6, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda", "3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 7, 14),  -- Boromir
-(7, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 5, 16),  -- Faramir
-(8, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 3, 17),   -- Eowyn
-(9, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 4, 17),  -- Merry
+(1, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 6, 1),  -- User (Customer)
+(2, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 3, 2),  -- Admin (Customer)
+(3, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 6, 6),     -- Gollum (Customer)
+(4, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 2, 7),  -- Thorin (Customer)
+(5, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 2, 8),   -- Legolas (Customer)
+(6, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda", "3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 3, 14),  -- Boromir
+(7, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 2, 16),  -- Faramir
+(8, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 2, 17),   -- Eowyn
+(9, '["b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda"]', 3, 17),  -- Merry
 (10, '["3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8"]', 2, 18),  -- Pippin
-(11, '["e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd"]', 5, 19),  -- Denethor
-(12, '["c784521d-2f3c-4ae3-9b8a-7f9d1c21364a"]', 3, 20); -- Thranduil
+(11, '["e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd"]', 2, 19),  -- Denethor
+(12, '["c784521d-2f3c-4ae3-9b8a-7f9d1c21364a"]', 2, 20); -- Thranduil
 
 INSERT INTO Brewery (brewery_id, brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
 VALUES
@@ -174,15 +174,50 @@ VALUES
 INSERT INTO CustomerReviews (review_id, customer_id, brewery_id, rating, customer_review, review_date)
 VALUES
 (1, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great atmosphere and amazing stouts!', '2024-09-30'),
-(2, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Best IPAs in town! Highly recommend.', '2024-09-28'),
-(3, 3, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Fantastic selection of seasonal beers!', '2024-09-29'),
-(4, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Loved the ambiance and live music!', '2024-09-27'),
-(5, 6, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 5, 'Elvish magic in every pint!', '2024-09-28'),
-(6, 7, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great for relaxing after a long journey.', '2024-09-29'),
-(7, 8, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Stout as strong as a shieldmaiden.', '2024-09-30'),
-(8, 9, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'The best beer to start an adventure!', '2024-09-29'),
-(9, 10, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Great for a quick pint before second breakfast.', '2024-09-28'),
-(10, 11, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 5, 'Strong and true, just like Gondor!', '2024-09-30'),
-(11, 12, 'c784521d-2f3c-4ae3-9b8a-7f9d1c21364a', 4, 'Beautiful ale with an Elven touch.', '2024-09-29');
+(2, 1, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Loved the selection of seasonal beers!', '2024-09-29'),
+(3, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 3, 'A cozy place with a fantastic view.', '2024-09-28'),
+(4, 1, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Perfect for a night out with friends!', '2024-09-27'),
+(5, 1, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Will definitely return for the brews!', '2024-09-26'),
+(6, 1, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'The live music was a great bonus!', '2024-09-25'),
+
+(7, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Best IPAs in town! Highly recommend.', '2024-09-28'),
+(8, 2, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Stout as strong as a shieldmaiden.', '2024-09-30'),
+(9, 2, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'The best beer to start an adventure!', '2024-09-29'),
+
+(10, 3, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Fantastic selection of seasonal beers!', '2024-09-29'),
+(11, 3, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'I loved the food pairing options!', '2024-09-28'),
+(12, 3, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Elvish magic in every pint!', '2024-09-30'),
+(13, 3, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 3, 'Nice spot but can get crowded.', '2024-09-27'),
+(14, 3, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Great outdoor seating area!', '2024-09-26'),
+(15, 3, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Unique flavors and friendly staff!', '2024-09-25'),
+
+(16, 4, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Loved the ambiance and live music!', '2024-09-27'),
+(17, 4, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'Had a wonderful time with friends.', '2024-09-29'),
+
+(18, 5, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Great for a quick pint before second breakfast.', '2024-09-28'),
+(19, 5, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'One of the best breweries in the area!', '2024-09-30'),
+
+(20, 6, 'e3f8521d-8b5b-48a4-83c7-e6b5b7490fdd', 5, 'Elvish magic in every pint!', '2024-09-28'),
+(21, 6, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great for relaxing after a long journey.', '2024-09-29'),
+(22, 6, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Strong and true, just like Gondor!', '2024-09-30'),
+
+(23, 7, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great for relaxing after a long journey.', '2024-09-29'),
+(24, 7, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Stout as strong as a shieldmaiden.', '2024-09-30'),
+
+(25, 8, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'A cozy place with a fantastic view.', '2024-09-30'),
+(26, 8, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Perfect for a night out with friends!', '2024-09-29'),
+
+(27, 9, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 3, 'Good beers, but the service was slow.', '2024-09-28'),
+(28, 9, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 4, 'Great selection, but a bit pricey.', '2024-09-30'),
+(29, 9, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 5, 'A great place for tasting unique beers!', '2024-09-29'),
+
+(30, 10, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 2, 'Could use more flavor options.', '2024-09-30'),
+(31, 10, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 3, 'Friendly staff but a limited menu.', '2024-09-29'),
+
+(32, 11, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Wonderful experience, would recommend!', '2024-09-28'),
+(33, 11, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 5, 'Best brews in the area!', '2024-09-30'),
+
+(34, 12, '3f76421d-4d5b-4ae3-b3f0-bd6f3cf42ab8', 3, 'Decent, but there are better options.', '2024-09-29'),
+(35, 12, 'b0e7df8b-c2b3-4824-8b3c-c12e3a1a1fda', 4, 'Great service and nice atmosphere.', '2024-09-30');
 
 
