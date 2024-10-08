@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CustomersContext, CustomersContextType } from './CustomersContext';
-import { Customer } from '../models/customer';
-import customerService from '../services/CustomerService'
+import { Customer } from '../models/customer/Customer';
+import CustomerService from '../services/customer-service/CustomerService'
 
 interface Props {
     children: React.ReactNode;

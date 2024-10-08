@@ -29,7 +29,6 @@ public class CustomerReviewService {
     }
 
     public CustomerReviewsResponse getCustomerReviews(int customerId) {
-        // Fetch customer by customerId
         Customer customer = customerDao.getCustomer(customerId);
         if (customer == null) {
             throw new NoSuchElementException("Customer not found");
@@ -41,16 +40,13 @@ public class CustomerReviewService {
             throw new NoSuchElementException("User not found");
         }
 
-        // Fetch customer reviews by customerId
         List<CustomerReviews> reviews = customerReviewsDao.getReviewByCustomerId(customerId);
 
-        // Construct response DTO with username and reviews
-        CustomerReviewsResponse response = new CustomerReviewsResponse();
-        response.setUsername(user.getUsername());
-        response.setUserRole(user.getRole());
-        response.setFavoriteBreweries(customer.getFavoriteBreweries());
-        response.setReviews(reviews);
-
-        return response;
+        return new CustomerReviewsResponse(
+                user.getUsername(),
+                user.getRole(),
+                customer.getFavoriteBreweries(),
+                reviews
+        );
     }
 }
