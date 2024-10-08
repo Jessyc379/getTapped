@@ -18,9 +18,10 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <div className="app-layout">
+       <Header />
 
-      <main className="container mt-4">
+      <main className="main-content">
       <Routes>
         <Route path='/' element={<Home />} />
 
@@ -42,10 +43,10 @@ function App() {
       </Routes>
       </main>
 
-      <footer>
-        &copy; getTapped 2024
-      </footer>
-
+      <footer className="custom-footer">
+          &copy; getTapped 2024
+        </footer>
+    </div>
     </Router>
   )
 }
