@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-// import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
