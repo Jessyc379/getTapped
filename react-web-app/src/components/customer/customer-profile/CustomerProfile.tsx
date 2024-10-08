@@ -3,14 +3,29 @@ import { useParams } from "react-router-dom"
 import { CustomersContext } from '../../../contexts/customer-context/CustomersContext'
 import axios from 'axios'
 
+interface Review {
+    reviewId: number;
+    rating: number;
+    customerReview: string;
+    reviewDate: string;
+}
+
+interface ProfileData {
+    userId: number;
+    username: string;
+    userRole: string;
+    favoriteBreweries: string;
+    reviews: Review[];
+}
+
 export default function CustomerProfile()
 {
     const { customerId } = useParams();
     const context = useContext(CustomersContext);
 
-    const [profileData, setProfileData] = useState(null);
+    const [profileData, setProfileData] = useState<ProfileData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
     if(!context)
     {
@@ -40,16 +55,16 @@ export default function CustomerProfile()
     return (
         <>
             <div>
-                <p><strong>User ID: </strong> {profileData.userId} </p>
-                <p><strong>Username: </strong> {profileData.username} </p>
-                <p><strong>User Role: </strong> {profileData.userRole} </p>
-                <p><strong>Favorite Breweries: </strong> {profileData.favoriteBreweries} </p>
+                <p><strong>User ID: </strong> {profileData?.userId} </p>
+                <p><strong>Username: </strong> {profileData?.username} </p>
+                <p><strong>User Role: </strong> {profileData?.userRole} </p>
+                <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
                 <h3> Reviews: </h3>
-                {profileData.reviews.length === 0 ? (
+                {profileData?.reviews.length === 0 ? (
                     <p> No reviews available </p>
                 ) : (
                     <ul>
-                        {profileData.reviews.map((review) => (
+                        {profileData?.reviews.map((review) => (
                             <li key={review.reviewId}>
                                 <p><strong> Rating: </strong> {review.rating} </p>
                                 <p><strong> Reviews: </strong> {review.customerReview} </p>
