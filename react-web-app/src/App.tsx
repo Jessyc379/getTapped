@@ -40,8 +40,10 @@ function App() {
 
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+
         <Route path='/brewers' element={<BrewerPage />}>
           <Route path='' element={<BrewerDashboard />} />
+          <Route path=':brewerId' element={<BrewerProfile />} />
           <Route path='add' element= {<AddBrewery />} />
           <Route path='profile' element={<BrewerProfile />} />
         </Route>
@@ -49,6 +51,7 @@ function App() {
         <Route path='/admin' element={<AdminPage/>} >
           <Route path='' element={<AdminDashboard />} />
         </Route>
+
 
         <Route path='/customers' element={<CustomerPage />} />
         <Route path='/profile' element={<CustomerProfile />} />

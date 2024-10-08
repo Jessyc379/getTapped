@@ -8,6 +8,8 @@ public interface BrewerDao {
 
     List<Brewer> getAll();
 
+    Brewer getBrewerByUserId(int userId);
+
     Brewer getBrewerById(int brewerId);
 
     Brewer addBrewer(Brewer brewer);
