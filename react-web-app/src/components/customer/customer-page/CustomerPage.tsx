@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import CustomersContextProvider from "../../../contexts/CustomersContextProvider";
+import CustomersContextProvider from "../../../contexts/customer-context/CustomersContextProvider";
 
 export default function CustomersPage()
 {

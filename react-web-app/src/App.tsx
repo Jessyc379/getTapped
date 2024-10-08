@@ -12,6 +12,8 @@ import BrewerDashboard from './components/brewer/brewer-dashboard/BrewerDashboar
 import BrewerPage from './components/brewer/brewer-page/BrewerPage'
 import AddBrewery from './components/brewer/add-brewery/AddBrewery'
 import BrewerProfile from './components/brewer/brewer-profile/BrewerProfile'
+import CustomerPage from './components/customer/customer-page/CustomerPage'
+import CustomerProfile from './components/customer/customer-profile/CustomerProfile'
 
 
 function App() {
@@ -28,16 +30,20 @@ function App() {
         <Route path='/breweries' element={<BreweryPage />}>
             <Route index element={<BreweryList />} />
             <Route path=':breweryId' element={<BreweryDetails />} /> 
-          </Route>
+        </Route>
 
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/brewers' element={<BrewerPage/>}>
-          <Route path='' element={<BrewerDashboard/>}/>
-          <Route path='add' element= {<AddBrewery/>}/>
-          <Route path='profile' element={<BrewerProfile/>}/>
+        <Route path='/brewers' element={<BrewerPage />}>
+          <Route path='' element={<BrewerDashboard />} />
+          <Route path='add' element= {<AddBrewery />} />
+          <Route path='profile' element={<BrewerProfile />} />
 
 
+        </Route>
+
+        <Route path='/customers' element={<CustomerPage />}>
+          <Route path='' element={<CustomerProfile />} />
         </Route>
 
       </Routes>
