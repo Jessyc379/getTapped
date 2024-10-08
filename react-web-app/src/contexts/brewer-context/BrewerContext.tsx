@@ -4,6 +4,7 @@ import { Brewery } from "../../models/brewery/Brewery";
 
 export interface BrewerContextType{
     brewers: Brewer[];
+    getBrewery: (brewId: number) => Promise<void>;
     addBrewer: (brewer: Brewer) => Promise<void>;
     addBrewery: (brewery: Brewery) => Promise<void>;
     updateBrewer: (brewer:Brewer) => Promise<void>;
