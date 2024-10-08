@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class MySqlBreweryDao implements BreweryDao {
@@ -58,8 +59,9 @@ public class MySqlBreweryDao implements BreweryDao {
         return breweries;
     }
 
+
     @Override
-    public Brewery getBreweryById(int id) {
+    public Brewery getBreweryById(String id) {
         Brewery brewery = null;
 
         String sql = """
@@ -128,41 +130,53 @@ public class MySqlBreweryDao implements BreweryDao {
     @Override
     public Brewery addBrewery(Brewery brewery) {
         String sql = """
-                INSERT INTO Brewery (brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
+                INSERT INTO Brewery (brewery_id, brewery_name, brewery_type, address, city, state_province, postal_code, country, longitude, latitude, phone, website_url, brewer_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
+
+        UUID newBreweryId = UUID.randomUUID();
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, brewery.getBreweryName());
-            statement.setString(2, brewery.getBreweryType());
-            statement.setString(3, brewery.getAddress());
-            statement.setString(4, brewery.getCity());
-            statement.setString(5, brewery.getStateProvince());
-            statement.setString(6, brewery.getPostalCode());
-            statement.setString(7, brewery.getCountry());
-            statement.setDouble(8, brewery.getLongitude());
-            statement.setDouble(9, brewery.getLatitude());
-            statement.setString(10, brewery.getPhone());
-            statement.setString(11, brewery.getWebsiteUrl());
-            statement.setInt(12, brewery.getBrewerId());
+            statement.setString(1, newBreweryId.toString());
+            statement.setString(2, brewery.getBreweryName());
+            statement.setString(3, brewery.getBreweryType());
+            statement.setString(4, brewery.getAddress());
+            statement.setString(5, brewery.getCity());
+            statement.setString(6, brewery.getStateProvince());
+            statement.setString(7, brewery.getPostalCode());
+            statement.setString(8, brewery.getCountry());
+            statement.setDouble(9, brewery.getLongitude());
+            statement.setDouble(10, brewery.getLatitude());
+            statement.setString(11, brewery.getPhone());
+            statement.setString(12, brewery.getWebsiteUrl());
+            statement.setInt(13, brewery.getBrewerId());
 
             return statement;
         }, keyHolder);
 
-        int newId = keyHolder.getKey().intValue();
-
-        return getBreweryById(newId);
+        return getBreweryById(newBreweryId.toString());
     }
 
 
     @Override
-    public void updateBrewery(int id, Brewery brewery) {
+    public void updateBrewery(String id, Brewery brewery) {
         String sql = """
                 UPDATE Brewery
-                SET brewery_name = ?, brewery_type = ?, address = ?, city = ?, state_province = ?, postal_code = ?, country = ?, longitude = ?, latitude = ?, phone = ?, website_url = ?, brewer_id = ?
+                SET brewery_name = ?,
+                    brewery_type = ?,
+                    address = ?,
+                    city = ?,
+                    state_province = ?,
+                    postal_code = ?,
+                    country = ?,
+                    longitude = ?,
+                    latitude = ?,
+                    phone = ?,
+                    website_url = ?,
+                    brewer_id = ?
                 WHERE brewery_id = ?
                 """;
 
@@ -184,7 +198,7 @@ public class MySqlBreweryDao implements BreweryDao {
     }
 
     @Override
-    public void deleteBrewery(int id) {
+    public void deleteBrewery(String id) {
         String sql = """
                 DELETE FROM Brewery
                 WHERE brewery_id = ?

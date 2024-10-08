@@ -8,13 +8,14 @@ public interface BreweryDao {
 
     List<Brewery> getBreweries();
 
-    Brewery getBreweryById(int id);
+    Brewery getBreweryById(String id);
 
     List<Brewery> getBreweryByBrewerId(int id);
 
     Brewery addBrewery(Brewery Brewery);
 
-    void updateBrewery(int id, Brewery brewery);
+    void updateBrewery(String id, Brewery brewery);
 
-    void deleteBrewery(int id);
+
+    void deleteBrewery(String id);
 }

@@ -1,12 +1,10 @@
 package com.niantic.services;
 
+import com.niantic.data.BreweryDao;
 import com.niantic.data.CustomerDao;
 import com.niantic.data.CustomerReviewsDao;
 import com.niantic.data.UserDao;
-import com.niantic.models.Customer;
-import com.niantic.models.CustomerReviews;
-import com.niantic.models.CustomerReviewsResponse;
-import com.niantic.models.User;
+import com.niantic.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +16,16 @@ public class CustomerReviewService {
     private final CustomerDao customerDao;
     private final CustomerReviewsDao customerReviewsDao;
     private final UserDao userDao;
+    private final BreweryDao breweryDao;
 
     @Autowired
     public CustomerReviewService(CustomerDao customerDao,
                                  CustomerReviewsDao customerReviewsDao,
-                                 UserDao userDao) {
+                                 UserDao userDao, BreweryDao breweryDao) {
         this.customerDao = customerDao;
         this.customerReviewsDao = customerReviewsDao;
         this.userDao = userDao;
+        this.breweryDao = breweryDao;
     }
 
     public CustomerReviewsResponse getCustomerReviews(int customerId) {
@@ -41,6 +41,13 @@ public class CustomerReviewService {
         }
 
         List<CustomerReviews> reviews = customerReviewsDao.getReviewByCustomerId(customerId);
+
+        reviews.forEach(review -> {
+            Brewery brewery = breweryDao.getBreweryById(review.getBreweryId());
+            if (brewery != null) {
+                review.setBreweryName(brewery.getBreweryName()); // Add brewery name to the review
+            }
+        });
 
         return new CustomerReviewsResponse(
                 user.getUsername(),
