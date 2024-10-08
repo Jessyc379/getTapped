@@ -4,7 +4,7 @@ export default function AdminPage()
 {
     return (
         <>
-        <h1>Admin</h1>
+        <h1>Welcome</h1>
 
         <Outlet />
 
