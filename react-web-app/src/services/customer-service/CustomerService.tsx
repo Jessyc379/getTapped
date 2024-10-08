@@ -7,13 +7,13 @@ class CustomerService
 
     async getCustomers(): Promise<Customer[]>
     {
-        const response = await axios.get<Actor[]>(this.baseUrl)
+        const response = await axios.get<Customer[]>(this.baseUrl)
         return response.data
     }
 
     async addCustomer(customer: Customer): Promise<Customer>
     {
-        const response = await axios.post<Customer(this.baseUrl, customer)
+        const response = await axios.post<Customer>(this.baseUrl, customer)
         return response.data
     }
 
