@@ -81,6 +81,14 @@ public class CustomerController
         }
     }
 
+    @GetMapping("/reviews/{customerId}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<CustomerReviewsResponse> getCustomerReviews(@PathVariable int customerId, Principal principal) {
+        CustomerReviewsResponse response = customerReviewService.getCustomerReviews(customerId);
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/reviews")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<CustomerReviewsResponse> getCurrentCustomerReviews(Principal principal) {

@@ -14,6 +14,7 @@ interface ProfileData {
     userId: number;
     username: string;
     userRole: string;
+    breweryName: string;
     favoriteBreweries: string;
     reviews: Review[];
 }
@@ -67,6 +68,7 @@ export default function CustomerProfile()
                     <ul>
                         {profileData?.reviews.map((review) => (
                             <li key={review.reviewId}>
+                                <p><strong> Brewery Name: </strong> {review.breweryName} </p>
                                 <p><strong> Rating: </strong> {review.rating} </p>
                                 <p><strong> Reviews: </strong> {review.customerReview} </p>
                                 <p><strong> Review Date: </strong> {review.reviewDate} </p>

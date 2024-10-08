@@ -47,7 +47,7 @@ public class BreweryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getBreweryById(@PathVariable int id) {
+    public ResponseEntity<?> getBreweryById(@PathVariable String id) {
         try
         {
             var brewery = breweryDao.getBreweryById(id);
@@ -78,7 +78,7 @@ public class BreweryController {
 
     @PreAuthorize("hasAnyRole('ROLE_BREWER', 'ROLE_ADMIN')")
     @PutMapping("{id}")
-    public ResponseEntity<?> updateBrewery(@PathVariable int id, @RequestBody Brewery brewery)
+    public ResponseEntity<?> updateBrewery(@PathVariable String id, @RequestBody Brewery brewery)
     {
         try
         {
@@ -106,7 +106,7 @@ public class BreweryController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBrewery(@PathVariable int id) { breweryDao.deleteBrewery(id); }
+    public void deleteBrewery(@PathVariable String id) { breweryDao.deleteBrewery(id); }
 
 }
 

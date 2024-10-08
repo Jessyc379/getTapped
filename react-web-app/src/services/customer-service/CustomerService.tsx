@@ -32,7 +32,13 @@ class CustomerService extends BaseService
 
     async getCustomerReviews(): Promise<any>
     {
-        const response =await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/reviews`, this.createHeaders())
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/reviews`, this.createHeaders())
+        return response.data
+    }
+
+    async getCustomerReviewsByCustomerId(customerId: number): Promise<any>
+    {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/reviews/${customerId}`, this.createHeaders())
         return response.data
     }
 }

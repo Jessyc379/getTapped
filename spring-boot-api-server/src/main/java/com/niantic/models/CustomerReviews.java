@@ -18,4 +18,8 @@ public class CustomerReviews {
     private int rating;
     private String customerReview;
     private LocalDate reviewDate;
+    private String breweryName;
+
+    public CustomerReviews(int reviewId, int id, String breweryId, int rating, String customerReview, LocalDate reviewDate) {
+    }
 }
