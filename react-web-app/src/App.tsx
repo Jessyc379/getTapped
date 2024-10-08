@@ -34,7 +34,7 @@ function App() {
         <Route path='/brewers' element={<BrewerPage/>}>
           <Route path='' element={<BrewerDashboard/>}/>
           <Route path='add' element= {<AddBrewery/>}/>
-          <Route path='profile' element={<BrewerProfile/>}/>
+          <Route path=':brewerId' element={<BrewerProfile/>}/>
 
 
         </Route>

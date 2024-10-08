@@ -27,7 +27,9 @@ export default function AddBrewery() {
     const [websiteUrl, setWebsiteUrl] = useState<string>();
     const [brewerId, setBrewerId] = useState<number>();
 
-    async function addBreweryHandler() {
+    async function addBreweryHandler(event:any) {
+        event.preventDefault();
+
         const brewery = new Brewery()
         brewery.breweryName = breweryName!
         brewery.breweryType = breweryType??''
@@ -56,13 +58,18 @@ export default function AddBrewery() {
             <form onSubmit={addBreweryHandler} method="post">
                 <div className="row">
                     <label htmlFor="brewery-name">Brewery Name: </label>
-                    <input type="text" className="form-control" name="brewery-name" id="brewery-name"
-                        onChange={(e) => setBreweryName(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="brewery-name" 
+                    id="brewery-name"
+                    onChange={(e) => setBreweryName(e.target.value)} 
+                    />
                 </div>
 
                 <div>
                     <label htmlFor="brewery-type"></label>
-                    <select className="form-select mb-2" id="brewery-type-select"
+                    <select className="form-select mb-2" 
+                    id="brewery-type-select"
                     onChange={(e) => setBreweryType(e.target.value)}>
                         <option className="diabled">Select Brewery Type</option>
                         <option>Craft brewery</option>
@@ -74,23 +81,32 @@ export default function AddBrewery() {
                         <option>Contract brewery</option>
                         <option>Brewpub</option>
                         <option>Gypsy brewery</option>
-
                     </select>
                 </div>
                  <div className="row">
                     <label htmlFor="address">Address:</label>
-                    <input type="text" className="form-control" name="address" id="address"
-                        onChange={(e) => setAddress(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="address" id="address"
+                    onChange={(e) => setAddress(e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="city">City:</label>
-                    <input type="text" className="form-control" name="city" id="city"
-                        onChange={(e) => setCity(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="city" id="city"
+                    onChange={(e) => setCity(e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="state-province">State/Province:</label>
-                    <input type="text" className="form-control" name="state-province" id="state-province"
-                        onChange={(e) => setStateProvince(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="state-province" 
+                    id="state-province"
+                    onChange={(e) => setStateProvince(e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="postal-code">Postal code:</label>
@@ -99,34 +115,61 @@ export default function AddBrewery() {
                 </div>
                 <div className="row">
                     <label htmlFor="country">Country:</label>
-                    <input type="text" className="form-control" name="country" id="country"
-                        onChange={(e) => setCountry(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="country" 
+                    id="country"
+                    onChange={(e) => setCountry(e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="longitude">Longitude:</label>
-                    <input type="text" className="form-control" name="longitude" id="longitude"
-                        onChange={(e) => setLongitude(+e.target.value)} />
+                    <input 
+                    type="text" 
+                    className="form-control" 
+                    name="longitude" 
+                    value={longitude}
+                    id="longitude"
+                    onChange={(e) => setLongitude(+e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="latitude">Latitude:</label>
-                    <input type="text" className="form-control" name="latitude" id="latitude"
-                        onChange={(e) => setLatitude(+e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    value={latitude}
+                    name="latitude" 
+                    id="latitude"
+                    onChange={(e) => setLatitude(+e.target.value)} 
+                    />
                 </div>
                 
                 <div className="row">
                     <label htmlFor="phone">Phone Number:</label>
-                    <input type="text" className="form-control" name="phone" id="phone"
-                        onChange={(e) => setPhone(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="phone" 
+                    id="phone"
+                    onChange={(e) => setPhone(e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="webstie-url">Website/URL:</label>
-                    <input type="text" className="form-control" name="website-url" id="website-url"
-                        onChange={(e) => setWebsiteUrl(e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="website-url" 
+                    id="website-url"
+                    onChange={(e) => setWebsiteUrl(e.target.value)} 
+                    />
                 </div>
                 <div className="row">
                     <label htmlFor="brewer-id">Brewer/Owner ID:</label>
-                    <input type="text" className="form-control" name="brewer-id" id="brewer-id"
-                        onChange={(e) => setBrewerId(+e.target.value)} />
+                    <input type="text" 
+                    className="form-control" 
+                    name="brewer-id" 
+                    id="brewer-id"
+                    onChange={(e) => setBrewerId(+e.target.value)} 
+                    />
                 </div>
 
                 <button className="btn btn-outline-success mt-3" type="submit">Add Brewery</button>
