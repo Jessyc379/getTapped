@@ -18,7 +18,7 @@ export default function CustomersContextProvider({ children }: Props) {
     {
         try
         {
-            const customers = await customerService.getCustomers()
+            const customers = await CustomerService.getCustomers()
             setCustomers(customers)
         }
         catch (error)
@@ -31,7 +31,7 @@ export default function CustomersContextProvider({ children }: Props) {
     {
         try
         {
-            const newCustomer = await customerService.addCustomer(customer)
+            const newCustomer = await CustomerService.addCustomer(customer)
 
             setCustomers(prevCustomers => [...prevCustomers, newCustomer]);
         }
@@ -45,7 +45,7 @@ export default function CustomersContextProvider({ children }: Props) {
     {
         try
         {
-            await customerService.updateCustomer(customer)
+            await CustomerService.updateCustomer(customer)
             setCustomers(prevCustomers =>
                 prevCustomers.map(c => (c.customerId === customer.customerId ? customer: c))
             );
@@ -60,7 +60,7 @@ export default function CustomersContextProvider({ children }: Props) {
     {
         try
         {
-            await customerService.deleteCustomer(customerId)
+            await CustomerService.deleteCustomer(customerId)
 
             setCustomers(prevCustomers => prevCustomers.filter(customer => customer.customerId !== customerId));
         }
