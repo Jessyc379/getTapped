@@ -17,12 +17,12 @@
     margin-top: 20px; 
 }
 
-h1 {
+#header-login {
     font-size: 2.5rem !important;
     color: #ffcc00 !important;
 }
 
-p {
+#header-body {
     font-size: 1.2rem;
     color: #e0e0e0;
 }

@@ -10,8 +10,8 @@ export default function Home() {
                 <img src={heroImage} alt="Hero" className="hero-image" />
             </div>
             <div className="container home-content">
-                <h1>Welcome to GetTapped</h1>
-                <p>Explore breweries and enjoy great drinks with us!</p>
+                <h1 id="header-login">Welcome to GetTapped</h1>
+                <p id="header-body">Explore breweries and enjoy great drinks with us!</p>
             </div>
         </>
     );
