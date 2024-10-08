@@ -15,7 +15,6 @@ export default function BreweriesPage() {
         <BreweryContextProvider>
             <h1>Breweries</h1>
             
-            <BreweryForm /> 
             <Outlet />
         </BreweryContextProvider>
     );

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Brewery } from '../../models/brewery/Brewery';
+import { CustomerReview } from "../../models/customer-review/CustomerReview";
 
 class BreweryService {
 
@@ -20,6 +21,14 @@ class BreweryService {
         const response = await axios.get<Brewery>(`${this.baseUrl}/breweries/${breweryId}`);
         return response.data;
     }
+
+    async getReviewByBreweryId(breweryId: string): Promise<CustomerReview[]> {
+        const response = await axios.get<CustomerReview[]>(`${this.baseUrl}/reviews`, {
+            params: { brewId: breweryId} 
+        });
+        return response.data;
+    }
+
     
     async addBrewery(brewery: Brewery): Promise<Brewery> {
 
