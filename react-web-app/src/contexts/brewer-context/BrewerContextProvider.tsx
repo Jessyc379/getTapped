@@ -12,6 +12,7 @@ interface Props{
 
 export default function BrewerContextProvider({ children }: Props) {
     const [brewers, setBrewers] = useState<Brewer[]>([]);
+    const [brewer, setBrewer] = useState<Brewer>()
     const [breweries, setBreweries] = useState<Brewery[]>([]);
     
 
@@ -27,6 +28,17 @@ export default function BrewerContextProvider({ children }: Props) {
         catch(error){
             console.error('Error getting brewers: ', error)
         }
+    }
+
+    async function getBrewer(brewerId:number){
+        try{
+            const brewer = await brewerService.getBrewerById(brewerId)
+            setBrewer(brewer)
+        }
+        catch(error){
+            console.error('Error getting brewer:', error)
+        }
+
     }
 
     async function addBrewer(brewer:Brewer) {
