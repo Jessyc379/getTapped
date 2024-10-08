@@ -1,30 +1,18 @@
 import { useState } from "react";
 import demoService from "../../services/demo-service"
+import './Home.css';
+import heroImage from '../../assets/images/homepage-image.jpg';
 
-export default function Home()
-{
-    const [data, setData] = useState<any>('');
-
-    async function simpleClickHandler()
-    {
-        const result = await demoService.getDemo()
-        console.log(result);
-        setData(result)
-        
-    }
-
+export default function Home() {
     return (
         <>
-        <h1>
-            Home
-        </h1>
-
-        <button onClick={simpleClickHandler}>Simple Authenticated Demo</button>
-
-        <div>
-            {data}
-        </div>
-
+            <div className="hero-container">
+                <img src={heroImage} alt="Hero" className="hero-image" />
+            </div>
+            <div className="container home-content">
+                <h1>Welcome to GetTapped</h1>
+                <p>Explore breweries and enjoy great drinks with us!</p>
+            </div>
         </>
-    )
+    );
 }
