@@ -7,10 +7,15 @@ import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 import { Brewer } from "../../../models/brewer/Brewer";
 import { Brewery } from "../../../models/brewery/Brewery";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 
 
 export default function BrewerDashboard() {
+
+    const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
+
     const context = useContext(BreweryContext);
     const { breweries, fetchBreweries } = useContext(BreweryContext)
     const { brewer, getBrewer } = useContext(BrewerContext)
@@ -25,19 +30,26 @@ export default function BrewerDashboard() {
     console.log(breweries);
 
 
-    // const breweriesOwned = breweries.filter(b => b.brewerId == +(brewerId??0))[0]
+    // const breweriesOwned = breweries.filter(b => b.brewerId == +(user?.brewerId??0))[0]
 
     return (
 
         <>
             <h2>Brewer Dashboard</h2>
             <div className="container">
-                <Link to={":brewerId"} className="card form-control">View My Profile </Link>
+                <Link to={`${user?.brewerId}`} className="card form-control">View My Profile </Link>
                 <div className="card form-control mt-3">
                     <h4> My Breweries: </h4>
+                    {/* {breweriesOwned.map((brewery:Brewery)=>(
+                        <li key={brewery.brewerId}>
+                            <Link to={`/${brewery.brewerId}/edit`}>{brewery.breweryName}</Link>
+                        </li>
+                    ))
+
+                    } */}
                     {breweries.map((brewery: Brewery) => (
                         <li key={brewery.brewerId}>
-                            <Link to={`/brewers/${brewery.breweryId}`}>{brewery.breweryName}</Link>
+                            <Link to={`/${brewery.breweryId}/edit`}>{brewery.breweryName}</Link>
                         </li>
                     ))}
 

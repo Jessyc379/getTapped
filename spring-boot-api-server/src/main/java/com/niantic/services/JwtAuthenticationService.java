@@ -1,8 +1,10 @@
 package com.niantic.services;
 
+import com.niantic.data.BrewerDao;
 import com.niantic.data.UserDao;
 import com.niantic.exceptions.DuplicateResourceException;
 import com.niantic.exceptions.ResourceNotFoundException;
+import com.niantic.models.Brewer;
 import com.niantic.models.User;
 import com.niantic.models.authentication.LoginDto;
 import com.niantic.models.authentication.LoginResponseDto;
@@ -27,13 +29,15 @@ public class JwtAuthenticationService implements AuthenticationService
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
     private final UserDao userDao;
+    private final BrewerDao brewerDao;
 
-    public JwtAuthenticationService(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtUtil jwtUtil, UserDao userDao)
+    public JwtAuthenticationService(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtUtil jwtUtil, UserDao userDao, BrewerDao brewerDao)
     {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
         this.userDao = userDao;
+        this.brewerDao = brewerDao;
     }
 
     @Override
@@ -45,6 +49,9 @@ public class JwtAuthenticationService implements AuthenticationService
         {
             throw new ResourceNotFoundException(loginDto.getUsername() + " does not exist");
         }
+        
+        Brewer brewer = brewerDao.getBrewerByUserId(user.getId());
+        user.setBrewerId(brewer.getBrewerId());
 
         var authToken = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
         authenticationManager.authenticate(authToken);

@@ -72,6 +72,32 @@ public class MySqlBrewerDao implements BrewerDao {
         return brewer;
     }
 
+
+    @Override
+    public Brewer getBrewerByUserId(int userId) {
+        Brewer brewer = null;
+
+        String sql = """
+                SELECT brewer_id,
+                    breweries_owned,
+                    user_id
+                FROM brewer
+                WHERE user_id = ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, userId );
+
+        if (row.next())
+        {
+            int breweriesOwned = row.getInt("breweries_owned");
+            int brewerId = row.getInt("brewer_id");
+
+            brewer= new Brewer(brewerId, breweriesOwned, userId);
+
+        }
+        return brewer;
+    }
+
     @Override
     public Brewer addBrewer(Brewer brewer) {
         String sql = """

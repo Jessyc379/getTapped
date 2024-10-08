@@ -15,6 +15,7 @@ import BrewerProfile from './components/brewer/brewer-profile/BrewerProfile'
 import CustomerPage from './components/customer/customer-page/CustomerPage'
 import CustomerProfile from './components/customer/customer-profile/CustomerProfile'
 import CustomersContextProvider from './contexts/customer-context/CustomersContextProvider'
+import EditBrewery from './components/brewer/edit-brewery/EditBrewery'
 
 
 
@@ -38,13 +39,15 @@ function App() {
 
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+
         <Route path='/brewers' element={<BrewerPage />}>
           <Route path='' element={<BrewerDashboard />} />
+          <Route path=':brewerId' element={<BrewerProfile />} />
           <Route path='add' element= {<AddBrewery />} />
-          <Route path='profile' element={<BrewerProfile />} />
-
+          <Route path=':breweryId' element={<EditBrewery/>}/>
 
         </Route>
+
 
         <Route path='/customers' element={<CustomerPage />} />
         <Route path='/profile' element={<CustomerProfile />} />

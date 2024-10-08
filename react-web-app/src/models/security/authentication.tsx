@@ -1,6 +1,7 @@
 export class User
 {
     id?: number;
+    brewerId?: number;
     username?: string;
     authorities?: Authority[];
 }
