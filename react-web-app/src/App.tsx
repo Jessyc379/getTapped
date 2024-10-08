@@ -46,7 +46,7 @@ function App() {
           <Route path='' element={<BrewerDashboard />} />
           <Route path=':brewerId' element={<BrewerProfile />} />
           <Route path='add' element= {<AddBrewery />} />
-          <Route path=':breweryId' element={<EditBrewery/>}/>
+          <Route path=':breweryId/edit' element={<EditBrewery/>}/>
         </Route>
         
         <Route path='/admin' element={<AdminPage/>} >

@@ -38,10 +38,10 @@ export default function BrewerProfile() {
 
     return (
         <>
-            <Link className="btn btn-outline-warning mb-3" to="/brewers">Back</Link>
-            <h4>Your Profile </h4>
 
             <div className="container">
+            <Link className="btn btn-outline-warning mb-3" to="/brewers">Back</Link>
+            <h4>Your Profile </h4>
                 <div className="card">
                     <p> Brewer Id: {brewerId}</p>
                     <p>Breweries Owned: {brewerData?.breweriesOwned}</p>
