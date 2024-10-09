@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Brewer } from "../../models/brewer/Brewer";
-import { act } from "react";
 import BaseService from "../base-service";
 
 class BrewerService extends BaseService
