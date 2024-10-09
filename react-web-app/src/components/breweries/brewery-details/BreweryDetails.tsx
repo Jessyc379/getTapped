@@ -1,11 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { BreweryContext } from '../../../contexts/brewery-context/BreweryContext';
 import { CustomerReview } from "../../../models/customer-review/CustomerReview";
+import "./BreweryDetails.css"
 
 export default function BreweryDetails() {
     const { breweryId } = useParams(); 
     const context = useContext(BreweryContext);
+    const navigate = useNavigate();
+
     const [reviews, setReviews] = useState<CustomerReview[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -37,27 +40,31 @@ export default function BreweryDetails() {
     }, [breweryId, getReviewByBreweryId]);
 
     return (
-        <div>
-            <h2>{brewery.breweryName}</h2>
-            <p>Type: {brewery.breweryType}</p>
-            <p>Address: {brewery.address}, {brewery.city}, {brewery.stateProvince}</p>
-            <p>Phone: {brewery.phone}</p>
-            <p>Website: <a href={brewery.websiteUrl}>{brewery.websiteUrl}</a></p>
+        <div className="brewery-page-container">
+            <div className="brewery-details-container">
+                <button className="back-button" onClick={() => navigate('/breweries')}>Back to Breweries</button>
 
-            <h3>Reviews</h3>
-            {loading && <p>Loading reviews...</p>}
-            {error && <p>{error}</p>}
-            {!loading && reviews.length === 0 && <p>No reviews available.</p>}
-            {!loading && reviews.length > 0 && (
-                <ul>
-                    {reviews.map((review) => (
-                        <li key={review.reviewId}>
-                            <p><strong>Rating:</strong> {review.rating}</p>
-                            <p>{review.customerReview}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
+                <h2>{brewery.breweryName}</h2>
+                <p>Type: {brewery.breweryType}</p>
+                <p>Address: {brewery.address}, {brewery.city}, {brewery.stateProvince}</p>
+                <p>Phone: {brewery.phone}</p>
+                <p>Website: <a href={brewery.websiteUrl}>{brewery.websiteUrl}</a></p>
+
+                <h3>Reviews</h3>
+                {loading && <p>Loading reviews...</p>}
+                {error && <p>{error}</p>}
+                {!loading && reviews.length === 0 && <p>No reviews available.</p>}
+                {!loading && reviews.length > 0 && (
+                    <ul className="reviews-list">
+                        {reviews.map((review) => (
+                            <li key={review.reviewId} className="review-card">
+                                <p><strong>Rating:</strong> {review.rating}</p>
+                                <p>{review.customerReview}</p>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
     );
 }
