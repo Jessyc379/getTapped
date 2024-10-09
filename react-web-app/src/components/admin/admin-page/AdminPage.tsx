@@ -4,7 +4,7 @@ export default function AdminPage()
 {
     return (
         <>
-        <h1 style="font-size: 24px;">Welcome to Your Dashboard</h1>
+        <h1>Welcome to Your Dashboard</h1>
         <Outlet />
 
         </>

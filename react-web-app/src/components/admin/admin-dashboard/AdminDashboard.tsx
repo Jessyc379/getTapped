@@ -9,7 +9,7 @@ const AdminPage = () => {
     <div className="container">
         <Link to={"/admin/profile"} className="card form-control text-center p-4">View My Admin Profile </Link>
 
-        <div className="card form-control text-center p-4" mt-3>
+        <div className="card form-control text-center p-4 mt-3">
             <h4> Manage Breweries: </h4>
 
             <Link to={"/brewery/view"} className="btn btn-outline-success mt-2">View All</Link>
