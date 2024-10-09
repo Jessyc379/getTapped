@@ -58,7 +58,7 @@ export default function EditBrewery() {
         if(breweryId){
             loadBrewery();
         }
-    }, [breweryId])
+    }, [])
 
     const { updateBrewery } = breweryContext;
 
@@ -97,21 +97,21 @@ export default function EditBrewery() {
                 <h4>Edit Brewery: </h4>
                 <form onSubmit={handleSubmit} method="put">
                     <div className="row">
-                        <label htmlFor="brewery-name">Brewery Name: </label>
+                        <label htmlFor="breweryName">Brewery Name: </label>
                         <input type="text"
                             className="form-control "
-                            name="brewery-name"
-                            id="brewery-name"
+                            name="breweryName"
+                            id="breweryName"
                             defaultValue={brewery.breweryName}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="brewery-type">Brewery Type:</label>
+                        <label htmlFor="breweryType">Brewery Type:</label>
                         <input type="text"
                             className="form-control"
-                            name="brwery-type"
-                            id="brewery-type"
+                            name="breweryType"
+                            id="breweryType"
                             defaultValue={brewery.breweryType}
                             onChange={handleInputChange}
                         />
@@ -137,21 +137,21 @@ export default function EditBrewery() {
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="state-province">State/Province:</label>
+                        <label htmlFor="stateProvince">State/Province:</label>
                         <input type="text"
                             className="form-control"
-                            name="state-province"
-                            id="state-province"
+                            name="stateProvince"
+                            id="stateProvince"
                             defaultValue={brewery.stateProvince}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="postal-code">Postal code:</label>
+                        <label htmlFor="postalCode">Postal code:</label>
                         <input type="text"
                             className="form-control"
-                            name="postal-code"
-                            id="postal-code"
+                            name="postalCode"
+                            id="postalCode"
                             defaultValue={brewery.postalCode}
                             onChange={handleInputChange}
                         />
@@ -198,12 +198,12 @@ export default function EditBrewery() {
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="website-url">Website/URL:</label>
+                        <label htmlFor="websiteUrl">Website/URL:</label>
                         <input type="text"
                             className="form-control"
-                            name="website-url"
+                            name="websiteUrl"
                             defaultValue={brewery.websiteUrl}
-                            id="website-url"
+                            id="websiteUrl"
                             onChange={handleInputChange}
                         />
                     </div>
