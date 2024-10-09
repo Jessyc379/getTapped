@@ -7,6 +7,7 @@ interface Review {
     reviewId: number;
     rating: number;
     customerReview: string;
+    breweryName: string;
     reviewDate: string;
 }
 
@@ -14,7 +15,6 @@ interface ProfileData {
     userId: number;
     username: string;
     userRole: string;
-    breweryName: string;
     favoriteBreweries: string;
     reviews: Review[];
 }

@@ -8,6 +8,7 @@ import com.niantic.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -41,19 +42,27 @@ public class CustomerReviewService {
         }
 
         List<CustomerReviews> reviews = customerReviewsDao.getReviewByCustomerId(customerId);
+        List<CustomerReviewDto> reviewDtos = new ArrayList<>();
 
-        reviews.forEach(review -> {
+        for (CustomerReviews review : reviews) {
             Brewery brewery = breweryDao.getBreweryById(review.getBreweryId());
-            if (brewery != null) {
-                review.setBreweryName(brewery.getBreweryName()); // Add brewery name to the review
-            }
-        });
+            String breweryName = (brewery != null) ? brewery.getBreweryName() : "Unknown Brewery";
+
+            CustomerReviewDto reviewDto = new CustomerReviewDto(
+                    review.getReviewId(),
+                    review.getCustomerReview(),
+                    review.getRating(),
+                    review.getReviewDate(),
+                    breweryName
+            );
+            reviewDtos.add(reviewDto);
+        }
 
         return new CustomerReviewsResponse(
                 user.getUsername(),
                 user.getRole(),
                 customer.getFavoriteBreweries(),
-                reviews
+                reviewDtos
         );
     }
 }

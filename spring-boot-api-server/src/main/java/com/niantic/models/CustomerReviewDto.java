@@ -1,22 +1,20 @@
 package com.niantic.models;
 
-import java.time.LocalDate;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+import java.time.LocalDate;
+
 @Getter
 @Setter
-public class CustomerReviews {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class CustomerReviewDto {
     private int reviewId;
-    private int customerId;
-    private String breweryId;
-    private int rating;
     private String customerReview;
+    private int rating;
     private LocalDate reviewDate;
-
+    private String breweryName;
 }
