@@ -20,7 +20,7 @@ class BreweryService extends BaseService {
     
 
     async getBreweryById(breweryId: string): Promise<Brewery> {
-        const response = await axios.get<Brewery>(`${this.baseUrl}/breweries/${breweryId}`, this.createHeaders());
+        const response = await axios.get<Brewery>(`${this.baseUrl}/${breweryId}`, this.createHeaders());
         return response.data;
     }
 

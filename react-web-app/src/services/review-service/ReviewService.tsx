@@ -7,17 +7,17 @@ class ReviewService {
     baseUrl = `${import.meta.env.VITE_API_BASE_URL}/reviews`;
 
 
-    async getAllReviews(custId?: number, brewId?: string): Promise<CustomerReview> {
+    async getAllReviews(custId?: number, brewId?: string): Promise<CustomerReview[]> {
 
-        const response = await axios.get<CustomerReview>(this.baseUrl, {
+        const response = await axios.get<CustomerReview[]>(this.baseUrl, {
             params: { custId, brewId }
         });
         return response.data;
     }
 
-    async getReviewByCustomerId(customerId: number): Promise<CustomerReview> {
+    async getReviewByCustomerId(customerId: number): Promise<CustomerReview[]> {
 
-        const response = await axios.get<CustomerReview>(`${this.baseUrl}/${customerId}`);
+        const response = await axios.get<CustomerReview[]>(`${this.baseUrl}/${customerId}`);
         return response.data;
     }
 
