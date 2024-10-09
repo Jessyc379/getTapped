@@ -5,15 +5,14 @@ import BreweryContextProvider from "../../../contexts/brewery-context/BreweryCon
 
 export default function BreweriesPage() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleBreweryClick = (breweryId: string) => {
-        navigate(`/breweries/${breweryId}`);
-    }
+    // const handleBreweryClick = (breweryId: string) => {
+    //     navigate(`/breweries/${breweryId}`);
+    // }
 
     return (
         <BreweryContextProvider>
-            <h1>Breweries</h1>
             
             <Outlet />
         </BreweryContextProvider>
