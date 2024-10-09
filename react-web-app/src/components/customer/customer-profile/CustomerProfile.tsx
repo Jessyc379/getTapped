@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { CustomersContext } from '../../../contexts/customer-context/CustomersContext'
 import customerService from "../../../services/customer-service/CustomerService";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 interface Review {
     reviewId: number;
@@ -23,6 +25,8 @@ export default function CustomerProfile()
 {
     const { customerId } = useParams();
     const context = useContext(CustomersContext);
+    const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication);
+    const userId = user?.id;
 
     const [profileData, setProfileData] = useState<ProfileData | null>(null);
     const [loading, setLoading] = useState(true);
@@ -57,7 +61,7 @@ export default function CustomerProfile()
     return (
         <>
             <div>
-                <p><strong>User ID: </strong> {profileData?.userId} </p>
+                <p><strong>User ID: </strong> {userId} </p>
                 <p><strong>Username: </strong> {profileData?.username} </p>
                 <p><strong>User Role: </strong> {profileData?.userRole} </p>
                 <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
