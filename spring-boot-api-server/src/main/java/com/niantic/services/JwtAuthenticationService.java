@@ -51,7 +51,9 @@ public class JwtAuthenticationService implements AuthenticationService
         }
         
         Brewer brewer = brewerDao.getBrewerByUserId(user.getId());
-        user.setBrewerId(brewer.getBrewerId());
+        if(brewer != null) {
+            user.setBrewerId(brewer.getBrewerId());
+        }
 
         var authToken = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
         authenticationManager.authenticate(authToken);

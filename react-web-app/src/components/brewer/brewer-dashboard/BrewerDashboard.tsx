@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-
+import brewerImage from '../../../assets/images/brewer-dashboard.jpg'
+import './BrewerDashboard.css';
 
 
 export default function BrewerDashboard() {
@@ -26,34 +27,33 @@ console.log('all breweries:',breweries);
 //
 console.log('breweries owned:' , breweriesOwned);
 
-
-
     return (
 
         <>
-            {/* <h2>Brewer Dashboard</h2> */}
+        <div className="brewer-img">
+            <img src={brewerImage} className="brewer-dash-img"/>
+        </div>
+
+
             <div className="container mt-5">
-                {/* <Link to={`${user?.brewerId}`} className="card form-control">View My Profile </Link> */}
                 <h1>Welcome to the Brewer Dashboard, {user?.username}!</h1>
                 <div className="card form-control">
                     <h4>Account information</h4>
                     <p><strong>User Id: </strong>{user?.id}</p>
                     <p><strong>Brewer Id: </strong>{user?.brewerId}</p>
                 </div>
-                <div className="breweries-container form-control mt-3">
+                <ul className="breweries-container form-control mt-3 ">
                     <h4> Your Breweries: </h4>
                     {breweriesOwned.map((brewery:Brewery)=>(
-                        <li className="card form-control" key={brewery.breweryId}>{brewery.breweryName} 
-                            <Link to={`/brewers/${brewery.breweryId}/edit`}>Edit Brewery</Link></li>
+                        <li className="brewery-card form-control shadow p-3 mb-3 bg-white rounded" key={brewery.breweryId}>{brewery.breweryName} 
+                            <Link to={`/brewers/${brewery.breweryId}/edit`} className="edit-btn">Edit Brewery</Link></li>
                        ))
                     }
                     <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
 
-                </div>
+                </ul>
 
             </div>
-
-
         </>
     )
 }
