@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import { logout } from "../../../store/features/authentication-slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import "./Header.css";
 
 export default function Header() {
 
@@ -59,7 +60,7 @@ export default function Header() {
                                     <p className="nav-link">Welcome, {user?.username}</p>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="nav-link btn" onClick={handleLogout}>Logout</button>
+                                    <button className="nav-link" onClick={handleLogout}>Logout</button>
                                 </li>
                             </>
                         )}

@@ -19,12 +19,17 @@ export default function BreweryList() {
             <div className="breweries-hero-section">
                 <img src={breweryImage} alt="Brewery" className="brewery-hero-image" />
                 <div className="brewery-hero-text-overlay">
-                    <h1>Welcome to the Breweries</h1>
-                    <p>Explore some of the best breweries in the world!</p>
                 </div>
             </div>
 
+
             <div className="brewery-card-container">
+            <div className="breweries-intro">
+                <h2>Explore Our Partner Breweries</h2>
+                <p>We partner with various breweries across the country to bring you the finest selections of craft beer. 
+                Each brewery offers a unique taste, experience, and passion for their craft. Dive into the world of brews by exploring 
+                the details of each brewery listed below, and plan your next visit!</p>
+            </div>
                 <ul className="brewery-list">
                     {breweries.map((brewery: Brewery) => (
                         <li key={brewery.breweryId} className="brewery-card">
