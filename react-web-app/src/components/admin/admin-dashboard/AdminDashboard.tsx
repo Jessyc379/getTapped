@@ -26,12 +26,5 @@ const AdminPage = () => {
     </div>
     );
 
-<<<<<<< Updated upstream
-        </div>
-        
-
-</>
-=======
 };
 export default AdminPage;
->>>>>>> Stashed changes
