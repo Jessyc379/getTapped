@@ -2,9 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { BreweryContext } from '../../../contexts/brewery-context/BreweryContext';
 import { CustomerReview } from "../../../models/customer-review/CustomerReview";
+import reviewService from '../../../services/review-service/ReviewService';
 import "./BreweryDetails.css"
 
 export default function BreweryDetails() {
+    
     const { breweryId } = useParams(); 
     const context = useContext(BreweryContext);
     const navigate = useNavigate();
@@ -17,7 +19,7 @@ export default function BreweryDetails() {
         return <div>Error: Brewery context is not available</div>;
     }
 
-    const { breweries, getReviewByBreweryId } = context;
+    const { breweries } = context;
     const brewery = breweries.find(b => b.breweryId === breweryId);
 
     if (!brewery) {
@@ -27,7 +29,7 @@ export default function BreweryDetails() {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const fetchedReviews = await getReviewByBreweryId(breweryId!);
+                const fetchedReviews = await reviewService.getAllReviews(undefined, breweryId!);
                 setReviews(fetchedReviews);
             } catch (error) {
                 setError("Error fetching reviews");
@@ -37,7 +39,7 @@ export default function BreweryDetails() {
         };
 
         fetchReviews();
-    }, [breweryId, getReviewByBreweryId]);
+    }, [breweryId]);
 
     return (
         <div className="brewery-page-container">
