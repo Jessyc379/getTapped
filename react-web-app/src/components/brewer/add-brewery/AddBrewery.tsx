@@ -2,10 +2,18 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 export default function AddBrewery() {
     const context = useContext(BrewerContext)
     const [message, setMessage] = useState<string | null>(null)
+
+    const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
+    const id = user?.brewerId
+
+    console.log(id);
+    
 
     if (!context) {
         throw new Error('No Brewery Context found')
@@ -24,7 +32,7 @@ export default function AddBrewery() {
     const [latitude, setLatitude] = useState<number>(0);
     const [phone, setPhone] = useState<string>();
     const [websiteUrl, setWebsiteUrl] = useState<string>();
-    const [brewerId, setBrewerId] = useState<number>();
+    // const [brewerId, setBrewerId] = useState<number>();
 
     async function addBreweryHandler(event: any) {
         event.preventDefault();
@@ -41,7 +49,7 @@ export default function AddBrewery() {
         brewery.latitude = latitude
         brewery.phone = phone
         brewery.websiteUrl = websiteUrl
-        brewery.brewerId = brewerId
+        brewery.brewerId = id
 
         try {
             await addBrewery(brewery)
@@ -62,7 +70,7 @@ export default function AddBrewery() {
             setLatitude(0);
             setPhone('');
             setWebsiteUrl('');
-            setBrewerId(undefined);
+            setBrewerId(brewerId);
         }
         catch (error) {
             console.log("Error adding brewery: ", error);
@@ -195,6 +203,7 @@ export default function AddBrewery() {
                     <input type="text"
                         className="form-control"
                         name="phone"
+                        value={phone}
                         id="phone"
                         onChange={(e) => setPhone(e.target.value)}
                     />
@@ -204,21 +213,25 @@ export default function AddBrewery() {
                     <input type="text"
                         className="form-control"
                         name="website-url"
+                        value={websiteUrl}
                         id="website-url"
                         onChange={(e) => setWebsiteUrl(e.target.value)}
                     />
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <label htmlFor="brewer-id">Brewer/Owner ID:</label>
                     <input type="text"
                         className="form-control"
                         name="brewer-id"
                         id="brewer-id"
+                        value={brewerId}
+
+
                         onChange={(e) => setBrewerId(+e.target.value)}
                     // onChange={handleInputChange}
 
                     />
-                </div>
+                </div> */}
 
                 <button className="btn btn-outline-success mt-3" type="submit">Add Brewery</button>
                 <Link className="btn btn-outline-danger mt-3" to="/brewers"> Cancel</Link>

@@ -44,7 +44,7 @@ console.log('breweries owned:' , breweriesOwned);
                     <h4> Your Breweries: </h4>
                     {breweriesOwned.map((brewery:Brewery)=>(
                         <li className="card form-control" key={brewery.breweryId}>{brewery.breweryName} 
-                            <Link to={`/brewer/${brewery.breweryId}/edit`}>Edit Brewery</Link></li>
+                            <Link to={`/brewers/${brewery.breweryId}/edit`}>Edit Brewery</Link></li>
                        ))
                     }
                     <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
