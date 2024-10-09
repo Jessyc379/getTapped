@@ -6,24 +6,33 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import brewerImage from '../../../assets/images/brewer-dashboard.jpg'
 import './BrewerDashboard.css';
+import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
+import { Brewer } from "../../../models/brewer/Brewer";
 
 
 export default function BrewerDashboard() {
 
     const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
     const brewerId = user?.brewerId
+    
 
-    const { breweries, fetchBreweries } = useContext(BreweryContext)    
+
+    const breweryContext = useContext(BreweryContext);
+    if (!breweryContext) {
+        throw new Error('Sorry, this is not within the BreweryContextProvider')
+    }
+    const { breweries, fetchBreweries } = breweryContext  
+
+    // const brewerContext = useContext(BrewerContext);
+    // if (!brewerContext) {
+    //     throw new Error('Sorry, this is not within the BrewerContextProvider')
+    // }
+    // const { brewers, fetchBrewers } = brewerContext  
 //
 console.log('all breweries:',breweries);
 
-
-    const context = useContext(BreweryContext);
-    if (!context) {
-        throw new Error('Sorry, this is not within the BrewerContextProvider')
-    }
-
     const breweriesOwned = breweries.filter((b: Brewery) => b.brewerId == +(brewerId??0))
+    // const brewer = brewers.filter((b: Brewer) => b.brewerId == brewerId)
 //
 console.log('breweries owned:' , breweriesOwned);
 
