@@ -35,15 +35,25 @@
 }
 
 .review-card {
-    background-color: #d1d1d1;
-    padding: 15px;
+    background-color: #dfdfdf;
+    padding: 40px;
     border-radius: 8px;
-    margin-bottom: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.carousel .control-arrow, 
+.carousel .control-prev.control-arrow:before, 
+.carousel .control-next.control-arrow:before {
+    color: #ffcc00;
+}
+
+.carousel .carousel-status {
+    display: none; 
 }
 
 .review-card p {
     margin: 5px 0;
+    color: rgb(97, 97, 97);
 }
 
 .brewery-details-container a {
