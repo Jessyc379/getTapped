@@ -1,16 +1,18 @@
 import axios from "axios";
 import { Brewery } from '../../models/brewery/Brewery';
 import { CustomerReview } from "../../models/customer-review/CustomerReview";
+import BaseService from "../base-service";
 
-class BreweryService {
+class BreweryService extends BaseService {
 
     baseUrl = `${import.meta.env.VITE_API_BASE_URL}/breweries`
 
     async getAllBreweries(brewId?: number): Promise<Brewery[]> {
 
-            const response = await axios.get<Brewery[]>(this.baseUrl, {
-                params: brewId ? { brewId } : {} 
-            });
+        const headers = this.createHeaders();
+        headers.params = {brewId: brewId ? { brewId } : {}} ;
+
+            const response = await axios.get<Brewery[]>(this.baseUrl, headers);
             
             return response.data;
 
@@ -32,7 +34,7 @@ class BreweryService {
     
     async addBrewery(brewery: Brewery): Promise<Brewery> {
 
-        const response = await axios.post<Brewery>(this.baseUrl, brewery)
+        const response = await axios.post<Brewery>(this.baseUrl, brewery, this.createHeaders())
         return response.data
 
     }

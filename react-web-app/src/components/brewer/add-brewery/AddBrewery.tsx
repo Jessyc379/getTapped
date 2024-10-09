@@ -19,6 +19,9 @@ export default function AddBrewery() {
     if (!context) {
         throw new Error('No Brewery Context found')
     }
+    if(!isAuthenticated){
+        throw new Error("You do not have proper credentials")
+    }
 
     const { addBrewery } = context;
 

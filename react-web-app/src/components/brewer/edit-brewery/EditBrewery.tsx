@@ -1,23 +1,46 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 
 export default function EditBrewery(){
 
     const location = useParams();
     const breweryId = location.breweryId
     const{ isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
-    const brewerId = user?.brewerId;
+    const id = user?.brewerId;
     console.log("params:" , breweryId);
     
-    const context = useContext(BrewerContext)
+    const breweryContext = useContext(BreweryContext)
     const [ message, setMessage] = useState<string | null> (null);
 
-    if(!context){
+    if(!breweryContext){
         throw new Error("No Brewer Context Found")
     }
+    if(!isAuthenticated){
+        throw new Error("You do not have proper credentials")
+    }
+
+
+    const {updateBrewer, getBrewery} = breweryContext;
+
+    const [breweryName, setBreweryName] = useState<string>('');
+    const [breweryType, setBreweryType] = useState<string>('');
+    const [address, setAddress] = useState<string>('');
+    const [city, setCity] = useState<string>('');
+    const [stateProvince, setStateProvince] = useState<string>('');
+    const [postalCode, setPostalCode] = useState<string>('');
+    const [country, setCountry] = useState<string>('');
+    const [longitude, setLongitude] = useState<number>(0);
+    const [latitude, setLatitude] = useState<number>(0);
+    const [phone, setPhone] = useState<string>('');
+    const [websiteUrl, setWebsiteUrl] = useState<string>('');
+    const [brewerId, setBrewerId] = useState<number>();
+
+    // useEffect()
+
     
     return(
         <>

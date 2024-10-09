@@ -6,10 +6,10 @@ export default function BrewerPage() {
 
     return (
 
-        <BrewerContextProvider>
-            <BreweryContextProvider>
+        <BreweryContextProvider>
+            <BrewerContextProvider>
                 <Outlet />
-            </BreweryContextProvider>
-        </BrewerContextProvider>
+            </BrewerContextProvider>
+        </BreweryContextProvider>
     )
 }
