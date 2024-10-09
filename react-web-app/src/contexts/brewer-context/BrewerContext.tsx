@@ -9,6 +9,7 @@ export interface BrewerContextType{
     addBrewer: (brewer: Brewer) => Promise<void>;
     addBrewery: (brewery: Brewery) => Promise<void>;
     updateBrewer: (brewer:Brewer) => Promise<void>;
+    updateBrewery: (brewery: Brewery) => Promise<void>;
     deleteBrewer: (brewerId: number) => Promise<void>;
     refreshBrewers: () => Promise<void>;
     fetchBrewers:() =>Promise<void>;
