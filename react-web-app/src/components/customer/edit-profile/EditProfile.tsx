@@ -19,9 +19,10 @@ interface ProfileData {
 interface EditProfileProps {
     initialProfileData: ProfileData;
     onSave: (updatedData: ProfileData) => void; 
+    onCancel: () => void;
 }
 
-const EditProfile: React.FC<EditProfileProps> = ({ initialProfileData, onSave }) => {
+const EditProfile: React.FC<EditProfileProps> = ({ initialProfileData, onSave, onCancel }) => {
     const [username, setUsername] = useState(initialProfileData.username);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -46,6 +47,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ initialProfileData, onSave })
                 />
             </div>
             <button type="submit">Save</button>
+            <button type="button" onClick={onCancel}>Cancel</button>
         </form>
     );
 };

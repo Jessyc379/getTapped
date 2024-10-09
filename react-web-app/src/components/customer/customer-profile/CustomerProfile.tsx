@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { CustomersContext } from '../../../contexts/customer-context/CustomersContext'
 import customerService from "../../../services/customer-service/CustomerService";
 import { useSelector } from "react-redux";
@@ -32,6 +32,7 @@ export default function CustomerProfile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isEditing, setIsEditing] = useState(false);
+    const navigate = useNavigate();
 
     if (!context) {
         throw new Error('CustomerProfile must be used within a CustomersContextProvider');
@@ -59,6 +60,10 @@ export default function CustomerProfile() {
         setIsEditing(false);
     };
 
+    const handleCancel = () => {
+        setIsEditing(false);
+    }
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
@@ -73,7 +78,11 @@ export default function CustomerProfile() {
             </div>
 
             {isEditing && profileData ? (
-                <EditProfile initialProfileData={profileData} onSave={handleSaveProfile} />
+                <EditProfile 
+                    initialProfileData={profileData}
+                    onSave={handleSaveProfile} 
+                    onCancel={handleCancel} 
+                />
             ) : (
 
                 <div className="reviews-container">
