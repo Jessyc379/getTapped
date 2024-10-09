@@ -32,20 +32,20 @@ console.log('breweries owned:' , breweriesOwned);
 
         <>
             {/* <h2>Brewer Dashboard</h2> */}
-            <div className="container">
+            <div className="container mt-5">
                 {/* <Link to={`${user?.brewerId}`} className="card form-control">View My Profile </Link> */}
-                <h3>Welcome to the Brewer Dashboard, {user?.username}!</h3>
+                <h1>Welcome to the Brewer Dashboard, {user?.username}!</h1>
                 <div className="card form-control">
                     <h4>Account information</h4>
                     <p><strong>User Id: </strong>{user?.id}</p>
                     <p><strong>Brewer Id: </strong>{user?.brewerId}</p>
                 </div>
-                <div className="card form-control mt-3">
+                <div className="breweries-container form-control mt-3">
                     <h4> Your Breweries: </h4>
                     {breweriesOwned.map((brewery:Brewery)=>(
-                        <li key={brewery.breweryId}>
-                            <Link to={`/${brewery.brewerId}/edit`}>{brewery.breweryName}</Link>
-                        </li>))
+                        <li className="card form-control" key={brewery.breweryId}>{brewery.breweryName} 
+                            <Link to={`/brewer/${brewery.breweryId}/edit`}>Edit Brewery</Link></li>
+                       ))
                     }
                     <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
 

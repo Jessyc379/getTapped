@@ -7,7 +7,6 @@ export default function BrewerPage() {
     return (
 
         <BrewerContextProvider>
-            <h1>Brewers ONLY</h1>
             <BreweryContextProvider>
                 <Outlet />
             </BreweryContextProvider>
