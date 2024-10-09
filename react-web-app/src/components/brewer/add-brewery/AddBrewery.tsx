@@ -58,7 +58,7 @@ export default function AddBrewery() {
 
         try {
             await addBrewery(brewery)
-            setMessage('You\'ve successfully added brewery')
+            setMessage('You\'ve successfully added brewery!')
             console.log(brewery)
 
             setBreweryName('');
