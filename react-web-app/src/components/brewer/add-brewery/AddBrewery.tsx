@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
-import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
+// import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import cheers from '../../../assets/images/addbrewery.jpg'
+import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 
 export default function AddBrewery() {
-    const context = useContext(BrewerContext)
+    const breweryContext = useContext(BreweryContext)
     const [message, setMessage] = useState<string | null>(null)
 
     const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
@@ -16,11 +17,14 @@ export default function AddBrewery() {
     console.log(id);
 
 
-    if (!context) {
+    if (!breweryContext) {
         throw new Error('No Brewery Context found')
     }
+    if(!isAuthenticated){
+        throw new Error("You do not have proper credentials")
+    }
 
-    const { addBrewery } = context;
+    const { addBrewery } = breweryContext;
 
     const [breweryName, setBreweryName] = useState<string>();
     const [breweryType, setBreweryType] = useState<string>();
