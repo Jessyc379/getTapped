@@ -60,22 +60,27 @@ export default function CustomerProfile()
 
     return (
         <>
-            <div>
+            <div className="profile-container">
                 <p><strong>User ID: </strong> {userId} </p>
                 <p><strong>Username: </strong> {profileData?.username} </p>
                 <p><strong>User Role: </strong> {profileData?.userRole} </p>
                 <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
+            </div>
+
+            <div className="reviews-container">
                 <h3> Reviews: </h3>
                 {profileData?.reviews.length === 0 ? (
                     <p> No reviews available </p>
                 ) : (
                     <ul>
                         {profileData?.reviews.map((review) => (
-                            <li key={review.reviewId}>
-                                <p><strong> Brewery Name: </strong> {review.breweryName} </p>
-                                <p><strong> Rating: </strong> {review.rating} </p>
-                                <p><strong> Reviews: </strong> {review.customerReview} </p>
-                                <p><strong> Review Date: </strong> {review.reviewDate} </p>
+                            <li key={review.reviewId} className="review-item">
+                                <div className="review-container">
+                                    <p><strong> Brewery Name: </strong> {review.breweryName} </p>
+                                    <p><strong> Rating: </strong> {review.rating} </p>
+                                    <p><strong> Reviews: </strong> {review.customerReview} </p>
+                                    <p><strong> Review Date: </strong> {review.reviewDate} </p>
+                                </div>
                             </li>
                         ))}
                     </ul>
