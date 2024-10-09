@@ -28,11 +28,13 @@ export default function BrewerDashboard() {
     //     throw new Error('Sorry, this is not within the BrewerContextProvider')
     // }
     // const { brewers, fetchBrewers } = brewerContext  
-//
+
 console.log('all breweries:',breweries);
 
     const breweriesOwned = breweries.filter((b: Brewery) => b.brewerId == +(brewerId??0))
     // const brewer = brewers.filter((b: Brewer) => b.brewerId == brewerId)
+    // console.log(brewer);
+    
 //
 console.log('breweries owned:' , breweriesOwned);
 
