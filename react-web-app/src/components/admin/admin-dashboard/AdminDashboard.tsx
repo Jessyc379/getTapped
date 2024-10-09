@@ -20,11 +20,17 @@ const AdminPage = () => {
                 <h4>Manage Brewers: </h4>
                 
                 <Link to={"/admin/view-brewer"} className="btn btn-outline-success mt-2">View All</Link>
-                <Link to={"/admin/manage-brewer"} className="btn btn-outline-success mt-2">Edit </Link>
+                <Link to={"/admin/manage-brewer"} className="btn btn-outline-success mt-2">Manage Brewers </Link>
                 
         </div>
     </div>
     );
 
+<<<<<<< Updated upstream
 };
+=======
+   
+}
+
+>>>>>>> Stashed changes
 export default AdminPage;
