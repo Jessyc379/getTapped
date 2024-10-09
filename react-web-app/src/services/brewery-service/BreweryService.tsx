@@ -20,14 +20,16 @@ class BreweryService extends BaseService {
     
 
     async getBreweryById(breweryId: string): Promise<Brewery> {
-        const response = await axios.get<Brewery>(`${this.baseUrl}/breweries/${breweryId}`);
+        const response = await axios.get<Brewery>(`${this.baseUrl}/breweries/${breweryId}`, this.createHeaders());
         return response.data;
     }
 
     async getReviewByBreweryId(breweryId: string): Promise<CustomerReview[]> {
-        const response = await axios.get<CustomerReview[]>(`${this.baseUrl}/reviews`, {
-            params: { brewId: breweryId} 
-        });
+
+        const headers = this.createHeaders();
+        headers.params = {breweryId: breweryId ? {breweryId} : {}}
+
+        const response = await axios.get<CustomerReview[]>(`${this.baseUrl}/reviews`, headers);
         return response.data;
     }
 
@@ -42,13 +44,13 @@ class BreweryService extends BaseService {
     async updateBrewery(brewery: Brewery): Promise<void> {
 
         const url = `${this.baseUrl}/${brewery.breweryId}`
-        await axios.put<void>(url, brewery)
+        await axios.put<void>(url, brewery, this.createHeaders())
     }
 
     async deleteBrewery(id: string) {
 
         const url = `${this.baseUrl}/${this.baseUrl}/${id}`
-        await axios.delete<void>(url)
+        await axios.delete<void>(url, this.createHeaders())
     }
 
 
