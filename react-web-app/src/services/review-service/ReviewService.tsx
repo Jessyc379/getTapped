@@ -21,6 +21,22 @@ class ReviewService {
         return response.data;
     }
 
+    async addReview(review: CustomerReview): Promise<CustomerReview> {
+        
+        const response = await axios.post<CustomerReview>(this.baseUrl, review);
+        return response.data;
+    }
+
+    async updateReview(reviewId: number, review: CustomerReview): Promise<void> {
+
+        await axios.put(`${this.baseUrl}/${reviewId}`, review);
+    }
+
+    async deleteReview(reviewId: number): Promise<void> {
+
+        await axios.delete(`${this.baseUrl}/${reviewId}`);
+    }
+
 }
 
 const reviewService = new ReviewService();
