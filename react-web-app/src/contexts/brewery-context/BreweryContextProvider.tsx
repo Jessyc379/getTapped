@@ -25,18 +25,6 @@ export default function BreweryContextProvider({ children }: Props) {
         }
     }
 
-    async function getReviewByBreweryId(breweryId: string): Promise<CustomerReview[]> {
-        try {
-            const fetchedReviews = await BreweryService.getReviewByBreweryId(breweryId);
-            setReviews(fetchedReviews);
-            return fetchedReviews; 
-        } catch (error) {
-            console.error('Error fetching reviews:', error);
-            return [];
-        }
-    }
-
-
     async function addBrewery(brewery: Brewery) {
         try {
             const newBrewery = await BreweryService.addBrewery(brewery);
@@ -74,8 +62,6 @@ export default function BreweryContextProvider({ children }: Props) {
 
     const contextValue: BreweryContextType = {
         breweries,
-        reviews,
-        getReviewByBreweryId,
         addBrewery,
         updateBrewery,
         deleteBrewery,
