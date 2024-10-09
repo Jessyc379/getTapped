@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { BreweryContext } from '../../../contexts/brewery-context/BreweryContext';
 import { CustomerReview } from "../../../models/customer-review/CustomerReview";
 import reviewService from '../../../services/review-service/ReviewService';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./BreweryDetails.css"
 
 export default function BreweryDetails() {
@@ -56,15 +58,17 @@ export default function BreweryDetails() {
                 {loading && <p>Loading reviews...</p>}
                 {error && <p>{error}</p>}
                 {!loading && reviews.length === 0 && <p>No reviews available.</p>}
+
                 {!loading && reviews.length > 0 && (
-                    <ul className="reviews-list">
-                        {reviews.map((review) => (
-                            <li key={review.reviewId} className="review-card">
-                                <p><strong>Rating:</strong> {review.rating}</p>
-                                <p>{review.customerReview}</p>
-                            </li>
-                        ))}
-                    </ul>
+                <Carousel showThumbs={false} infiniteLoop={true} autoPlay={false} dynamicHeight={true} showArrows={true}>
+                    {reviews.map((review) => (
+                        <div key={review.reviewId} className="review-card">
+                            <p><strong>Rating:</strong> {review.rating}/5</p>
+                            <p>{review.customerReview}</p>
+                            <p><em>{new Date(review.reviewDate).toLocaleDateString()}</em></p>
+                        </div>
+                    ))}
+                </Carousel>
                 )}
             </div>
         </div>
