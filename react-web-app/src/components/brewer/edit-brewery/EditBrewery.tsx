@@ -38,8 +38,8 @@ export default function EditBrewery() {
             stateProvince: '',
             postalCode: '',
             country: '',
-            // longitude:0.00,
-            // latitude: 0.00,
+            longitude:1,
+            latitude:1,
             phone: '',
             websiteUrl: '',
             brewerId: id
@@ -170,7 +170,7 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <label htmlFor="longitude">Longitude:</label>
                         <input
                             type="number"
@@ -192,7 +192,7 @@ export default function EditBrewery() {
                             step="0.0001"
                             onChange={handleInputChange}
                         />
-                    </div>
+                    </div> */}
                     <div className="row">
                         <label htmlFor="phone">Phone Number:</label>
                         <input type="text"

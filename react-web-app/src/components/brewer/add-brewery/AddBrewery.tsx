@@ -25,22 +25,9 @@ export default function AddBrewery() {
         throw new Error("You do not have proper credentials")
     }
 
-    const [brewery, setBrewery] = useState<Brewery>
-        ({
-
-            breweryId: '',
-            breweryName: '',
-            breweryType: '',
-            address: '',
-            city: '',
-            stateProvince: '',
-            postalCode: '',
-            country: '',
-            phone: '',
-            websiteUrl: '',
-            brewerId: id
-
-        })
+    const newBrewery = new Brewery()
+    newBrewery.brewerId = id;
+    const [brewery, setBrewery] = useState<Brewery>(newBrewery)
 
     const { addBrewery, refreshBreweries } = breweryContext;
 
@@ -54,6 +41,8 @@ export default function AddBrewery() {
 
     }
 
+
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
@@ -61,23 +50,10 @@ export default function AddBrewery() {
             const updatedPub = await addBrewery(brewery);
             setMessage('You\'ve successfully edited brewery!')
 
-            setBrewery({
-                breweryId: '',
-                breweryName: '',
-                breweryType: '',
-                address: '',
-                city: '',
-                stateProvince: '',
-                postalCode: '',
-                country: '',
-                longitude: 0.00,
-                latitude: 0.00,
-                phone: '',
-                websiteUrl: '',
-                brewerId: id
+            const clearForm = new Brewery();
+            clearForm.brewerId = id;
+            setBrewery(clearForm);
 
-            
-            })
             navigate('/brewers');
             refreshBreweries();
 
