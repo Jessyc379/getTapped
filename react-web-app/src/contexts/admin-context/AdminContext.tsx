@@ -3,12 +3,9 @@ import { Brewer } from '../../models/brewer/Brewer';
 import { Brewery } from '../../models/brewery/Brewery';
 
 export interface AdminContextType {
-    brewers: Brewer[];
-    breweries: Brewery[];
-    page: number;
-    prevPage: number;
-    nextPage: number;
-    setPageNumber: (page: number) => void;
+    brewers: any[];
+    breweries: any[];
+    customers: any[];
     addBrewer: (brewer: Brewer) => Promise<void>;
     addBrewery: (brewery: Brewery) => Promise<void>;
     updateBrewer: (brewer: Brewer) => Promise<void>;
