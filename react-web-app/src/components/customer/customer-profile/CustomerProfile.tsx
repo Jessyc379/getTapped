@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import EditProfile from "../edit-profile/EditProfile";
 import './CustomerProfile.css';
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 interface Review {
     reviewId: number;
@@ -14,6 +15,7 @@ interface Review {
     breweryName: string;
     city: string;
     reviewDate: string;
+    stateProvince: string;
 }
 
 interface ProfileData {
@@ -97,7 +99,7 @@ export default function CustomerProfile() {
                                 <li key={review.reviewId} className="review-item">
                                     <div className="review-container">
                                         <p><strong> {review.breweryName} </strong>  </p>
-                                        <p className="indented-text"><strong> Location: </strong> {review.city} </p>
+                                        <p className="location-img"> <FaMapMarkerAlt /> {review.city}, {review.stateProvince} </p>
                                         <p className="indented-text"><strong> Rating: </strong> {review.rating} </p>
                                         <p className="indented-text"><strong> Review: </strong> {review.customerReview} </p>
                                         <p className="indented-text"><strong> Review Date: </strong> {review.reviewDate} </p>

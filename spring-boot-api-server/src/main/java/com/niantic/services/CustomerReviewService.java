@@ -48,6 +48,7 @@ public class CustomerReviewService {
             Brewery brewery = breweryDao.getBreweryById(review.getBreweryId());
             String breweryName = (brewery != null) ? brewery.getBreweryName() : "Unknown Brewery";
             String city = (brewery != null) ? brewery.getCity() : "Unknown city";
+            String stateProvince = (brewery != null) ? brewery.getStateProvince() : "Unknown state province";
 
             CustomerReviewDto reviewDto = new CustomerReviewDto(
                     review.getReviewId(),
@@ -55,7 +56,8 @@ public class CustomerReviewService {
                     review.getRating(),
                     review.getReviewDate(),
                     breweryName,
-                    city
+                    city,
+                    stateProvince
             );
             reviewDtos.add(reviewDto);
         }

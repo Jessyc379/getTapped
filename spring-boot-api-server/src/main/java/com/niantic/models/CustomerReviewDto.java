@@ -18,4 +18,5 @@ public class CustomerReviewDto {
     private LocalDate reviewDate;
     private String breweryName;
     private String city;
+    private String stateProvince;
 }
