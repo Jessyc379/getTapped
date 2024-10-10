@@ -87,7 +87,7 @@ const AdminPage = () => {
             <div className="admin-card form-control text-center p-4 mt-3">
                 <h4>Manage Breweries:</h4>
                 <button
-                    className="btn btn-outline-success mt-2"
+                    className="btn btn-outline-warning mt-2"
                     onClick={() => setShowBreweries(!showBreweries)}
                 >
                     {showBreweries ? "Hide All Breweries" : "View All Breweries"}
@@ -117,7 +117,7 @@ const AdminPage = () => {
             <div className="admin-card form-control text-center p-4 mt-3">
                 <h4>Manage Brewers:</h4>
                 <button
-                    className="btn btn-outline-success mt-2"
+                    className="btn btn-outline-warning mt-2"
                     onClick={() => setShowBrewers(!showBrewers)}
                 >
                     {showBrewers ? "Hide All Brewers" : "View All Brewers"}
@@ -147,7 +147,7 @@ const AdminPage = () => {
             <div className="admin-card form-control text-center p-4 mt-3">
                 <h4>Manage Customers:</h4>
                 <button
-                    className="btn btn-outline-success mt-2"
+                    className="btn btn-outline-warning mt-2"
                     onClick={() => setShowCustomers(!showCustomers)}
                 >
                     {showCustomers ? "Hide All Customers" : "View All Customers"}

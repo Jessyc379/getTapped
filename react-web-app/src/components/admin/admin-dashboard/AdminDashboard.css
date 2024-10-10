@@ -1,14 +1,14 @@
 .admin-card-container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    width:500px;
+    height:500px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 26px;
     padding: 0 20px;
     margin-bottom: 30px; 
 }
+
 
 .admin-card {
     background-color: #fff;
