@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import './AdminStyles.css';
+
 
 
 export default function AdminPage() {
