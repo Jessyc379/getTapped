@@ -5,6 +5,8 @@ import customerService from "../../../services/customer-service/CustomerService"
 import { Brewery } from "../../../models/brewery/Brewery";
 import { Brewer } from "../../../models/brewer/Brewer";
 import { Customer } from "../../../models/customer/Customer";
+import './AdminDashboard.css';
+
 
 
 const AdminPage = () => {
