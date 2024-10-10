@@ -98,11 +98,13 @@ export default function CustomerProfile() {
                             {profileData?.reviews.map((review) => (
                                 <li key={review.reviewId} className="review-item">
                                     <div className="review-container">
-                                        <p><strong> {review.breweryName} </strong>  </p>
-                                        <p className="location-img"> <FaMapMarkerAlt /> {review.city}, {review.stateProvince} </p>
+                                        <div className="review-header">
+                                            <p className="name"><strong> {review.breweryName} </strong>  </p>
+                                            <p className="date"><strong> Date: </strong> {review.reviewDate} </p>
+                                        </div>
+                                        <p className="location"> <FaMapMarkerAlt /> {review.city}, {review.stateProvince} </p>
                                         <p className="indented-text"><strong> Rating: </strong> {review.rating} </p>
                                         <p className="indented-text"><strong> Review: </strong> {review.customerReview} </p>
-                                        <p className="indented-text"><strong> Review Date: </strong> {review.reviewDate} </p>
                                     </div>
                                 </li>
                             ))}
