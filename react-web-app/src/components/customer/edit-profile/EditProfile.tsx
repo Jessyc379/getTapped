@@ -51,8 +51,10 @@ const EditProfile: React.FC<EditProfileProps> = ({ initialProfileData, onSave, o
                     className="form-input"
                 />
             </div>
-            <button type="submit" className="save-form">Save</button>
-            <button type="button" className="cancel-form" onClick={onCancel}>Cancel</button>
+            <div className="profile-btn-container">
+                <button type="submit" className="save-form">Save</button>
+                <button type="button" className="cancel-form" onClick={onCancel}>Cancel</button>
+            </div>
         </form>
         </div>
     );
