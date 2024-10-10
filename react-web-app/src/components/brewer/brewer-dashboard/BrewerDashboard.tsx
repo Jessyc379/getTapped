@@ -43,16 +43,18 @@ export default function BrewerDashboard() {
                     <p><strong>User Id: </strong>{user?.id}</p>
                     <p><strong>Brewer Id: </strong>{user?.brewerId}</p>
                 </div>
+                <div className="container-owned">
                 <ul className="breweries-container form-control mt-3 ">
                     <h4> Your Breweries: </h4>
                     {breweriesOwned.map((brewery: Brewery) => (
-                        <li className="brewery-card form-control shadow p-3 mb-3 bg-white rounded" key={brewery.breweryId}>{brewery.breweryName}
+                        <li className="brewery-card form-control shadow p-3 mb-3 bg-white rounded" key={brewery.breweryId}><strong>{brewery.breweryName}</strong>
                             <Link to={`/brewers/${brewery.breweryId}/edit`} className="edit-btn">Edit Brewery</Link></li>
                     ))
                     }
                     <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
 
                 </ul>
+                </div>
 
             </div>
         </>
