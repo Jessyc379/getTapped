@@ -4,7 +4,7 @@ import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext
 import { Brewery } from "../../../models/brewery/Brewery";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import brewerImage from '../../../assets/images/brewer-dashboard.jpg'
+import brewerImage from '../../../assets/images/brewer-dashboard1.png'
 import brewerProfile from '../../../assets/images/brewer-profile.png'
 import './BrewerDashboard.css';
 
