@@ -38,8 +38,8 @@ export default function EditBrewery() {
             stateProvince: '',
             postalCode: '',
             country: '',
-            longitude:0.00,
-            latitude: 0.00,
+            longitude:1,
+            latitude:1,
             phone: '',
             websiteUrl: '',
             brewerId: id
@@ -50,7 +50,7 @@ export default function EditBrewery() {
         const brewery = await breweryService.getBreweryById(breweryId ?? '')
         if (brewery) {
             setBrewery(brewery)
-            console.log('loaded brwery:', brewery);
+            console.log('loaded brewery:', brewery);
         }
         else {
             setMessage("Brewery Not Found :(")
@@ -170,7 +170,7 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <label htmlFor="longitude">Longitude:</label>
                         <input
                             type="number"
@@ -192,7 +192,7 @@ export default function EditBrewery() {
                             step="0.0001"
                             onChange={handleInputChange}
                         />
-                    </div>
+                    </div> */}
                     <div className="row">
                         <label htmlFor="phone">Phone Number:</label>
                         <input type="text"
@@ -213,8 +213,8 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <button className="btn-edit" type="submit">Edit Brewery</button>
-                    <Link className="btn-cancel" to="/brewers"> Cancel</Link>
+                    <button className="brewer-button-edit shadow" type="submit">Edit Brewery</button>
+                    <Link className="brewer-button-cancel shadow" to="/brewers"> Cancel</Link>
 
                 </form>
 

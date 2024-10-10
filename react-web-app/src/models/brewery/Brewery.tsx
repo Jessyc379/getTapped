@@ -8,8 +8,8 @@ export class Brewery {
     stateProvince!: string;
     postalCode?: string;
     country!: string;
-    longitude?: number;
-    latitude?: number;
+    longitude: number = 1;
+    latitude: number = 1;
     phone?: string;
     websiteUrl?: string;
     brewerId?: number;
