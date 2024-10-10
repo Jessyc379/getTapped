@@ -41,21 +41,19 @@ export default function EditBrewery() {
 
         })
 
-
     async function loadBrewery() {
         const brewery = await breweryService.getBreweryById(breweryId ?? '')
-        if(brewery){
+        if (brewery) {
             setBrewery(brewery)
             console.log('loaded brwery:', brewery);
         }
-        else{
+        else {
             setMessage("Brewery Not Found :(")
         }
     }
 
-    useEffect(() =>
-    {
-        if(breweryId){
+    useEffect(() => {
+        if (breweryId) {
             loadBrewery();
         }
     }, [])
@@ -76,8 +74,7 @@ export default function EditBrewery() {
         try {
             const updatedPub = await updateBrewery(brewery);
             setMessage('You\'ve successfully edited brewery!')
-            console.log('update: ',updatedPub);
-            
+            console.log(updatedPub);
 
 
         } catch (error) {
