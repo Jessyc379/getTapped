@@ -83,73 +83,73 @@ export default function CustomerProfile() {
         const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
         return (
-            <div className="star-rating">
+            <span className="star-rating">
 
-            {[...Array(fullStars)].map((_, index) => (
-                <FaStar key={index} style={{ color: 'gold' }} />
-            ))}
+                {[...Array(fullStars)].map((_, index) => (
+                    <FaStar key={index} style={{ color: 'gold' }} />
+                ))}
 
-            {halfStar && <FaStarHalfAlt style={{ color: 'gold' }} />}
+                {halfStar && <FaStarHalfAlt style={{ color: 'gold' }} />}
 
-            {[...Array(emptyStars)].map((_, index) => (
-                <FaRegStar key={index} style={{ color: 'gold' }} />
-            ))}
-            </div>
+                {[...Array(emptyStars)].map((_, index) => (
+                    <FaRegStar key={index} style={{ color: 'gold' }} />
+                ))}
+            </span>
         );
-        };
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
     return (
         <>
-        <div className="profile-page">
-            <div className="profile-container">
-                <div className="profile-image-container">
-                    <img src={profile1} alt="Profile" className="profile-image" />
+            <div className="profile-page">
+                <div className="profile-container">
+                    <div className="profile-image-container">
+                        <p className="customer-username"> {profileData?.username} </p>
+                        <img src={profile1} alt="Profile" className="profile-image" />
+                    </div>
+
+                    <div className="profile-details">
+                        <p><strong>ID: </strong> {userId} </p>
+                        <p><strong>Role: </strong> {profileData?.userRole} </p>
+                        <p><strong>Favorites: </strong> {profileData?.favoriteBreweries} </p>
+                        <button className="customer-edit-btn" onClick={() => setIsEditing(true)}>Edit Profile</button>
+                    </div>
                 </div>
 
-                <div className="profile-details">
-                    <p><strong>User ID: </strong> {userId} </p>
-                    <p><strong>Username: </strong> {profileData?.username} </p>
-                    <p><strong>User Role: </strong> {profileData?.userRole} </p>
-                    <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
-                    <button className="customer-edit-btn" onClick={() => setIsEditing(true)}>Edit Profile</button>
-                </div>
-            </div>
+                {isEditing && profileData ? (
+                    <EditProfile
+                        initialProfileData={profileData}
+                        onSave={handleSaveProfile}
+                        onCancel={handleCancel}
+                    />
+                ) : (
 
-            {isEditing && profileData ? (
-                <EditProfile 
-                    initialProfileData={profileData}
-                    onSave={handleSaveProfile} 
-                    onCancel={handleCancel} 
-                />
-            ) : (
-
-                <div className="reviews-container">
-                    <h3> Reviews: </h3>
-                    {profileData?.reviews.length === 0 ? (
-                        <p> No reviews available </p>
-                    ) : (
-                        <ul>
-                            {profileData?.reviews.map((review) => (
-                                <li key={review.reviewId} className="review-item">
-                                    <div className="review-container">
-                                        <div className="review-header">
-                                            <p className="name"><strong> {review.breweryName} </strong>  </p>
-                                            <p className="date"> {formatDate(review.reviewDate)} </p>
+                    <div className="reviews-container">
+                        <h3> Reviews: </h3>
+                        {profileData?.reviews.length === 0 ? (
+                            <p> No reviews available </p>
+                        ) : (
+                            <ul>
+                                {profileData?.reviews.map((review) => (
+                                    <li key={review.reviewId} className="review-item">
+                                        <div className="review-container">
+                                            <div className="review-header">
+                                                <p className="name"><strong> {review.breweryName} </strong>  </p>
+                                                <p className="date"> {formatDate(review.reviewDate)} </p>
+                                            </div>
+                                            <p className="location"> <FaMapMarkerAlt /> {review.city}, {review.stateProvince} </p>
+                                            <p className="indented-text"> <StarRating rating={review.rating} /> </p>
+                                            <p className="indented-text"> {review.customerReview} </p>
                                         </div>
-                                        <p className="location"> <FaMapMarkerAlt /> {review.city}, {review.stateProvince} </p>
-                                        <p className="indented-text"> <StarRating rating={review.rating} /> </p>
-                                        <p className="indented-text"> {review.customerReview} </p>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            )}
-        </div>    
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
+            </div>
         </>
     );
 }
