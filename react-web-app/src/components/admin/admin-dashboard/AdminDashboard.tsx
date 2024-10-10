@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import breweryService from "../../../services/brewery-service/BreweryService";
 import brewerService from "../../../services/brewer-service/BrewerService";
 import customerService from "../../../services/customer-service/CustomerService";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { Brewer } from "../../../models/brewer/Brewer";
 import { Customer } from "../../../models/customer/Customer";
+import adminProfile from "../../../assets/images/admin-profile.png";
 import './AdminDashboard.css';
 
 const AdminPage = () => {
@@ -82,104 +83,114 @@ const AdminPage = () => {
     }, [showCustomers]);
 
     return (
-        <div className="admin-card-container">
-            {/* Manage Breweries Section */}
-            <div className="admin-card form-control text-center p-4 mt-3">
-                <h4>Manage Breweries:</h4>
-                <button
-                    className="btn btn-outline-success mt-2"
-                    onClick={() => setShowBreweries(!showBreweries)}
-                >
-                    {showBreweries ? "Hide All Breweries" : "View All Breweries"}
-                </button>
-            </div>
-            {/* Display Breweries */}
-            {showBreweries && (
-                <div className="admin-card form-control mt-3">
-                    <h4>All Breweries</h4>
-                    {loadingBreweries ? (
-                        <p>Loading breweries...</p>
-                    ) : errorBreweries ? (
-                        <p>{errorBreweries}</p>
-                    ) : (
-                        <ul className="admin-card-content">
-                            {breweries.map((brewery) => (
-                                <li key={brewery.breweryId}>
-                                    {brewery.breweryName} - {brewery.city}, {brewery.stateProvince}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+        <div className="admin-page">
+            {/* Admin Profile Section */}
+            <div className="admin-profile-container">
+                <div className="admin-profile-section">
+                    <img src={adminProfile} alt="Admin Profile" className="admin-profile-image" />
+                    <div className="admin-profile-info">
+                        <h2>Charletta is the boss!</h2>
+                        <p>In charge of keeping everything running smoothly.</p>
+                    </div>
                 </div>
-            )}
-
-            {/* Manage Brewers Section */}
-            <div className="admin-card form-control text-center p-4 mt-3">
-                <h4>Manage Brewers:</h4>
-                <button
-                    className="btn btn-outline-success mt-2"
-                    onClick={() => setShowBrewers(!showBrewers)}
-                >
-                    {showBrewers ? "Hide All Brewers" : "View All Brewers"}
-                </button>
             </div>
-            {/* Display Brewers */}
-            {showBrewers && (
-                <div className="admin-card form-control mt-3">
-                    <h4>All Brewers</h4>
-                    {loadingBrewers ? (
-                        <p>Loading brewers...</p>
-                    ) : errorBrewers ? (
-                        <p>{errorBrewers}</p>
-                    ) : (
-                        <ul className="admin-card-content">
-                            {brewers.map((brewer) => (
-                                <li key={brewer.brewerId}>
-                                    Brewer ID: {brewer.brewerId} - Breweries Owned: {brewer.breweriesOwned ?? 'N/A'}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+    
+            <div className="admin-card-container">
+                {/* Manage Breweries Section */}
+                <div className="admin-card">
+                    <h4>Manage Breweries:</h4>
+                    <button
+                        className="admin-button"
+                        onClick={() => setShowBreweries(!showBreweries)}
+                    >
+                        {showBreweries ? "Hide All Breweries" : "View All Breweries"}
+                    </button>
                 </div>
-            )}
-
-            {/* Manage Customers Section */}
-            <div className="admin-card form-control text-center p-4 mt-3">
-                <h4>Manage Customers:</h4>
-                <button
-                    className="btn btn-outline-success mt-2"
-                    onClick={() => setShowCustomers(!showCustomers)}
-                >
-                    {showCustomers ? "Hide All Customers" : "View All Customers"}
-                </button>
+                {showBreweries && (
+                    <div className="admin-card">
+                        <h4>All Breweries</h4>
+                        {loadingBreweries ? (
+                            <p>Loading breweries...</p>
+                        ) : errorBreweries ? (
+                            <p>{errorBreweries}</p>
+                        ) : (
+                            <ul className="admin-card-content">
+                                {breweries.map((brewery) => (
+                                    <li key={brewery.breweryId}>
+                                        {brewery.breweryName} - {brewery.city}, {brewery.stateProvince}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
+    
+                {/* Manage Brewers Section */}
+                <div className="admin-card">
+                    <h4>Manage Brewers:</h4>
+                    <button
+                        className="admin-button"
+                        onClick={() => setShowBrewers(!showBrewers)}
+                    >
+                        {showBrewers ? "Hide All Brewers" : "View All Brewers"}
+                    </button>
+                </div>
+                {showBrewers && (
+                    <div className="admin-card">
+                        <h4>All Brewers</h4>
+                        {loadingBrewers ? (
+                            <p>Loading brewers...</p>
+                        ) : errorBrewers ? (
+                            <p>{errorBrewers}</p>
+                        ) : (
+                            <ul className="admin-card-content">
+                                {brewers.map((brewer) => (
+                                    <li key={brewer.brewerId}>
+                                        Brewer ID: {brewer.brewerId} - Breweries Owned: {brewer.breweriesOwned ?? 'N/A'}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
+    
+                {/* Manage Customers Section */}
+                <div className="admin-card">
+                    <h4>Manage Customers:</h4>
+                    <button
+                        className="admin-button"
+                        onClick={() => setShowCustomers(!showCustomers)}
+                    >
+                        {showCustomers ? "Hide All Customers" : "View All Customers"}
+                    </button>
+                </div>
+                {showCustomers && (
+                    <div className="admin-card">
+                        <h4>All Customers</h4>
+                        {loadingCustomers ? (
+                            <p>Loading customers...</p>
+                        ) : errorCustomers ? (
+                            <p>{errorCustomers}</p>
+                        ) : (
+                            <ul className="admin-card-content">
+                                {customers.map((customer) => (
+                                    <li key={customer.customerId}>
+                                        <div>
+                                            <strong>Favorite Breweries:</strong>
+                                            <p>{customer.favoriteBreweries ?? "No favorite breweries listed"}</p>
+                                        </div>
+                                        <p>
+                                            <strong>Total Reviews:</strong> {customer.totalReviews}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
             </div>
-            {/* Display Customers */}
-            {showCustomers && (
-                <div className="admin-card form-control mt-3">
-                    <h4>All Customers</h4>
-                    {loadingCustomers ? (
-                        <p>Loading customers...</p>
-                    ) : errorCustomers ? (
-                        <p>{errorCustomers}</p>
-                    ) : (
-                        <ul className="admin-card-content">
-                            {customers.map((customer) => (
-                                <li key={customer.customerId}>
-                                    <div>
-                                        <strong>Favorite Breweries:</strong>
-                                        <p>{customer.favoriteBreweries ?? "No favorite breweries listed"}</p>
-                                    </div>
-                                    <p>
-                                        <strong>Total Reviews:</strong> {customer.totalReviews}
-                                    </p>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            )}
         </div>
     );
-};
+}
 
 export default AdminPage;
