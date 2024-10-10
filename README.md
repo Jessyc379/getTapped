@@ -110,6 +110,8 @@ By using a component-based structure in React, we were able to create reusable e
 #### **Development Tools:**
 - **Vite**: Build tool and development server for the React app.
 ## Database Design
+We based our database structure on a brewery API, which served as inspiration for the types of data required in the breweries table. The table uses UUIDs as the primary key, following industry standards, while other tables use auto-incremented integers for their primary keys. This mix required some adjustment, as our bootcamp primarily used integer IDs. Since it was difficult to find APIs that matched all the data we needed, we created fictitious data for other tables, ensuring consistency with the brewery data structure while meeting the needs of different user types.
+
 ## API Architecture
 
 The **getTapped** application follows a layered architecture to keep the code modular, maintainable, and scalable. The main layers of the application include **Controllers**, **Services**, and **Repositories** (DAOs). This architecture ensures a clear separation of concerns, where each layer has its own responsibility.
