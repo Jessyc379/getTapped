@@ -14,20 +14,20 @@ class CustomerService extends BaseService
 
     async addCustomer(customer: Customer): Promise<Customer>
     {
-        const response = await axios.post<Customer>(this.baseUrl, customer)
+        const response = await axios.post<Customer>(this.baseUrl, customer, this.createHeaders())
         return response.data
     }
 
     async updateCustomer(customer: Customer): Promise<void>
     {
-        const url = `${this.baseUrl}/${customer.customerId}`
-        await axios.put<void>(url, customer)
+        const response = await axios.put<void>(`${this.baseUrl}/${customer.customerId}`, customer, this.createHeaders())
+        return response.data;
     }
 
     async deleteCustomer(id: number)
     {
         const url = `${this.baseUrl}/${id}`
-        await axios.delete<void>(url)
+        await axios.delete<void>(url, this.createHeaders())
     }
 
     async getCustomerReviews(): Promise<any>
