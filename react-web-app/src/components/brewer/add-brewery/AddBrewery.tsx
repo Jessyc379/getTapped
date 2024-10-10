@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import cheers from '../../../assets/images/breweryadd.webp'
+// import cheers from '../../../assets/images/breweryadd.webp'
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 import '../add-brewery/AddBrewery.css'
 
@@ -65,9 +65,9 @@ export default function AddBrewery() {
 
     return (
         <>
-            <div className="brewer-img">
+            {/* <div className="brewer-img">
                 <img src={cheers} className="brewer-img" />
-            </div>
+            </div> */}
             <div className="container mb-3 mt-3 mb-3">
                 <h6><strong>{message}</strong></h6>
                 <h2>Add New Brewery</h2>
