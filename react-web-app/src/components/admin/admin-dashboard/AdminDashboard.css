@@ -1,0 +1,80 @@
+.admin-card-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 30px; 
+}
+
+.admin-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-card-content h3 {
+    margin: 10px 0;
+    font-size: 1.4rem;
+    color: #343a40;
+}
+
+.admin-card-content p {
+    color: #6c757d;
+}
+
+.admin-view-details {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #aeaeae;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.admin-view-details:hover {
+    background-color: #ffcc00;
+    transform: scale(1.05);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .admin-card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admin-card {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+@media (min-width: 769px) {
+    .admin-card {
+        width: calc(33.33% - 20px); 
+    }
+}
+
+@media (min-width: 1200px) {
+    .admin-card {
+        width: calc(25% - 20px); 
+    }
+}
+
+
