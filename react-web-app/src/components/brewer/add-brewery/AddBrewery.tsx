@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import cheers from '../../../assets/images/breweryadd.webp'
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
+import '../add-brewery/AddBrewery.css'
 
 export default function AddBrewery() {
+    const navigate = useNavigate();
     const breweryContext = useContext(BreweryContext)
     const [message, setMessage] = useState<string | null>(null)
 
@@ -40,7 +42,7 @@ export default function AddBrewery() {
 
         })
 
-    const { addBrewery } = breweryContext;
+    const { addBrewery, refreshBreweries } = breweryContext;
 
     async function handleInputChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
 
@@ -68,10 +70,16 @@ export default function AddBrewery() {
                 stateProvince: '',
                 postalCode: '',
                 country: '',
+                longitude: 0.00,
+                latitude: 0.00,
                 phone: '',
                 websiteUrl: '',
                 brewerId: id
+
+            
             })
+            navigate('/brewers');
+            refreshBreweries();
 
         } catch (error) {
             console.error('Error editing this brewery', error);
@@ -166,6 +174,8 @@ export default function AddBrewery() {
                             className="form-control"
                             name="longitude"
                             id="longitude"
+                            defaultValue={1.00}
+                            step="0.0001"
                             value={brewery.longitude}
                             onChange={handleInputChange}
                         />
@@ -176,6 +186,8 @@ export default function AddBrewery() {
                             className="form-control"
                             value={brewery.latitude}
                             name="latitude"
+                            defaultValue={1.00}
+                            step="0.0001"
                             id="latitude"
                             onChange={handleInputChange}
                         />
@@ -200,8 +212,8 @@ export default function AddBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <button className="btn btn-outline-success mt-3" type="submit">Add Brewery</button>
-                    <Link className="btn btn-outline-danger mt-3" to="/brewers"> Cancel</Link>
+                    <button className="btn-add" type="submit">Add Brewery</button>
+                    <Link className="btn-cancel" to="/brewers"> Cancel</Link>
 
                 </form>
 

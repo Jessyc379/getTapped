@@ -51,7 +51,7 @@ export default function BrewerDashboard() {
                             <Link to={`/brewers/${brewery.breweryId}/edit`} className="edit-btn">Edit Brewery</Link></li>
                     ))
                     }
-                    <Link to={"/brewers/add"} className="btn btn-outline-success mt-2">Add Brewery</Link>
+                    <Link to={"/brewers/add"} className="btn-add">Add Brewery</Link>
 
                 </ul>
                 </div>
