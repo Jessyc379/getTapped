@@ -38,8 +38,8 @@ export default function EditBrewery() {
             stateProvince: '',
             postalCode: '',
             country: '',
-            longitude:0.00,
-            latitude: 0.00,
+            // longitude:0.00,
+            // latitude: 0.00,
             phone: '',
             websiteUrl: '',
             brewerId: id
@@ -50,7 +50,7 @@ export default function EditBrewery() {
         const brewery = await breweryService.getBreweryById(breweryId ?? '')
         if (brewery) {
             setBrewery(brewery)
-            console.log('loaded brwery:', brewery);
+            console.log('loaded brewery:', brewery);
         }
         else {
             setMessage("Brewery Not Found :(")
@@ -213,8 +213,8 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <button className="btn-edit" type="submit">Edit Brewery</button>
-                    <Link className="btn-cancel" to="/brewers"> Cancel</Link>
+                    <button className="brewer-button-edit" type="submit">Edit Brewery</button>
+                    <Link className="brewer-button-cancel" to="/brewers"> Cancel</Link>
 
                 </form>
 
