@@ -41,16 +41,23 @@
 .profile-details p {
     margin: 10px 0;
 }
-button {
+
+.edit-btn {
     background-color: #ffcc00;
-    border-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: rgb(200, 150, 84);
+.edit-btn:hover {
+    background-color: #e6b800;
 }
 
-ul {
+.ul {
     list-style-type: none;
 }
 

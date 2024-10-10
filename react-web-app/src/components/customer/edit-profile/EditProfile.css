@@ -1,3 +1,7 @@
+.label {
+    margin-right: 5px;
+}
+
 .save-form {
     background-color: #ffcc00;
     border: none;
@@ -26,4 +30,10 @@
 
 .cancel-form:hover {
     background-color: #ffcc00;
+}
+
+.save-form .cancel-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

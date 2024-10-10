@@ -114,7 +114,7 @@ export default function CustomerProfile() {
                     <p><strong>Username: </strong> {profileData?.username} </p>
                     <p><strong>User Role: </strong> {profileData?.userRole} </p>
                     <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
-                    <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+                    <button className="edit-btn" onClick={() => setIsEditing(true)}>Edit Profile</button>
                 </div>
             </div>
 
