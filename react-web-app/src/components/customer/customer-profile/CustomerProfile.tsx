@@ -7,6 +7,7 @@ import { RootState } from "../../../store/store";
 import EditProfile from "../edit-profile/EditProfile";
 import './CustomerProfile.css';
 import { FaMapMarkerAlt, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import profile1 from '../../../assets/images/profile1.png';
 
 interface Review {
     reviewId: number;
@@ -104,11 +105,17 @@ export default function CustomerProfile() {
         <>
         <div className="profile-page">
             <div className="profile-container">
-                <p><strong>User ID: </strong> {userId} </p>
-                <p><strong>Username: </strong> {profileData?.username} </p>
-                <p><strong>User Role: </strong> {profileData?.userRole} </p>
-                <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
-                <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+                <div className="profile-image-container">
+                    <img src={profile1} alt="Profile" className="profile-image" />
+                </div>
+
+                <div className="profile-details">
+                    <p><strong>User ID: </strong> {userId} </p>
+                    <p><strong>Username: </strong> {profileData?.username} </p>
+                    <p><strong>User Role: </strong> {profileData?.userRole} </p>
+                    <p><strong>Favorite Breweries: </strong> {profileData?.favoriteBreweries} </p>
+                    <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+                </div>
             </div>
 
             {isEditing && profileData ? (
