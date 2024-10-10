@@ -6,6 +6,7 @@ import reviewService from '../../../services/review-service/ReviewService';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import beerLine from '../../../assets/images/beer-line.jpg';
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "./BreweryDetails.css"
 
 export default function BreweryDetails() {
@@ -44,6 +45,27 @@ export default function BreweryDetails() {
         fetchReviews();
     }, [breweryId]);
 
+    const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+        return (
+            <span className="star-rating">
+
+                {[...Array(fullStars)].map((_, index) => (
+                    <FaStar key={index} style={{ color: 'gold' }} />
+                ))}
+
+                {halfStar && <FaStarHalfAlt style={{ color: 'gold' }} />}
+
+                {[...Array(emptyStars)].map((_, index) => (
+                    <FaRegStar key={index} style={{ color: 'gold' }} />
+                ))}
+            </span>
+        );
+    };
+
     return (
         <div className="brewery-page-container">
             <div className="brewery-details-container">
@@ -64,7 +86,7 @@ export default function BreweryDetails() {
                 <Carousel showThumbs={false} infiniteLoop={true} autoPlay={false} dynamicHeight={true} showArrows={true}>
                     {reviews.map((review) => (
                         <div key={review.reviewId} className="review-card">
-                            <p><strong>Rating:</strong> {review.rating}/5</p>
+                            <p> <StarRating rating={review.rating} /> </p>
                             <p>{review.customerReview}</p>
                             <p><em>{new Date(review.reviewDate).toLocaleDateString()}</em></p>
                         </div>
