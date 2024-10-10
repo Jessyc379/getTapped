@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import EditProfile from "../edit-profile/EditProfile";
 import './CustomerProfile.css';
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 interface Review {
     reviewId: number;
@@ -67,6 +67,36 @@ export default function CustomerProfile() {
         setIsEditing(false);
     }
 
+    const formatDate = (dateString: string): string => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    };
+
+    const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+        return (
+            <div className="star-rating">
+
+            {[...Array(fullStars)].map((_, index) => (
+                <FaStar key={index} style={{ color: 'gold' }} />
+            ))}
+
+            {halfStar && <FaStarHalfAlt style={{ color: 'gold' }} />}
+
+            {[...Array(emptyStars)].map((_, index) => (
+                <FaRegStar key={index} style={{ color: 'gold' }} />
+            ))}
+            </div>
+        );
+        };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
@@ -100,11 +130,11 @@ export default function CustomerProfile() {
                                     <div className="review-container">
                                         <div className="review-header">
                                             <p className="name"><strong> {review.breweryName} </strong>  </p>
-                                            <p className="date"><strong> Date: </strong> {review.reviewDate} </p>
+                                            <p className="date"> {formatDate(review.reviewDate)} </p>
                                         </div>
                                         <p className="location"> <FaMapMarkerAlt /> {review.city}, {review.stateProvince} </p>
-                                        <p className="indented-text"><strong> Rating: </strong> {review.rating} </p>
-                                        <p className="indented-text"><strong> Review: </strong> {review.customerReview} </p>
+                                        <p className="indented-text"> <StarRating rating={review.rating} /> </p>
+                                        <p className="indented-text"> {review.customerReview} </p>
                                     </div>
                                 </li>
                             ))}
