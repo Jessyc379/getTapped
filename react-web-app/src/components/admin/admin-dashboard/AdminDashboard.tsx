@@ -6,6 +6,7 @@ import { Brewery } from "../../../models/brewery/Brewery";
 import { Brewer } from "../../../models/brewer/Brewer";
 import { Customer } from "../../../models/customer/Customer";
 
+
 const AdminPage = () => {
     const [breweries, setBreweries] = useState<Brewery[]>([]);
     const [brewers, setBrewers] = useState<Brewer[]>([]);
