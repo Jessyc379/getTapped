@@ -212,8 +212,8 @@ export default function AddBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <button className="btn-add" type="submit">Add Brewery</button>
-                    <Link className="btn-cancel" to="/brewers"> Cancel</Link>
+                    <button className="btn-add shadow " type="submit">Add Brewery</button>
+                    <Link className="btn-cancel shadow" to="/brewers"> Cancel</Link>
 
                 </form>
 

@@ -213,8 +213,8 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <button className="brewer-button-edit" type="submit">Edit Brewery</button>
-                    <Link className="brewer-button-cancel" to="/brewers"> Cancel</Link>
+                    <button className="brewer-button-edit shadow" type="submit">Edit Brewery</button>
+                    <Link className="brewer-button-cancel shadow" to="/brewers"> Cancel</Link>
 
                 </form>
 

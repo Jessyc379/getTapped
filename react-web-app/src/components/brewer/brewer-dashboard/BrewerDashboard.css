@@ -1,4 +1,4 @@
-.edit-btn{
+.brewer-edit-button{
     display: inline-block;
     margin-top: 15px;
     padding: 8px 15px;
@@ -10,11 +10,11 @@
     transition: background-color 0.3s ease, transform 0.3s ease
     
 }
-.edit-btn:hover{
+.brewer-edit-button:hover{
     background-color: #e6b800;
 
 }
-.btn-add{
+.brewer-button-add{
     display: inline-block;
     margin-top: 15px;
     padding: 8px 15px;
@@ -24,6 +24,10 @@
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.3s ease
+}
+.brewer-button-add:hover{
+    background-color: #e6b800;
+
 }
 
 .brewer-img{
@@ -37,7 +41,7 @@
     object-fit: cover;
     opacity: 0.9; 
 }
-.breweries-container{
+.brewer-breweries-container{
     list-style: none;
     padding: 0;
     margin: 0;
