@@ -5,6 +5,7 @@ import { CustomerReview } from "../../../models/customer-review/CustomerReview";
 import reviewService from '../../../services/review-service/ReviewService';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import beerLine from '../../../assets/images/beer-line.jpg';
 import "./BreweryDetails.css"
 
 export default function BreweryDetails() {
@@ -70,6 +71,11 @@ export default function BreweryDetails() {
                     ))}
                 </Carousel>
                 )}
+
+                <div className="beer-line-container">
+                    <img src={beerLine} alt="Beer Line" className="beer-line-image" />
+                </div>
+
             </div>
         </div>
     );

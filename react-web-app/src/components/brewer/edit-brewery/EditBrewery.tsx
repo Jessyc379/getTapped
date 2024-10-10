@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 import breweryService from "../../../services/brewery-service/BreweryService";
 import { Brewery } from "../../../models/brewery/Brewery";
+import '../edit-brewery/EditBrewery.css'
 
 export default function EditBrewery() {
+
+    const navigate = useNavigate();
 
     const location = useParams();
     const breweryId = location.breweryId
@@ -35,6 +38,8 @@ export default function EditBrewery() {
             stateProvince: '',
             postalCode: '',
             country: '',
+            longitude:0.00,
+            latitude: 0.00,
             phone: '',
             websiteUrl: '',
             brewerId: id
@@ -75,6 +80,8 @@ export default function EditBrewery() {
             const updatedPub = await updateBrewery(brewery);
             setMessage('You\'ve successfully edited brewery!')
             console.log(updatedPub);
+            navigate('/brewers');
+
 
 
         } catch (error) {
@@ -170,6 +177,7 @@ export default function EditBrewery() {
                             className="form-control"
                             name="longitude"
                             id="longitude"
+                            step="0.0001"
                             defaultValue={brewery.longitude}
                             onChange={handleInputChange}
                         />
@@ -181,6 +189,7 @@ export default function EditBrewery() {
                             defaultValue={brewery.latitude}
                             name="latitude"
                             id="latitude"
+                            step="0.0001"
                             onChange={handleInputChange}
                         />
                     </div>
@@ -204,8 +213,8 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <button className="btn btn-outline-success mt-3" type="submit">Edit Brewery</button>
-                    <Link className="btn btn-outline-danger mt-3" to="/brewers"> Cancel</Link>
+                    <button className="btn-edit" type="submit">Edit Brewery</button>
+                    <Link className="btn-cancel" to="/brewers"> Cancel</Link>
 
                 </form>
 

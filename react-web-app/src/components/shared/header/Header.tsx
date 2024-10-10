@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../../../store/hooks";
 import { logout } from "../../../store/features/authentication-slice";
 import { useSelector } from "react-redux";
@@ -8,12 +8,14 @@ import "./Header.css";
 export default function Header() {
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
     const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
 
     function handleLogout()
     {
         localStorage.removeItem('user')
         dispatch(logout()) 
+        navigate('/');
     }
 
     return (

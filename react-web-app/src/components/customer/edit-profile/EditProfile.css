@@ -1,0 +1,39 @@
+.label {
+    margin-right: 5px;
+}
+
+.save-form {
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.save-form:hover {
+    background-color: #e6b800;
+}
+
+.cancel-form {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #aeaeae;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cancel-form:hover {
+    background-color: #ffcc00;
+}
+
+.save-form .cancel-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

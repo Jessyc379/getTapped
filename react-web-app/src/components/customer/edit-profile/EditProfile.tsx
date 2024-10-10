@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './EditProfile.css';
 
 interface Review {
     reviewId: number;
@@ -39,18 +40,21 @@ const EditProfile: React.FC<EditProfileProps> = ({ initialProfileData, onSave, o
     };
 
     return (
+        <div className="form-container">
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="form-group">
                 <label>Username:</label>
                 <input
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className="form-input"
                 />
             </div>
-            <button type="submit">Save</button>
-            <button type="button" onClick={onCancel}>Cancel</button>
+            <button type="submit" className="save-form">Save</button>
+            <button type="button" className="cancel-form" onClick={onCancel}>Cancel</button>
         </form>
+        </div>
     );
 };
 
