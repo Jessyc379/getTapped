@@ -48,7 +48,7 @@ function App() {
         </Route>
         
         <Route path='/admin' element={<AdminPage/>} >
-          <Route path='' element={<AdminDashboard />} />
+          <Route index element={<AdminDashboard />} />
         </Route>
 
 
