@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from "react";
 import breweryService from "../../../services/brewery-service/BreweryService"; 
+import brewerService from "../../../services/brewer-service/BrewerService"; 
+import customerService from "../../../services/customer-service/CustomerService"; 
 import { Brewery } from "../../../models/brewery/Brewery";
+import {Brewer}    from "../../../models/brewer/Brewer";
+import {Customer}    from "../../../models/customer/Customer";
+ 
+
+
 
 const AdminPage = () => {
+
+    
     const [breweries, setBreweries] = useState<Brewery[]>([]);
+    const [brewers, setBrewers] = useState<Brewer[]>([]);
+    const [customers, setCustomers] = useState<Customer[]>([]);
+    
 
 
 
     const [showBreweries, setShowBreweries] = useState(false);
+    const [showBrewers, setShowBrewers] = useState(false);
+    const [showCustomers, setShowCustomers] = useState(false);
 
 
     const [loading, setLoading] = useState(true);
@@ -31,9 +45,53 @@ const AdminPage = () => {
         }
     }, [showBreweries]);
 
+    useEffect(() => {
+        if (showBrewers) {
+            const fetchBrewers = async () => {
+                try {
+                    const fetchedBrewers = await brewerService.getBrewers();
+                    setBrewers(fetchedBrewers);
+                    setLoading(false);
+                } catch (error) {
+                    setError("Error fetching brewers");
+                    setLoading(false);
+                }
+            };
+
+            fetchBrewers();
+        }
+    }, [showBrewers]);
+
+    useEffect(() => {
+        if (showCustomers) {
+            const fetchCustomers = async () => {
+                try {
+                    const fetchedCustomers = await customerService.getCustomers();
+                    setBrewers(fetchedCustomers);
+                    setLoading(false);
+                } catch (error) {
+                    setError("Error fetching customers");
+                    setLoading(false);
+                }
+            };
+
+            fetchCustomers();
+        }
+    }, [showCustomers]);
+
+
+
     // Function to toggle brewery visibility
     const handleShowBreweries = () => {
         setShowBreweries((prev) => !prev);
+    };
+
+    const handleShowBrewers = () => {
+        setShowBreweries((prev) => !prev);
+    };
+
+    const handleShowCustomers = () => {
+        setShowCustomers((prev) => !prev);
     };
 
     return (
@@ -69,7 +127,77 @@ const AdminPage = () => {
                 </div>
             )}
         </div>
+         );
+
+    return (
+    <div className="container">
+
+        {/* Manage Brewers Section */}
+        <div className="card form-control text-center p-4 mt-3">
+            <h4>Manage Brewers:</h4>
+
+            {/* Toggle visibility of brewers */}
+            <button className="btn btn-outline-success mt-2" onClick={handleShowBrewers}>
+                {showBrewers ? "Hide All Brewers" : "View All Brewers"}
+            </button>
+        </div>
+
+        {/* Display Brewers */}
+        {showBrewers && (
+            <div className="card form-control mt-3">
+                <h4>All Brewers</h4>
+                {loading ? (
+                    <p>Loading brewers...</p>
+                ) : error ? (
+                    <p>{error}</p>
+                ) : (
+                    <ul>
+                        {brewers.map((brewer) => (
+                            <li key={brewer.brewerId}>
+                                {brewer.brewerName} - {brewer.city}, {brewer.stateProvince}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        )}
+    </div>
     );
-};
+
+    return (
+        <div className="container">
+    
+            {/* Manage Customers Section */}
+            <div className="card form-control text-center p-4 mt-3">
+                <h4>Manage Customers:</h4>
+    
+                {/* Toggle visibility of customers */}
+                <button className="btn btn-outline-success mt-2" onClick={handleShowCustomers}>
+                    {showCustomers ? "Hide All Customers" : "View All Customers"}
+                </button>
+            </div>
+    
+            {/* Display Customers */}
+            {showCustomers && (
+                <div className="card form-control mt-3">
+                    <h4>All Customers</h4>
+                    {loading ? (
+                        <p>Loading customers...</p>
+                    ) : error ? (
+                        <p>{error}</p>
+                    ) : (
+                        <ul>
+                            {customers.map((customer) => (
+                                <li key={customer.customerId}>
+                                    {customer.customerName} 
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            )}
+        </div>
+        );
+    }   
 
 export default AdminPage;
