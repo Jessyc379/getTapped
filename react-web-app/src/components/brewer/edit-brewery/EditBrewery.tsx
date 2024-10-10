@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
-import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
@@ -36,25 +35,27 @@ export default function EditBrewery() {
             stateProvince: '',
             postalCode: '',
             country: '',
-            longitude: 0,
-            latitude: 0,
             phone: '',
             websiteUrl: '',
-            brewerId: 0
+            brewerId: id
 
         })
 
-
     async function loadBrewery() {
         const brewery = await breweryService.getBreweryById(breweryId ?? '')
-        setBrewery(brewery)
-        console.log('loaded brwery:', brewery);
-
+        if (brewery) {
+            setBrewery(brewery)
+            console.log('loaded brwery:', brewery);
+        }
+        else {
+            setMessage("Brewery Not Found :(")
+        }
     }
 
-    useEffect(() =>
-    {
-        loadBrewery();
+    useEffect(() => {
+        if (breweryId) {
+            loadBrewery();
+        }
     }, [])
 
     const { updateBrewery } = breweryContext;
@@ -63,87 +64,24 @@ export default function EditBrewery() {
         const { name, value } = e.target;
         setBrewery({
             ...brewery,
-            [name]: value
+            [name]: name === "longitude" || name === "latitude" || name === "brewerId" ? +value : value
         });
     }
 
-    async function handleSumbit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
         try {
-            await updateBrewery(brewery);
+            const updatedPub = await updateBrewery(brewery);
             setMessage('You\'ve successfully edited brewery!')
+            console.log(updatedPub);
 
-            setBrewery({
-                breweryId: '',
-                breweryName: '',
-                breweryType: '',
-                address: '',
-                city: '',
-                stateProvince: '',
-                postalCode: '',
-                country: '',
-                longitude: 0,
-                latitude: 0,
-                phone: '',
-                websiteUrl: '',
-                brewerId: id
-            })
+
         } catch (error) {
             console.error('Error editing this brewery', error);
             setMessage('Sorry, an Error occurred editing this brewery')
         }
     }
-
-
-
-    //     const {updateBrewery} = breweryContext;
-
-    //     const [ brewery, setBrewery] = useState<Brewery>({
-    //         breweryId: '',
-    //         breweryName: '',
-    //         breweryType: '',
-    //         address: '',
-    //         city: '',
-    //         stateProvince: '',
-    //         postalCode: '',
-    //         country: '',
-    //         longitude: 0,
-    //         latitude: 0,
-    //         phone: '',
-    //         websiteUrl: '',
-    //         brewerId: 0
-
-    //     })
-
-
-
-    //     useEffect(() => {
-    //         async function getBrewery(){
-    //             const brewery = await breweryService.getBreweryById(breweryId)
-
-    //                 setBreweryName(brewery.breweryName)
-    //                 setBreweryType(brewery.breweryType ?? '')
-    //                 setAddress(brewery.address)
-    //                 setCity(brewery.city)
-    //                 setStateProvince(brewery.stateProvince)
-    //                 setPostalCode(brewery.postalCode ?? '')
-    //                 setCountry(brewery.country)
-    //                 setLongitude(brewery.longitude ?? 0);
-    //                 setLatitude(brewery.latitude ?? 0);
-    //                 setPhone(brewery.phone ?? '');
-    //                 setWebsiteUrl(brewery.websiteUrl ?? '')
-    //                 setBrewerId(id)
-    //         }
-    //         getBrewery();
-    //     })
-
-    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const {name , value} = e.target;
-    //     set({
-    //         ...
-    //     })
-    // }
 
     return (
         <>
@@ -154,24 +92,24 @@ export default function EditBrewery() {
                 <h6><strong>{message}</strong></h6>
 
                 <h4>Edit Brewery: </h4>
-                <form onSubmit={handleSumbit} method="put">
+                <form onSubmit={handleSubmit} method="put">
                     <div className="row">
-                        <label htmlFor="brewery-name">Brewery Name: </label>
+                        <label htmlFor="breweryName">Brewery Name: </label>
                         <input type="text"
-                            className="form-control"
-                            name="brewery-name"
-                            id="brewery-name"
-                            value={brewery.breweryName}
+                            className="form-control "
+                            name="breweryName"
+                            id="breweryName"
+                            defaultValue={brewery.breweryName}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="brewery-type">Brewery Type:</label>
+                        <label htmlFor="breweryType">Brewery Type:</label>
                         <input type="text"
                             className="form-control"
-                            name="brwery-type"
-                            id="brewery-type"
-                            value={brewery.breweryType}
+                            name="breweryType"
+                            id="breweryType"
+                            defaultValue={brewery.breweryType}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -181,7 +119,7 @@ export default function EditBrewery() {
                             className="form-control"
                             name="address"
                             id="address"
-                            value={brewery.address}
+                            defaultValue={brewery.address}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -191,27 +129,27 @@ export default function EditBrewery() {
                             className="form-control"
                             name="city"
                             id="city"
-                            value={brewery.city}
+                            defaultValue={brewery.city}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="state-province">State/Province:</label>
+                        <label htmlFor="stateProvince">State/Province:</label>
                         <input type="text"
                             className="form-control"
-                            name="state-province"
-                            id="state-province"
-                            value={brewery.stateProvince}
+                            name="stateProvince"
+                            id="stateProvince"
+                            defaultValue={brewery.stateProvince}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="postal-code">Postal code:</label>
+                        <label htmlFor="postalCode">Postal code:</label>
                         <input type="text"
                             className="form-control"
-                            name="postal-code"
-                            id="postal-code"
-                            value={brewery.postalCode}
+                            name="postalCode"
+                            id="postalCode"
+                            defaultValue={brewery.postalCode}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -221,7 +159,7 @@ export default function EditBrewery() {
                             className="form-control"
                             name="country"
                             id="country"
-                            value={brewery.country}
+                            defaultValue={brewery.country}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -232,7 +170,7 @@ export default function EditBrewery() {
                             className="form-control"
                             name="longitude"
                             id="longitude"
-                            value={brewery.longitude}
+                            defaultValue={brewery.longitude}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -240,7 +178,7 @@ export default function EditBrewery() {
                         <label htmlFor="latitude">Latitude:</label>
                         <input type="number"
                             className="form-control"
-                            value={brewery.latitude}
+                            defaultValue={brewery.latitude}
                             name="latitude"
                             id="latitude"
                             onChange={handleInputChange}
@@ -251,18 +189,18 @@ export default function EditBrewery() {
                         <input type="text"
                             className="form-control"
                             name="phone"
-                            value={brewery.phone}
+                            defaultValue={brewery.phone}
                             id="phone"
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="website-url">Website/URL:</label>
+                        <label htmlFor="websiteUrl">Website/URL:</label>
                         <input type="text"
                             className="form-control"
-                            name="website-url"
-                            value={brewery.websiteUrl}
-                            id="website-url"
+                            name="websiteUrl"
+                            defaultValue={brewery.websiteUrl}
+                            id="websiteUrl"
                             onChange={handleInputChange}
                         />
                     </div>
