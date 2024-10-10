@@ -143,7 +143,7 @@ const AdminPage = () => {
                         <ul>
                             {brewers.map((brewer) => (
                                 <li key={brewer.brewerId}>
-                                    {brewer.brewerName} - {brewer.city}, {brewer.stateProvince}
+                                    {brewer.breweriesOwned}
                                 </li>
                             ))}
                         </ul>
@@ -170,7 +170,7 @@ const AdminPage = () => {
                         <ul>
                             {customers.map((customer) => (
                                 <li key={customer.customerId}>
-                                    {customer.customerName}
+                                    {customer.favoriteBreweries} - {customer.totalReviews}
                                 </li>
                             ))}
                         </ul>
