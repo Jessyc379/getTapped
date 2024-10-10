@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import cheers from '../../../assets/images/addbrewery.jpg'
+import cheers from '../../../assets/images/breweryadd.webp'
 import { BreweryContext } from "../../../contexts/brewery-context/BreweryContext";
 
 export default function AddBrewery() {

@@ -10,6 +10,10 @@
     transition: background-color 0.3s ease, transform 0.3s ease
     
 }
+.edit-btn:hover{
+    background-color: #e6b800;
+
+}
 .brewer-img{
     position: relative;
     width: 100%;
@@ -20,4 +24,21 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.9; 
+}
+.breweries-container{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.container-owned{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 30px; 
 }
