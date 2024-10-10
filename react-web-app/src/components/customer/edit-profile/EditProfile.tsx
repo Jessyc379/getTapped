@@ -7,6 +7,7 @@ interface Review {
     breweryName: string;
     city: string;
     reviewDate: string;
+    stateProvince: string;
 }
 
 interface ProfileData {
