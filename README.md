@@ -3,7 +3,6 @@
 
 **getTapped** is your ultimate brewery finder. Whether you're a beer enthusiast or just starting your brewery journey, getTapped helps you discover the best breweries, craft beers, and experiences across the country.
 
-
 ## Project Design
 
 **Design Tools:**
@@ -14,7 +13,7 @@ We used **excalidraw** for visualizing the app’s architecture, data flow, and 
 
 We used **Trello** to manage the flow of our project. It helped track tasks across multiple stages, such as “To Do,” “In Progress,” and “Completed.” Trello also provided a collaborative space for assigning tasks, setting deadlines, and organizing the backlog.
 
-![Project Board Screenshot](link_to_image)
+![Project Board Screenshot](diagrams/trello-board.png)
 
 - **Task Tracking**: We used a simple Kanban board in Trello to track tasks and deadlines.
 - **Collaboration**: Allowed real-time updates and commenting to streamline the development process.
@@ -23,10 +22,10 @@ We used **Trello** to manage the flow of our project. It helped track tasks acro
 Here are some screenshots of the diagrams used for planning the architecture and flow of the application:
 
  **Application Flow Diagram**  
-   ![App Flow Diagram](link_to_diagram_image)
+   ![App Flow Diagram](diagrams/application_flow.png)
    
    **Database Schema**  
-   ![Database Schema](link_to_database_image)
+   ![Database Schema](diagrams/ER-diagram.png)
 ## Front End
 
 The Front End is the face of the **getTapped** application and how users will interact with the brewery finder and reviews. It was built using **React** with **TypeScript**, styled using **CSS** and **Bootstrap**, and managed state with **Context API**.
@@ -61,30 +60,6 @@ We aimed for a clean and responsive design that emphasizes ease of use and acces
 - **Customer Profile Management**: The **Customer Profile** is designed to offer users a clear view of their brewery experiences, showing a list of reviews they’ve written. This profile page features card elements to display reviews, making it easy to navigate and manage.
 
 - **Brewer Dashboard**: Brewers have an intuitive dashboard interface where they can view all the breweries they manage. The dashboard is equipped with forms for adding or updating breweries and provides real-time feedback on updates.
-
-### Screenshots
-
-Below are some screenshots of important components of the site:
-
-- **Home Page**
-  ![Home Page](link_to_screenshot)
-
-- **Brewery List**
-  ![Brewery List](link_to_screenshot)
-
-- **Brewery Details**
-  ![Brewery Details](link_to_screenshot)
-
-- **Customer Profile**
-  ![Customer Profile](link_to_screenshot)
-
-- **Brewer Dashboard**
-  ![Brewer Dashboard](link_to_screenshot)
-
-- **Admin Dashboard**
-  ![Admin Dashboard](link_to_screenshot)
-
-By using a component-based structure in React, we were able to create reusable elements like brewery cards, review carousels, profile cards, and dashboard forms, which enhances the maintainability and scalability of the application.
 
 ## Development Stack
 
