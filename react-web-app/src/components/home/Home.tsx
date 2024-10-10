@@ -1,5 +1,4 @@
-import { useState } from "react";
-import demoService from "../../services/demo-service"
+import { Link } from "react-router-dom";
 import './Home.css';
 import heroImage from '../../assets/images/homepage-image.jpg';
 import introImage from '../../assets/images/beer-gathering.jpg';
@@ -8,11 +7,11 @@ export default function Home() {
     return (
         <div className="home-container">
             <div className="hero-section">
-                <img src={heroImage} alt="Hero" className="hero-image" />\
+                <img src={heroImage} alt="Hero" className="hero-image" />
                 <div className="overlay-content">
-                    <div className="header-body">
-                        <h1></h1>
-                        <p></p>
+                    <div className="hero-header-body">
+                        <h1>Find a Brewery Now!</h1>
+                        <Link to="/breweries" className="find-brewery-button">Explore Breweries</Link>
                     </div>
                 </div>
             </div>
