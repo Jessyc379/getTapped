@@ -26,8 +26,8 @@ Include things like Java, MySql, React, etc. You can also include any additional
 
 ### Database Design
 
-Briefly descripe your database structure, include a screenshot of your ER diagram. You can write a short summary of the 
-design process and the decisions you had to make in designing the databse.
+Briefly describe your database structure, include a screenshot of your ER diagram. You can write a short summary of the 
+design process and the decisions you had to make in designing the database.
 
 ### API Architecture
 
