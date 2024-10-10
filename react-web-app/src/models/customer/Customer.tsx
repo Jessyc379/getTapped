@@ -4,4 +4,5 @@ export class Customer
     favoriteBreweries?: string;
     totalReviews?: number;
     userId!: number;
+    customerName: ReactNode;
 }
