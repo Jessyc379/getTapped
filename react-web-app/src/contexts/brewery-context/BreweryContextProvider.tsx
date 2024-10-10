@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function BreweryContextProvider({ children }: Props) {
-    const [breweries, setBreweries] = useState<Brewery[]>([]); 
+    const [breweries, setBreweries] = useState<Brewery[]>([]);
     const [reviews, setReviews] = useState<CustomerReview[]>([]);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function BreweryContextProvider({ children }: Props) {
     async function addBrewery(brewery: Brewery) {
         try {
             const newBrewery = await BreweryService.addBrewery(brewery);
-            setBreweries((prevBreweries) => [...prevBreweries, newBrewery]); 
+            setBreweries((prevBreweries) => [...prevBreweries, newBrewery]);
         } catch (error) {
             console.error('Error adding brewery:', error);
         }
@@ -57,7 +57,7 @@ export default function BreweryContextProvider({ children }: Props) {
     }
 
     async function refreshBreweries() {
-        await fetchBreweries(); 
+        await fetchBreweries();
     }
 
     const contextValue: BreweryContextType = {
@@ -65,7 +65,7 @@ export default function BreweryContextProvider({ children }: Props) {
         addBrewery,
         updateBrewery,
         deleteBrewery,
-        refreshBreweries, 
+        refreshBreweries,
         fetchBreweries,
     };
 

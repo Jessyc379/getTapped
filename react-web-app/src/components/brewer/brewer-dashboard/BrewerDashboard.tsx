@@ -17,10 +17,10 @@ export default function BrewerDashboard() {
         throw new Error('Sorry, this is not within the BreweryContextProvider')
     }
 
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
         throw new Error('Sorry, authenitcation needed')
     }
-    
+
     const { breweries } = breweryContext
 
     console.log('all breweries:', breweries);

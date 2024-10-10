@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Brewery } from "../../../models/brewery/Brewery";
-// import { BrewerContext } from "../../../contexts/brewer-context/BrewerContext";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import cheers from '../../../assets/images/addbrewery.jpg'
@@ -20,123 +19,104 @@ export default function AddBrewery() {
     if (!breweryContext) {
         throw new Error('No Brewery Context found')
     }
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
         throw new Error("You do not have proper credentials")
     }
 
+    const [brewery, setBrewery] = useState<Brewery>
+        ({
+
+            breweryId: '',
+            breweryName: '',
+            breweryType: '',
+            address: '',
+            city: '',
+            stateProvince: '',
+            postalCode: '',
+            country: '',
+            phone: '',
+            websiteUrl: '',
+            brewerId: id
+
+        })
+
     const { addBrewery } = breweryContext;
 
-    const [breweryName, setBreweryName] = useState<string>();
-    const [breweryType, setBreweryType] = useState<string>();
-    const [address, setAddress] = useState<string>();
-    const [city, setCity] = useState<string>();
-    const [stateProvince, setStateProvince] = useState<string>();
-    const [postalCode, setPostalCode] = useState<string>();
-    const [country, setCountry] = useState<string>();
-    const [longitude, setLongitude] = useState<number>(0);
-    const [latitude, setLatitude] = useState<number>(0);
-    const [phone, setPhone] = useState<string>();
-    const [websiteUrl, setWebsiteUrl] = useState<string>();
-    const [brewerId, setBrewerId] = useState<number>();
+    async function handleInputChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
 
-    async function addBreweryHandler(event: any) {
-        event.preventDefault();
+        const { name, value } = e.target;
+        setBrewery({
+            ...brewery,
+            [name]: name === "longitude" || name === "latitude" || name === "brewerId" ? +value : value
+        });
 
-        const brewery = new Brewery()
-        brewery.breweryName = breweryName!
-        brewery.breweryType = breweryType ?? ''
-        brewery.address = address!
-        brewery.city = city!
-        brewery.stateProvince = stateProvince!
-        brewery.postalCode = postalCode
-        brewery.country = country!
-        brewery.longitude = longitude
-        brewery.latitude = latitude
-        brewery.phone = phone
-        brewery.websiteUrl = websiteUrl
-        brewery.brewerId = id
+    }
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
 
         try {
-            await addBrewery(brewery)
-            setMessage('You\'ve successfully added brewery!')
-            console.log(brewery)
+            const updatedPub = await addBrewery(brewery);
+            setMessage('You\'ve successfully edited brewery!')
 
-            setBreweryName('');
-            setBreweryType('');
-            setAddress('');
-            setCity('');
-            setStateProvince('');
-            setPostalCode('');
-            setCountry('');
-            setStateProvince('');
-            setPostalCode('');
-            setCountry('');
-            setLongitude(0);
-            setLatitude(0);
-            setPhone('');
-            setWebsiteUrl('');
-            setBrewerId(brewerId);
-        }
-        catch (error) {
-            console.log("Error adding brewery: ", error);
+            setBrewery({
+                breweryId: '',
+                breweryName: '',
+                breweryType: '',
+                address: '',
+                city: '',
+                stateProvince: '',
+                postalCode: '',
+                country: '',
+                phone: '',
+                websiteUrl: '',
+                brewerId: id
+            })
+
+        } catch (error) {
+            console.error('Error editing this brewery', error);
+            setMessage('Sorry, an Error occurred editing this brewery')
         }
     }
 
     return (
         <>
-        <div className="brewer-img">
-            <img src={cheers} className="brewer-img"/>
-        </div>
-            <div className="container mb-3 mt-3">
+            <div className="brewer-img">
+                <img src={cheers} className="brewer-img" />
+            </div>
+            <div className="container mb-3 mt-3 mb-3">
                 <h6><strong>{message}</strong></h6>
                 <h2>Add New Brewery</h2>
-                <form onSubmit={addBreweryHandler} method="post">
+                <form onSubmit={handleSubmit} method="post">
                     <div className="row">
-                        <label htmlFor="brewery-name">Brewery Name: </label>
+                        <label htmlFor="breweryName">Brewery Name: </label>
                         <input type="text"
                             className="form-control"
-                            name="brewery-name"
-                            id="brewery-name"
-                            value={breweryName}
-                            onChange={(e) => setBreweryName(e.target.value)}
+                            name="breweryName"
+                            id="breweryName"
+                            value={brewery.breweryName}
+                            onChange={handleInputChange}
                         />
                     </div>
-                    {/* <div className="row">
-                    <label htmlFor="brewery-type">Brewery Type:</label>
-                    <input type="text"
-                        className="form-control"
-                        name="brewery-type"
-                        value={breweryType}
-                        id="brewery-type"
-                        onChange={(e) => setBreweryType(e.target.value)}
-                    />
-                </div> */}
-                    <div>
-                        <label htmlFor="brewery-type"></label>
-                        <select className="form-select mb-2"
-                            id="brewery-type-select"
-                            value={breweryType}
-                            onChange={(e) => setBreweryType(e.target.value)}>
-                            <option className="diabled">Select Brewery Type</option>
-                            <option>Craft brewery</option>
-                            <option>Mircobrewery</option>
-                            <option>Regional brewery</option>
-                            <option>Macrobrewery</option>
-                            <option>Nanobrewery</option>
-                            <option>Farm brewery</option>
-                            <option>Contract brewery</option>
-                            <option>Brewpub</option>
-                            <option>Gypsy brewery</option>
-                        </select>
+                    <div className="row">
+                        <label htmlFor="breweryType">Brewery Type:</label>
+                        <input type="text"
+                            className="form-control"
+                            name="breweryType"
+                            value={brewery.breweryType}
+                            id="breweryType"
+                            onChange={handleInputChange}
+                        />
                     </div>
+
                     <div className="row">
                         <label htmlFor="address">Address:</label>
                         <input type="text"
                             className="form-control"
                             name="address"
                             id="address"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
+                            value={brewery.address}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
@@ -145,28 +125,28 @@ export default function AddBrewery() {
                             className="form-control"
                             name="city"
                             id="city"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
+                            value={brewery.city}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="state-province">State/Province:</label>
+                        <label htmlFor="stateProvince">State/Province:</label>
                         <input type="text"
                             className="form-control"
-                            name="state-province"
-                            id="state-province"
-                            value={stateProvince}
-                            onChange={(e) => setStateProvince(e.target.value)}
+                            name="stateProvince"
+                            id="stateProvince"
+                            value={brewery.stateProvince}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="postal-code">Postal code:</label>
+                        <label htmlFor="postalCode">Postal code:</label>
                         <input type="text"
                             className="form-control"
-                            name="postal-code"
-                            id="postal-code"
-                            value={postalCode}
-                            onChange={(e) => setPostalCode(e.target.value)}
+                            name="postalCode"
+                            id="postalCode"
+                            value={brewery.postalCode}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
@@ -175,8 +155,8 @@ export default function AddBrewery() {
                             className="form-control"
                             name="country"
                             id="country"
-                            value={country}
-                            onChange={(e) => setCountry(e.target.value)}
+                            value={brewery.country}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
@@ -186,18 +166,18 @@ export default function AddBrewery() {
                             className="form-control"
                             name="longitude"
                             id="longitude"
-                            value={longitude}
-                            onChange={(e) => setLongitude(+e.target.value)}
+                            value={brewery.longitude}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
                         <label htmlFor="latitude">Latitude:</label>
                         <input type="number"
                             className="form-control"
-                            value={latitude}
+                            value={brewery.latitude}
                             name="latitude"
                             id="latitude"
-                            onChange={(e) => setLatitude(+e.target.value)}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
@@ -205,19 +185,19 @@ export default function AddBrewery() {
                         <input type="text"
                             className="form-control"
                             name="phone"
-                            value={phone}
+                            value={brewery.phone}
                             id="phone"
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="row">
-                        <label htmlFor="website-url">Website/URL:</label>
+                        <label htmlFor="websiteUrl">Website/URL:</label>
                         <input type="text"
                             className="form-control"
-                            name="website-url"
-                            value={websiteUrl}
-                            id="website-url"
-                            onChange={(e) => setWebsiteUrl(e.target.value)}
+                            name="websiteUrl"
+                            value={brewery.websiteUrl}
+                            id="websiteUrl"
+                            onChange={handleInputChange}
                         />
                     </div>
                     <button className="btn btn-outline-success mt-3" type="submit">Add Brewery</button>

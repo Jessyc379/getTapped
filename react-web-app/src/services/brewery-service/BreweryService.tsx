@@ -10,14 +10,14 @@ class BreweryService extends BaseService {
     async getAllBreweries(brewId?: number): Promise<Brewery[]> {
 
         const headers = this.createHeaders();
-        headers.params = {brewId: brewId ? { brewId } : {}} ;
+        headers.params = { brewId: brewId ? { brewId } : {} };
 
-            const response = await axios.get<Brewery[]>(this.baseUrl, headers);
-            
-            return response.data;
+        const response = await axios.get<Brewery[]>(this.baseUrl, headers);
 
-        }
-    
+        return response.data;
+
+    }
+
 
     async getBreweryById(breweryId: string): Promise<Brewery> {
         const response = await axios.get<Brewery>(`${this.baseUrl}/${breweryId}`, this.createHeaders());
@@ -27,13 +27,13 @@ class BreweryService extends BaseService {
     async getReviewByBreweryId(breweryId: string): Promise<CustomerReview[]> {
 
         const headers = this.createHeaders();
-        headers.params = {breweryId: breweryId ? {breweryId} : {}}
+        headers.params = { breweryId: breweryId ? { breweryId } : {} }
 
         const response = await axios.get<CustomerReview[]>(`${this.baseUrl}/reviews`, headers);
         return response.data;
     }
 
-    
+
     async addBrewery(brewery: Brewery): Promise<Brewery> {
 
         const response = await axios.post<Brewery>(this.baseUrl, brewery, this.createHeaders())

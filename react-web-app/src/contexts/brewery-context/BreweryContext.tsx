@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { Brewery } from '../../models/brewery/Brewery'; 
-import BreweryService from '../../services/brewery-service/BreweryService';  
+import { Brewery } from '../../models/brewery/Brewery';
 
 
 export interface BreweryContextType {
