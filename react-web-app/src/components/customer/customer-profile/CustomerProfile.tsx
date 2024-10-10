@@ -1,16 +1,18 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { CustomersContext } from '../../../contexts/customer-context/CustomersContext'
 import customerService from "../../../services/customer-service/CustomerService";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import EditProfile from "../edit-profile/EditProfile";
+import './CustomerProfile.css';
 
 interface Review {
     reviewId: number;
     rating: number;
     customerReview: string;
     breweryName: string;
+    city: string;
     reviewDate: string;
 }
 
@@ -32,7 +34,6 @@ export default function CustomerProfile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isEditing, setIsEditing] = useState(false);
-    const navigate = useNavigate();
 
     if (!context) {
         throw new Error('CustomerProfile must be used within a CustomersContextProvider');
@@ -69,6 +70,7 @@ export default function CustomerProfile() {
 
     return (
         <>
+        <div className="profile-page">
             <div className="profile-container">
                 <p><strong>User ID: </strong> {userId} </p>
                 <p><strong>Username: </strong> {profileData?.username} </p>
@@ -94,10 +96,11 @@ export default function CustomerProfile() {
                             {profileData?.reviews.map((review) => (
                                 <li key={review.reviewId} className="review-item">
                                     <div className="review-container">
-                                        <p><strong> Brewery Name: </strong> {review.breweryName} </p>
-                                        <p><strong> Rating: </strong> {review.rating} </p>
-                                        <p><strong> Reviews: </strong> {review.customerReview} </p>
-                                        <p><strong> Review Date: </strong> {review.reviewDate} </p>
+                                        <p><strong> {review.breweryName} </strong>  </p>
+                                        <p className="indented-text"><strong> Location: </strong> {review.city} </p>
+                                        <p className="indented-text"><strong> Rating: </strong> {review.rating} </p>
+                                        <p className="indented-text"><strong> Review: </strong> {review.customerReview} </p>
+                                        <p className="indented-text"><strong> Review Date: </strong> {review.reviewDate} </p>
                                     </div>
                                 </li>
                             ))}
@@ -105,6 +108,7 @@ export default function CustomerProfile() {
                     )}
                 </div>
             )}
+        </div>    
         </>
     );
 }

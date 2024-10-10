@@ -5,6 +5,7 @@ interface Review {
     rating: number;
     customerReview: string;
     breweryName: string;
+    city: string;
     reviewDate: string;
 }
 

@@ -17,4 +17,5 @@ public class CustomerReviewDto {
     private int rating;
     private LocalDate reviewDate;
     private String breweryName;
+    private String city;
 }

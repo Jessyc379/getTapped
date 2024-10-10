@@ -47,13 +47,15 @@ public class CustomerReviewService {
         for (CustomerReviews review : reviews) {
             Brewery brewery = breweryDao.getBreweryById(review.getBreweryId());
             String breweryName = (brewery != null) ? brewery.getBreweryName() : "Unknown Brewery";
+            String city = (brewery != null) ? brewery.getCity() : "Unknown city";
 
             CustomerReviewDto reviewDto = new CustomerReviewDto(
                     review.getReviewId(),
                     review.getCustomerReview(),
                     review.getRating(),
                     review.getReviewDate(),
-                    breweryName
+                    breweryName,
+                    city
             );
             reviewDtos.add(reviewDto);
         }
