@@ -15,7 +15,6 @@ export default function EditBrewery() {
     const breweryId = location.breweryId
     const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
     const id = user?.brewerId;
-    console.log("params:", breweryId);
 
     const breweryContext = useContext(BreweryContext)
     const [message, setMessage] = useState<string | null>(null);
@@ -38,8 +37,8 @@ export default function EditBrewery() {
             stateProvince: '',
             postalCode: '',
             country: '',
-            longitude:1,
-            latitude:1,
+            longitude: 1,
+            latitude: 1,
             phone: '',
             websiteUrl: '',
             brewerId: id
@@ -50,7 +49,6 @@ export default function EditBrewery() {
         const brewery = await breweryService.getBreweryById(breweryId ?? '')
         if (brewery) {
             setBrewery(brewery)
-            console.log('loaded brewery:', brewery);
         }
         else {
             setMessage("Brewery Not Found :(")
@@ -79,10 +77,7 @@ export default function EditBrewery() {
         try {
             const updatedPub = await updateBrewery(brewery);
             setMessage('You\'ve successfully edited brewery!')
-            console.log(updatedPub);
             navigate('/brewers');
-
-
 
         } catch (error) {
             console.error('Error editing this brewery', error);
@@ -92,9 +87,6 @@ export default function EditBrewery() {
 
     return (
         <>
-            {/* <div>
-                <img></img>
-            </div> */}
             <div className="container mt-5">
                 <h6><strong>{message}</strong></h6>
 
@@ -170,29 +162,6 @@ export default function EditBrewery() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    {/* <div className="row">
-                        <label htmlFor="longitude">Longitude:</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            name="longitude"
-                            id="longitude"
-                            step="0.0001"
-                            defaultValue={brewery.longitude}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <label htmlFor="latitude">Latitude:</label>
-                        <input type="number"
-                            className="form-control"
-                            defaultValue={brewery.latitude}
-                            name="latitude"
-                            id="latitude"
-                            step="0.0001"
-                            onChange={handleInputChange}
-                        />
-                    </div> */}
                     <div className="row">
                         <label htmlFor="phone">Phone Number:</label>
                         <input type="text"
@@ -215,10 +184,7 @@ export default function EditBrewery() {
                     </div>
                     <button className="brewer-button-edit shadow" type="submit">Edit Brewery</button>
                     <Link className="brewer-button-cancel shadow" to="/brewers"> Cancel</Link>
-
                 </form>
-
-
             </div>
         </>
     )

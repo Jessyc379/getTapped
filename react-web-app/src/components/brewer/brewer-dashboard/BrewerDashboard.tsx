@@ -24,11 +24,7 @@ export default function BrewerDashboard() {
 
     const { breweries } = breweryContext
 
-    console.log('all breweries:', breweries);
-
     const breweriesOwned = breweries.filter((b: Brewery) => b.brewerId == +(brewerId ?? 0))
-
-    console.log('breweries owned:', breweriesOwned);
 
     return (
 
@@ -36,7 +32,6 @@ export default function BrewerDashboard() {
             <div className="brewer-img">
                 <img src={brewerImage} className="brewer-dash-img" />
             </div>
-
             <div className="brewer-profile-page container mt-5">
                 <div className="brewer-profile-container">
                     <div className="brewer-profile-image-container">

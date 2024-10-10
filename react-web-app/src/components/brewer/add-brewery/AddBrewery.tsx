@@ -15,9 +15,6 @@ export default function AddBrewery() {
     const { isAuthenticated, user } = useSelector((state: RootState) => state.authentication)
     const id = user?.brewerId
 
-    console.log(id);
-
-
     if (!breweryContext) {
         throw new Error('No Brewery Context found')
     }
@@ -40,8 +37,6 @@ export default function AddBrewery() {
         });
 
     }
-
-
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
