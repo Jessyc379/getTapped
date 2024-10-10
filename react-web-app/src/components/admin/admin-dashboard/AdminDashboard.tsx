@@ -10,24 +10,17 @@ import {Customer}    from "../../../models/customer/Customer";
 
 
 const AdminPage = () => {
-
-    
     const [breweries, setBreweries] = useState<Brewery[]>([]);
     const [brewers, setBrewers] = useState<Brewer[]>([]);
     const [customers, setCustomers] = useState<Customer[]>([]);
-    
-
-
 
     const [showBreweries, setShowBreweries] = useState(false);
     const [showBrewers, setShowBrewers] = useState(false);
     const [showCustomers, setShowCustomers] = useState(false);
 
-
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // fetch all breweries when 'showBreweries' is toggled
     useEffect(() => {
         if (showBreweries) {
             const fetchBreweries = async () => {
@@ -40,7 +33,6 @@ const AdminPage = () => {
                     setLoading(false);
                 }
             };
-
             fetchBreweries();
         }
     }, [showBreweries]);
@@ -57,7 +49,6 @@ const AdminPage = () => {
                     setLoading(false);
                 }
             };
-
             fetchBrewers();
         }
     }, [showBrewers]);
@@ -67,27 +58,23 @@ const AdminPage = () => {
             const fetchCustomers = async () => {
                 try {
                     const fetchedCustomers = await customerService.getCustomers();
-                    setBrewers(fetchedCustomers);
+                    setCustomers(fetchedCustomers); // Corrected this line
                     setLoading(false);
                 } catch (error) {
                     setError("Error fetching customers");
                     setLoading(false);
                 }
             };
-
             fetchCustomers();
         }
     }, [showCustomers]);
 
-
-
-    // Function to toggle brewery visibility
     const handleShowBreweries = () => {
         setShowBreweries((prev) => !prev);
     };
 
     const handleShowBrewers = () => {
-        setShowBreweries((prev) => !prev);
+        setShowBrewers((prev) => !prev); // Corrected this line
     };
 
     const handleShowCustomers = () => {
@@ -96,18 +83,14 @@ const AdminPage = () => {
 
     return (
         <div className="container">
-
             {/* Manage Breweries Section */}
             <div className="card form-control text-center p-4 mt-3">
                 <h4>Manage Breweries:</h4>
-
-                {/* Toggle visibility of breweries */}
                 <button className="btn btn-outline-success mt-2" onClick={handleShowBreweries}>
                     {showBreweries ? "Hide All Breweries" : "View All Breweries"}
                 </button>
             </div>
 
-            {/* Display Breweries */}
             {showBreweries && (
                 <div className="card form-control mt-3">
                     <h4>All Breweries</h4>
@@ -126,58 +109,42 @@ const AdminPage = () => {
                     )}
                 </div>
             )}
-        </div>
-         );
 
-    return (
-    <div className="container">
-
-        {/* Manage Brewers Section */}
-        <div className="card form-control text-center p-4 mt-3">
-            <h4>Manage Brewers:</h4>
-
-            {/* Toggle visibility of brewers */}
-            <button className="btn btn-outline-success mt-2" onClick={handleShowBrewers}>
-                {showBrewers ? "Hide All Brewers" : "View All Brewers"}
-            </button>
-        </div>
-
-        {/* Display Brewers */}
-        {showBrewers && (
-            <div className="card form-control mt-3">
-                <h4>All Brewers</h4>
-                {loading ? (
-                    <p>Loading brewers...</p>
-                ) : error ? (
-                    <p>{error}</p>
-                ) : (
-                    <ul>
-                        {brewers.map((brewer) => (
-                            <li key={brewer.brewerId}>
-                                {brewer.brewerName} - {brewer.city}, {brewer.stateProvince}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+            {/* Manage Brewers Section */}
+            <div className="card form-control text-center p-4 mt-3">
+                <h4>Manage Brewers:</h4>
+                <button className="btn btn-outline-success mt-2" onClick={handleShowBrewers}>
+                    {showBrewers ? "Hide All Brewers" : "View All Brewers"}
+                </button>
             </div>
-        )}
-    </div>
-    );
 
-    return (
-        <div className="container">
-    
+            {showBrewers && (
+                <div className="card form-control mt-3">
+                    <h4>All Brewers</h4>
+                    {loading ? (
+                        <p>Loading brewers...</p>
+                    ) : error ? (
+                        <p>{error}</p>
+                    ) : (
+                        <ul>
+                            {brewers.map((brewer) => (
+                                <li key={brewer.brewerId}>
+                                    {brewer.brewerName} - {brewer.city}, {brewer.stateProvince}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            )}
+
             {/* Manage Customers Section */}
             <div className="card form-control text-center p-4 mt-3">
                 <h4>Manage Customers:</h4>
-    
-                {/* Toggle visibility of customers */}
                 <button className="btn btn-outline-success mt-2" onClick={handleShowCustomers}>
                     {showCustomers ? "Hide All Customers" : "View All Customers"}
                 </button>
             </div>
-    
-            {/* Display Customers */}
+
             {showCustomers && (
                 <div className="card form-control mt-3">
                     <h4>All Customers</h4>
@@ -189,7 +156,7 @@ const AdminPage = () => {
                         <ul>
                             {customers.map((customer) => (
                                 <li key={customer.customerId}>
-                                    {customer.customerName} 
+                                    {customer.customerName}
                                 </li>
                             ))}
                         </ul>
@@ -197,7 +164,7 @@ const AdminPage = () => {
                 </div>
             )}
         </div>
-        );
-    }   
+    );
+};
 
 export default AdminPage;
