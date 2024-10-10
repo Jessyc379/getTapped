@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
+import './AdminStyles.css';
 
-export default function AdminPage()
-{
+
+export default function AdminPage() {
     return (
-        <>
-        <h1>Welcome to Your Dashboard</h1>
-        <Outlet />
-
-        </>
-    )
+        <div className="admin-page">
+            <h1>Welcome to Your Dashboard</h1>
+            <Outlet />
+        </div>
+    );
 }

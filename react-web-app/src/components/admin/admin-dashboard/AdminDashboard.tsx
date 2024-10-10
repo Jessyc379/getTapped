@@ -3,11 +3,8 @@ import breweryService from "../../../services/brewery-service/BreweryService";
 import brewerService from "../../../services/brewer-service/BrewerService"; 
 import customerService from "../../../services/customer-service/CustomerService"; 
 import { Brewery } from "../../../models/brewery/Brewery";
-import {Brewer}    from "../../../models/brewer/Brewer";
-import {Customer}    from "../../../models/customer/Customer";
- 
-
-
+import { Brewer } from "../../../models/brewer/Brewer";
+import { Customer } from "../../../models/customer/Customer";
 
 const AdminPage = () => {
     const [breweries, setBreweries] = useState<Brewery[]>([]);
@@ -18,63 +15,79 @@ const AdminPage = () => {
     const [showBrewers, setShowBrewers] = useState(false);
     const [showCustomers, setShowCustomers] = useState(false);
 
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [loadingBreweries, setLoadingBreweries] = useState(false);
+    const [loadingBrewers, setLoadingBrewers] = useState(false);
+    const [loadingCustomers, setLoadingCustomers] = useState(false);
 
+    const [errorBreweries, setErrorBreweries] = useState<string | null>(null);
+    const [errorBrewers, setErrorBrewers] = useState<string | null>(null);
+    const [errorCustomers, setErrorCustomers] = useState<string | null>(null);
+    
+
+    // Fetch breweries when 'showBreweries' is toggled
     useEffect(() => {
         if (showBreweries) {
             const fetchBreweries = async () => {
+                setLoadingBreweries(true);
                 try {
                     const fetchedBreweries = await breweryService.getAllBreweries();
                     setBreweries(fetchedBreweries);
-                    setLoading(false);
+                    setErrorBreweries(null);
                 } catch (error) {
-                    setError("Error fetching breweries");
-                    setLoading(false);
+                    setErrorBreweries("Error fetching breweries");
+                } finally {
+                    setLoadingBreweries(false);
                 }
             };
             fetchBreweries();
         }
     }, [showBreweries]);
 
+    // Fetch brewers when 'showBrewers' is toggled
     useEffect(() => {
         if (showBrewers) {
             const fetchBrewers = async () => {
+                setLoadingBrewers(true);
                 try {
                     const fetchedBrewers = await brewerService.getBrewers();
                     setBrewers(fetchedBrewers);
-                    setLoading(false);
+                    setErrorBrewers(null);
                 } catch (error) {
-                    setError("Error fetching brewers");
-                    setLoading(false);
+                    setErrorBrewers("Error fetching brewers");
+                } finally {
+                    setLoadingBrewers(false);
                 }
             };
             fetchBrewers();
         }
     }, [showBrewers]);
 
+    // Fetch customers when 'showCustomers' is toggled
     useEffect(() => {
         if (showCustomers) {
             const fetchCustomers = async () => {
+                setLoadingCustomers(true);
                 try {
                     const fetchedCustomers = await customerService.getCustomers();
-                    setCustomers(fetchedCustomers); // Corrected this line
-                    setLoading(false);
+                    setCustomers(fetchedCustomers); 
+                    setErrorCustomers(null);
                 } catch (error) {
-                    setError("Error fetching customers");
-                    setLoading(false);
+                    setErrorCustomers("Error fetching customers");
+                } finally {
+                    setLoadingCustomers(false);
                 }
             };
             fetchCustomers();
         }
     }, [showCustomers]);
 
+    // Toggle visibility functions
     const handleShowBreweries = () => {
         setShowBreweries((prev) => !prev);
     };
 
     const handleShowBrewers = () => {
-        setShowBrewers((prev) => !prev); // Corrected this line
+        setShowBrewers((prev) => !prev);
     };
 
     const handleShowCustomers = () => {
@@ -90,14 +103,14 @@ const AdminPage = () => {
                     {showBreweries ? "Hide All Breweries" : "View All Breweries"}
                 </button>
             </div>
-
+            {/* Display Breweries */}
             {showBreweries && (
                 <div className="card form-control mt-3">
                     <h4>All Breweries</h4>
-                    {loading ? (
+                    {loadingBreweries ? (
                         <p>Loading breweries...</p>
-                    ) : error ? (
-                        <p>{error}</p>
+                    ) : errorBreweries ? (
+                        <p>{errorBreweries}</p>
                     ) : (
                         <ul>
                             {breweries.map((brewery) => (
@@ -117,14 +130,14 @@ const AdminPage = () => {
                     {showBrewers ? "Hide All Brewers" : "View All Brewers"}
                 </button>
             </div>
-
+            {/* Display Brewers */}
             {showBrewers && (
                 <div className="card form-control mt-3">
                     <h4>All Brewers</h4>
-                    {loading ? (
+                    {loadingBrewers ? (
                         <p>Loading brewers...</p>
-                    ) : error ? (
-                        <p>{error}</p>
+                    ) : errorBrewers ? (
+                        <p>{errorBrewers}</p>
                     ) : (
                         <ul>
                             {brewers.map((brewer) => (
@@ -144,14 +157,14 @@ const AdminPage = () => {
                     {showCustomers ? "Hide All Customers" : "View All Customers"}
                 </button>
             </div>
-
+            {/* Display Customers */}
             {showCustomers && (
                 <div className="card form-control mt-3">
                     <h4>All Customers</h4>
-                    {loading ? (
+                    {loadingCustomers ? (
                         <p>Loading customers...</p>
-                    ) : error ? (
-                        <p>{error}</p>
+                    ) : errorCustomers ? (
+                        <p>{errorCustomers}</p>
                     ) : (
                         <ul>
                             {customers.map((customer) => (
