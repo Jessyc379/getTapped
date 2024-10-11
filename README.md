@@ -26,6 +26,7 @@ Here are some screenshots of the diagrams used for planning the architecture and
    
    **Database Schema**  
    ![Database Schema](diagrams/ER-diagram.png)
+
 ## Front End
 
 The Front End is the face of the **getTapped** application and how users will interact with the brewery finder and reviews. It was built using **React** with **TypeScript**, styled using **CSS** and **Bootstrap**, and managed state with **Context API**.
@@ -109,37 +110,45 @@ The **getTapped** application follows a layered architecture to keep the code mo
 ## Favorite Code
 
 #### **Charletta's** favorite block of code:
-![]()
+![Charletta's Code Block](code-block/charletta-codeblock.png)
 
 
 
 #### **Jessy's** favorite block of code:
-![]()
+Although this the whole component, it’s my absolute favorite part about this project. Over the last two weeks of using react, I had yet to implement an edit function and it was always left as a stretch goal on our daily exercises. I made attempts but either didn’t have time to finish or was unable to get it working so this was the FIRST time I was successful! It took me a while to figure out the bugs but it was also the first mapping other than Get that I was able to implement on this project
+![Jessy's Code Block](code-block/jessy-codeblock.png)
 
 
 
 #### **Valerie's** favorite block of code:
-![]()
+My favorite block of code involves displaying customer review data. While it may seem straightforward at a glance, it required pulling data from multiple tables in our SQL database, meaning the data had to pass through various layers. It had to be integrated into the model and service on the backend, transferred through an interface, and finally injected into the frontend for display. Successfully rendering the data on the page demonstrated not only my understanding of the bootcamp’s key concepts but also the successful design of the database. I was also able to utilize React libraries, which allowed me to easily reformat dates, include icons, and easily helped me visualize customer ratings. All of these factors helped me create a more user-friendly experience.
+![Valerie's Code Block](code-block/valerie-codeblock.png)
 
 
 
 #### **Karen's** favorite block of code:
-![]()
+This code block is my favorite because it captures a key moment in the project where I implemented a solution to fetch and render reviews for each brewery using a ReviewService. It highlights my ability to solve complex issues by dynamically fetching data and managing state effectively in React. This approach ensured that the reviews were correctly tied to each brewery, creating a seamless user experience. This block also represents a point where I overcame a significant challenge
+![Karen's Code Block](code-block/karen-codeblock.png)
 
 
 
 ## Challenges
 
 **Charletta:**
+Setting up the AdminContext and AdminContextProvider was a challenge, particularly when integrating them with services to manage data fetching and interactions between the backend API and the front end. I needed to ensure that these contexts effectively managed data for brewers, breweries, and customers.
 
 
 
 **Jessy:**
+My biggest challenge was with being able to add new breweries within the brewer dashboard, there were two major issues that needed to be handled on both the front and back end. In the back end I had to do some digging through the controllers and DAO to fix a 500 error I was receiving. I knew the issue was there because when I tried to the api call from postman it failed, meaning at least for now, the issues was not within our react project services or contexts. When I looked through the code, I found that we were passing too many values in our MySql script and there were also too many parameters within the prepared statment. Once I fixed that, I was able to move on to the next error: how react was handling the longitude and latitude double variables. I tried a few things to mitigate the issue and realized that the way I had it within the form (default value of 1) wasn't registering the addition of the variable unless the brewer changed the input text field, regardless of that variable being nullable within our database. I changed the brewer model in react to default the value to 1 and removed the fields from the form all together and the issue was dissolved. I think having the option to add longitude and latitude would be a good idea in the long run if we were to use a google api or any mapping technologies in the future; however, these are unnecessary at this point in our app's lifecycle. The framework is there for future launches though!
 
 
 
 **Valerie:**
+This block of code was also the most challenging. Properly displaying all the customer review data required a deep understanding of the many moving parts involved in the process. Since the data was pulled from multiple sources, I faced numerous hurdles. It took extensive trial and error, testing, and creative problem-solving to diagnose issues, especially when they weren't coming from the most obvious places.
 
 
 
 **Karen:**
+
+Challenge: Rendering reviews for each brewery on the BreweryDetails page was difficult due to issues with fetching the correct data from customer reviews. Initially, the base URL was tied to the brewery-service, which led to errors and incorrect paths. To address this, I decided to create a dedicated ReviewService to correctly fetch the data and import it into my BreweryDetails page. This allowed me to successfully fetch and render the correct reviews for each brewery, resolving the data fetching challenges and improving the overall functionality of the page.
