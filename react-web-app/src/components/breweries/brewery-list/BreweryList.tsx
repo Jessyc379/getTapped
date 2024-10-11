@@ -18,8 +18,6 @@ export default function BreweryList() {
         <>
             <div className="breweries-hero-section">
                 <img src={breweryImage} alt="Brewery" className="brewery-hero-image" />
-                <div className="brewery-hero-text-overlay">
-                </div>
             </div>
 
 
