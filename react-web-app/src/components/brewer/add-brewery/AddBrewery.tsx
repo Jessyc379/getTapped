@@ -28,7 +28,7 @@ export default function AddBrewery() {
 
     const { addBrewery, refreshBreweries } = breweryContext;
 
-    async function handleInputChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
+    async function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
 
         const { name, value } = e.target;
         setBrewery({
@@ -135,31 +135,6 @@ export default function AddBrewery() {
                             name="country"
                             id="country"
                             value={brewery.country}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <label htmlFor="longitude">Longitude:</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            name="longitude"
-                            id="longitude"
-                            defaultValue={1.00}
-                            step="0.0001"
-                            value={brewery.longitude}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <label htmlFor="latitude">Latitude:</label>
-                        <input type="number"
-                            className="form-control"
-                            value={brewery.latitude}
-                            name="latitude"
-                            defaultValue={1.00}
-                            step="0.0001"
-                            id="latitude"
                             onChange={handleInputChange}
                         />
                     </div>
