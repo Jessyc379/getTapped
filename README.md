@@ -61,6 +61,9 @@ We aimed for a clean and responsive design that emphasizes ease of use and acces
 
 - **Brewer Dashboard**: Brewers have an intuitive dashboard interface where they can view all the breweries they manage. The dashboard is equipped with forms for adding or updating breweries and provides real-time feedback on updates.
 
+**App Design**  
+![App Design](diagrams/app-design.png)
+
 ## Development Stack
 
 #### **Frontend:**
