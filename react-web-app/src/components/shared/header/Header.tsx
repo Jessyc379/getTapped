@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import { logout } from "../../../store/features/authentication-slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import getTappedLogo from "../../../assets/images/getTapped.png";
 import "./Header.css";
 
 export default function Header() {
@@ -21,7 +22,9 @@ export default function Header() {
     return (
         <nav className="navbar navbar-expand-lg bg-light" data-bs-theme="light">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">getTapped</Link>
+                <Link className="navbar-brand" to="/">
+                    <img src={getTappedLogo} alt="getTapped Logo" className="navbar-logo" />
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
