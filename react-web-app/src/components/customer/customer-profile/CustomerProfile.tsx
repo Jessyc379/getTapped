@@ -7,7 +7,7 @@ import { RootState } from "../../../store/store";
 import EditProfile from "../edit-profile/EditProfile";
 import './CustomerProfile.css';
 import { FaMapMarkerAlt, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import profile1 from '../../../assets/images/profile1.png';
+import userProfile from '../../../assets/images/user-profile.png';
 
 interface Review {
     reviewId: number;
@@ -107,7 +107,7 @@ export default function CustomerProfile() {
                 <div className="profile-container">
                     <div className="profile-image-container">
                         <p className="customer-username"> {profileData?.username} </p>
-                        <img src={profile1} alt="Profile" className="profile-image" />
+                        <img src={userProfile} alt="Profile" className="profile-image" />
                     </div>
 
                     <div className="profile-details">

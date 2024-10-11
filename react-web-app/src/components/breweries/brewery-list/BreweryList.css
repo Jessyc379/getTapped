@@ -3,7 +3,7 @@
     height: 450px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .brewery-hero-image {
@@ -13,18 +13,9 @@
     opacity: 0.9;
 }
 
-.brewery-hero-text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-align: center;
-}
-
 .breweries-intro {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     padding: 0 20px;
 }
 
@@ -47,6 +38,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    max-width: 1200px;
 }
 
 .brewery-card-container {
@@ -55,7 +47,7 @@
     justify-content: center;
     gap: 20px;
     padding: 0 20px;
-    margin-bottom: 30px; 
+    margin-bottom: 50px; 
 }
 
 .brewery-card {
@@ -101,26 +93,20 @@
 }
 
 /* Media Queries */
+@media (max-width: 1024px) {
+    .brewery-card {
+        flex-basis: calc(33.33% - 20px);
+    }
+}
+
 @media (max-width: 768px) {
-    .brewery-card-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .brewery-card {
-        width: 100%;
-        max-width: 340px;
+        flex-basis: calc(50% - 20px); 
     }
 }
 
-@media (min-width: 769px) {
+@media (max-width: 480px) {
     .brewery-card {
-        width: calc(33.33% - 20px); 
-    }
-}
-
-@media (min-width: 1200px) {
-    .brewery-card {
-        width: calc(25% - 20px); 
+        flex-basis: calc(100% - 20px);
     }
 }
