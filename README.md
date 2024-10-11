@@ -67,7 +67,7 @@ We aimed for a clean and responsive design that emphasizes ease of use and acces
 ## Development Stack
 
 #### **Frontend:**
-- **React**: For building the user interface with components, hooks, and context API.
+- **React**: For building the user interface with components, hooks, context API, and event handling with useState and useEffect. Additional React libraries were imported to enhance the user experience, such as a carousel component and built-in React icons.
 - **TypeScript**: Provides type safety and better development experience.
 - **React Router**: For client-side routing and navigation between pages.
 - **CSS**: Custom styling along with media queries for responsive design.
@@ -79,7 +79,7 @@ We aimed for a clean and responsive design that emphasizes ease of use and acces
   - **Spring Data JPA**: For interacting with the database using the Data Access Object (DAO) pattern.
 
 #### **Database:**
-- **MySQL**: Relational database used for storing brewery, review, and user data.
+- **MySQL**: Relational database used for storing brewery, brewer, review, customer, and user data.
 
 #### **API & Data Handling:**
 - **Axios**: For making HTTP requests from the React frontend to the Spring Boot backend.
@@ -88,7 +88,7 @@ We aimed for a clean and responsive design that emphasizes ease of use and acces
 #### **Development Tools:**
 - **Vite**: Build tool and development server for the React app.
 ## Database Design
-We based our database structure on a brewery API, which served as inspiration for the types of data required in the breweries table. The table uses UUIDs as the primary key, following industry standards, while other tables use auto-incremented integers for their primary keys. This mix required some adjustment, as our bootcamp primarily used integer IDs. Since it was difficult to find APIs that matched all the data we needed, we created fictitious data for other tables, ensuring consistency with the brewery data structure while meeting the needs of different user types.
+We structured our database around the OpenBreweryDB API, using it as a reference for the attributes in our breweries table. The table utilizes UUIDs as the primary key, aligning with industry standards, while we opted for auto-incrementing integers for the other tables, reflecting the integer IDs we primarily worked with during the bootcamp. Since it was challenging to find APIs that provided all the necessary data, we generated fictitious data for the remaining tables. This allowed us to focus on applying the technologies we learned and demonstrating our full-stack development capabilities
 
 ## API Architecture
 
