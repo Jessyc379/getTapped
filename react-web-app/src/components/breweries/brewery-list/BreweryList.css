@@ -28,6 +28,9 @@
 .breweries-intro p {
     font-size: 1.2rem;
     color: #454545;
+    margin-top: 25px;
+    max-width: 1250px;
+    margin-bottom: 30px;
 }
 
 .brewery-list {
